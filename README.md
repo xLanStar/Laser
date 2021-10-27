@@ -10,7 +10,7 @@
 
 ## 下載原始碼
 
-下載原始碼:
+複製完整的內容:
 ```bash
 git clone https://github.com/xLanStar/Laser.git
 ```
