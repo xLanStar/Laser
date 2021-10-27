@@ -13,12 +13,28 @@
 複製完整的內容:
 ```bash
 git clone https://github.com/xLanStar/Laser.git
+cd Laser
+git branch develop origin/develop
 ```
 
-
-更新原始碼，請在`Laser`資料夾下:
+更新本機的原始碼
 ```bash
 git pull
+```
+
+上傳本機的所有修改內容
+```bash
+git push
+```
+
+更新遠端的 master 為當前遠端的 develop 版本
+```bash
+git checkout develop
+git pull
+git checkout master
+git pull
+git merge develop
+git push -u origin master
 ```
 
 ## 環境設定
