@@ -1,7 +1,12 @@
 # 開發說明
 
 請確認你的電腦已安裝
-* [Git](https://git-scm.com/downloads)
+
+### [Git](https://git-scm.com/downloads)
+
+### [MinGW-W64](https://sourceforge.net/projects/mingw-w64/)
+* 版本version: 8.1.0 <br>
+* 架構architecture: x86_64
 
 ## 下載原始碼
 
@@ -17,14 +22,6 @@ git pull
 ```
 
 ## 環境設定
-
-### 編譯器
-
-* [MinGW-W64](https://sourceforge.net/projects/mingw-w64/)
-* 版本version: 8.1.0 <br>
-* 架構architecture: x86_64
-
-### 環境設定
 
 * C++標準涵式庫: C++11
 * 編譯器路徑: MinGW路徑\bin\g++.exe
