@@ -24,8 +24,12 @@ git pull
 ## 環境設定
 
 * C++標準涵式庫: C++11
-* 編譯器路徑: MinGW路徑\bin\g++.exe
-* 涵式庫路徑: MinGW路徑\lib\gcc\x86_64-w64-mingw32\8.1.0\include\c++
+* 編譯器路徑: `MinGW路徑\bin\g++.exe`
+* 涵式庫路徑: 
+    * `MinGW路徑\lib\gcc\x86_64-w64-mingw32\8.1.0\include\c++` C++標準涵式庫
+    * `${workspaceFolder}/include` 專案引入之標頭黨
+    * `${workspaceFolder}/src` 此專案之原始碼
+
 
 ## 相關規範
 
