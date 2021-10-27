@@ -1,22 +1,30 @@
-# 安裝說明
+# 開發說明
 
-## [Git](https://git-scm.com/downloads)
+請確認你的電腦已安裝
+* [Git](https://git-scm.com/downloads)
 
-下載:
+## 下載原始碼
+
+下載原始碼:
 ```bash
 git clone https://github.com/xLanStar/Laser.git
 ```
 
-# 開發說明
 
-## 編譯器
+更新原始碼，請在`Laser`資料夾下
+```bash
+git pull
+```
 
-### [MinGW-W64](https://sourceforge.net/projects/mingw-w64/)
+## 環境設定
 
+### 編譯器
+
+* [MinGW-W64](https://sourceforge.net/projects/mingw-w64/)
 * 版本version: 8.1.0 <br>
 * 架構architecture: x86_64
 
-## 環境設定
+### 環境設定
 
 * C++標準涵式庫: C++11
 * 編譯器路徑: MinGW路徑\bin\g++.exe
