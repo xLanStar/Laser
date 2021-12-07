@@ -1,6 +1,12 @@
 #include <iostream>
+#include "Game/Game.h"
 
-int main(){
-    std::cout << "Hello World!" << '\n';
+int main()
+{
+    //Init Game Engine
+    Game game;
+
+    game.run();
+
     return 0;
 }
