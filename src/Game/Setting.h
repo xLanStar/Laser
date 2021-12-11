@@ -3,42 +3,62 @@
 #include <unordered_map>
 
 #include "Game/Color.h"
-#include "Game/Pattern.h"
-
-enum ColorTheme
-{
-    Yellow, Pink, Blue, Cyan, Purple, Gray, Castella, Zebra
-};
-
-static std::unordered_map<std::string,ColorTheme> COLORTHEMETABLE = { {"Yellow",Yellow}, {"Pink",Pink}, {"Blue",Blue}, {"Cyan",Cyan}, {"Purple",Purple}, {"Gray",Gray}, {"Castella",Castella}, {"Zebra",Zebra} };
+#include "Game/GameObject/Pattern.h"
 
 class Setting
 {
 private:
     // Stored Theme Config
-    std::unordered_map<ColorTheme,Color> ColorTable;
+    std::unordered_map<std::string, Color> ColorTable;
 
-    // Screen Size
-    int screenWidth = 1280, screenHeight = 720;
+
+    // Window Size
+    int windowWidth = 1280, windowHeight = 720;
+
+
     // Color
     Color color;
+    // Color Tile
+    int colorStateBorder = 50, colorTileGap = 25, colorTileWidth = 250, colorTileHeight = 120;
+    // Pantone
+    int pantonePoints = 30, pantoneRadius = 32;
+    float pantoneHoverScale = 1.2f;
+
 
     // TODO:Pattern
-    Pattern pattern;
+    GameObject::Pattern pattern;
+
 
     // Text
-    int characterSize = 48, hoverCharacterSize = 64;
+    int titleCharacterSize = 84; // Title
+    int buttonCharacterSize = 48, buttonHoverCharacterSize = 64; // Button Text
     sf::Font font;
+
 public:
+    // Constructor & Deconstructor
     Setting();
     ~Setting();
 
-    void setColorTheme(ColorTheme colorTheme);
+    // Accessors
+    std::unordered_map<std::string, Color> &getColorTable();
+    void setColorTheme(std::string colorTheme);
+    Color &findColor(std::string colorTheme);
     Color &getColor();
-    Pattern &getPattern();
+    int &getColorStateBorder();
+    int &getColorTileGap();
+    int &getColorTileWidth();
+    int &getColorTileHeight();
+    int &getPantonePoints();
+    int &getPantoneRadius();
+    float &getPantoneHoverScale();
+    GameObject::Pattern &getPattern();
     sf::Font &getFont();
-    int getCharacterSize();
-    int getHoverCharacterSize();
-    int getScreenWidth();
-    int getScreenHeight();
+    int &getTitleCharacterSize();
+    int &getButtonCharacterSize();
+    int &getButtonHoverCharacterSize();
+
+    // Screen Position
+    int &getWindowWidth();
+    int &getWindowHeight();
+    Point getPointAtWindow(float x, float y);
 };

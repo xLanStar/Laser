@@ -4,24 +4,19 @@
 
 #include "Game/State/State.h"
 
-class SettingState : public State
+class PatternState : public State
 {
 private:
     // Variables
     sf::Font buttonFont;
 
-
     // Initializer
     void initUI();
 
-    // UI Event
-    void onPatternButtonClick();
-    void onColorButtonClick();
-
 public:
     // Constructor
-    SettingState(Game &game);
-    ~SettingState();
+    PatternState(Game &game);
+    ~PatternState();
 
     // Functions
     //void render();

@@ -7,6 +7,16 @@
 #include "Game/State/State.h"
 #include "Game/Setting.h"
 
+enum StateType
+{
+    MAINMENU = 0,
+    EXIT,
+    SETTING,
+    COLOR,
+    PATTERN,
+    GAME
+};
+
 class Game
 {
 private:
@@ -35,6 +45,13 @@ public:
     Game();
     ~Game();
 
+    // Accessor
+
+    // push new state on top
+    void pushState(StateType stateType);
+    // back to 2nd state
+    void popState();
+
     // Functions
     void updateDeltaTime();
     void updateEvents();
@@ -43,4 +60,5 @@ public:
 
     // Core
     void run();
+    void stop();
 };

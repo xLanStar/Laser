@@ -5,47 +5,34 @@
 #include <SFML/Graphics.hpp>
 
 #include "Game/Setting.h"
-#include "Game/State/State.h"
+#include "Game/GameObject/GameObject.h"
 
-/**
- * Member-Function to void Pointer
- */
-template<typename T, typename R>
-void* voidCast(R(T::*f)())
-{
-    union
-    {
-        R(T::*pf)();
-        void* p;
-    };
-    pf = f;
-    return p;
-}
+class Game;
 
 class State : public sf::Drawable
 {
 private:
-    // Variables
-    bool quit;
-
     // UI Draw Function
+    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 protected:
 public:
-    Setting &setting;
-    std::stack<State *> &states;
+    // Reference
+    Game &game;
+
+    // UI
+    std::map<std::string, GameObject::GameObject *> gameObjects;
 
     // Constructor
-    State(Setting &setting, std::stack<State *> &states);
+    State(Game &game);
     virtual ~State();
 
-    // Accessors
-    bool getQuit();
+    // Functions
     virtual void Quit();
 
     // Virtual Functions
-    virtual void updateMouseMove(int x, int y) = 0;
-    virtual void updateMousePress(int x, int y) = 0;
-    virtual void updateMouseRelease(int x, int y) = 0;
-    virtual void update(float deltaTime) = 0;
+    virtual void updateMouseMove(Point &point);
+    virtual void updateMousePress(Point &point);
+    virtual void updateMouseRelease(Point &point);
+    virtual void update(float deltaTime);
     // virtual void render() = 0;
 };

@@ -5,6 +5,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "Game/Setting.h"
+#include "Game/GameObject/GameObject.h"
+#include "Game/GameObject/Text.h"
 /**
 enum button_states
 {
@@ -14,9 +16,9 @@ enum button_states
 };
 **/
 
-namespace Gameobject
+namespace GameObject
 {
-    class Button : public sf::Drawable
+    class Button : public GameObject
     {
     private:
         // unsigned short buttonState;
@@ -27,10 +29,8 @@ namespace Gameobject
         bool hover;
 
         // Button Appearance
-        int x, y;
-        Setting &setting;
-        std::string str;
-        sf::Text text;
+        Text text;
+        int &characterSize, &hoverCharacterSize;
         
         // Button event
         std::function<void()> onClick;
@@ -43,15 +43,14 @@ namespace Gameobject
 
     public:
         // Constructor
-        Button(int x, int y, std::string text, Setting &setting, std::function<void()> onClick);
+        Button(Point position, int &characterSize, int &hoverCharacterSize, sf::Font &font, std::string str, std::function<void()> onClick);
         ~Button();
 
-        // Accessors
-
         // Functions
-        void updateMouseMove(int x, int y);
-        void updateMousePress(int x, int y);
-        void updateMouseRelease(int x, int y);
-        void update();
+        void setPosition(Point &point) override;
+        void updateMouseMove(Point &point) override;
+        void updateMousePress(Point &point) override;
+        void updateMouseRelease(Point &point) override;
+        void update() override;
     };
 };

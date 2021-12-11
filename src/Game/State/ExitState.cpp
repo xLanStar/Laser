@@ -6,15 +6,15 @@
 #include "SFML/Graphics.hpp"
 
 #include "Game/Gameobject/Button.h"
-#include "Game/State/State.h"
-#include "Game/State/SettingState.h"
+#include "Game/Gameobject/Text.h"
+#include "Game/Game.h"
 
 // UI Events
 
 void ExitState::onYesButtonClick()
 {
     std::cout << "Yes Button Click!\n";
-
+    game.stop();
 }
 
 void ExitState::onNoButtonClick()
@@ -25,85 +25,38 @@ void ExitState::onNoButtonClick()
 
 
 //Initializer
-void ExitState::initButtons()
+void ExitState::initUI()
 {
-    buttons["Yes"] = new Gameobject::Button(
-        40, 60,
+    gameObjects["Title"] = new GameObject::Text(
+        game.setting.getPointAtWindow(50, 40),
+        game.setting.getTitleCharacterSize(),
+        game.setting.getFont(),
+        (std::string) "ARE YOU SURE TO\nQUIT THE GAME?");
+    gameObjects["Yes"] = new GameObject::Button(
+        game.setting.getPointAtWindow(40, 60),
+        game.setting.getButtonCharacterSize(),
+        game.setting.getButtonHoverCharacterSize(),
+        game.setting.getFont(),
         (std::string) "YES",
-        setting,
         [&]{onYesButtonClick();});
-    buttons["No"] = new Gameobject::Button(
-        60, 60,
+    gameObjects["No"] = new GameObject::Button(
+        game.setting.getPointAtWindow(60, 60),
+        game.setting.getButtonCharacterSize(),
+        game.setting.getButtonHoverCharacterSize(),
+        game.setting.getFont(),
         (std::string) "NO",
-        setting,
         [&]{onNoButtonClick();});
 }
 
 //Constructor
-ExitState::ExitState(Setting &setting, std::stack<State *> &states) : State(setting, states)
+ExitState::ExitState(Game &game) : State(game)
 {
-    initButtons();
+    initUI();
 }
 
 ExitState::~ExitState()
 {
-    // Clear Buttons
-    for(auto it = buttons.begin(); it!=buttons.end(); it++)
-    {
-        buttons.erase(it);
-    }
+
 }
 
 // Functions
-// update Events
-void ExitState::updateMouseMove(int x, int y)
-{
-    // check if button is pressed
-    for (auto it : buttons)
-    {
-        it.second->updateMouseMove(x,y);
-    }
-}
-
-void ExitState::updateMousePress(int x, int y)
-{
-    // update Buttons
-    for (auto it : buttons)
-    {
-        it.second->updateMousePress(x,y);
-    }
-}
-
-void ExitState::updateMouseRelease(int x, int y)
-{
-    // update Buttons
-    for (auto it : buttons)
-    {
-        it.second->updateMouseRelease(x, y);
-    }
-}
-
-
-//
-void ExitState::update(float deltaTime)
-{
-    /**
-     * - update UI
-    **/
-    for (auto it : buttons)
-    {
-        it.second->update();
-    }
-}
-
-void ExitState::draw(sf::RenderTarget &target, sf::RenderStates states) const
-{
-    /**
-     * - draw buttons
-     */
-    for (auto it : buttons)
-    {
-        //it.second->render();
-        target.draw(*it.second);
-    }
-}

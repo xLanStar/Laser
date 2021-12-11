@@ -5,10 +5,10 @@
 
 #include "SFML/Graphics.hpp"
 
+#include "Game/Game.h"
 #include "Game/Gameobject/Button.h"
-#include "Game/State/State.h"
-#include "Game/State/SettingState.h"
-#include "Game/State/ExitState.h"
+#include "Game/Gameobject/Text.h"
+#include "Game/Gameobject/PatternTile.h"
 
 // UI Events
 
@@ -20,95 +20,47 @@ void MainMenuState::onPlayButtonClick()
 void MainMenuState::onSettingButtonClick()
 {
     std::cout << "Setting Button Click!\n";
-    states.push(new SettingState(setting, states));
+    game.pushState(SETTING);
 }
 
 
 //Initializer
-void MainMenuState::initButtons()
+void MainMenuState::initUI()
 {
-    buttons["Play"] = new Gameobject::Button(
-        50, 50,
+    gameObjects["Title"] = new GameObject::Text(
+        game.setting.getPointAtWindow(50, 30),
+        game.setting.getTitleCharacterSize(),
+        game.setting.getFont(),
+        (std::string) "THUNDER LASER");
+    gameObjects["Play"] = new GameObject::Button(
+        game.setting.getPointAtWindow(50, 50),
+        game.setting.getButtonCharacterSize(),
+        game.setting.getButtonHoverCharacterSize(),
+        game.setting.getFont(),
         (std::string) "PLAY",
-        setting,
         [&]{onPlayButtonClick();});
-    buttons["Setting"] = new Gameobject::Button(
-        50, 70,
+    gameObjects["Setting"] = new GameObject::Button(
+        game.setting.getPointAtWindow(50, 70),
+        game.setting.getButtonCharacterSize(),
+        game.setting.getButtonHoverCharacterSize(),
+        game.setting.getFont(),
         (std::string) "SETTING",
-        setting,
         [&]{onSettingButtonClick();});
 }
 
 //Constructor
-MainMenuState::MainMenuState(Setting &setting, std::stack<State *> &states) : State(setting, states)
+MainMenuState::MainMenuState(Game &game) : State(game)
 {
-    initButtons();
+    initUI();
 }
 
 MainMenuState::~MainMenuState()
 {
-    // Clear Buttons
-    for(auto it = buttons.begin(); it!=buttons.end(); it++)
-    {
-        buttons.erase(it);
-    }
+
 }
 
 // Functions
-// update Events
-void MainMenuState::updateMouseMove(int x, int y)
-{
-    // check if button is pressed
-    for (auto it : buttons)
-    {
-        it.second->updateMouseMove(x,y);
-    }
-}
-
-void MainMenuState::updateMousePress(int x, int y)
-{
-    // update Buttons
-    for (auto it : buttons)
-    {
-        it.second->updateMousePress(x,y);
-    }
-}
-
-void MainMenuState::updateMouseRelease(int x, int y)
-{
-    // update Buttons
-    for (auto it : buttons)
-    {
-        it.second->updateMouseRelease(x, y);
-    }
-}
-
-
-//
-void MainMenuState::update(float deltaTime)
-{
-    /**
-     * - update UI
-    **/
-    for (auto it : buttons)
-    {
-        it.second->update();
-    }
-}
-
-void MainMenuState::draw(sf::RenderTarget &target, sf::RenderStates states) const
-{
-    /**
-     * - draw buttons
-     */
-    for (auto it : buttons)
-    {
-        //it.second->render();
-        target.draw(*it.second);
-    }
-}
-
 void MainMenuState::Quit()
 {
-    states.push(new ExitState(setting, states));
+    game.pushState(EXIT);
 }

@@ -3,6 +3,10 @@
 #include <iostream>
 
 #include "Game/State/MainMenuState.h"
+#include "Game/State/SettingState.h"
+#include "Game/State/ColorState.h"
+#include "Game/State/PatternState.h"
+#include "Game/State/ExitState.h"
 
 // Initializer
 void Game::initWindow()
@@ -17,7 +21,7 @@ void Game::initWindow()
 
 void Game::initState()
 {
-    states.push(new MainMenuState(setting, states));
+    pushState(MAINMENU);
 }
 
 // Constructor
@@ -39,6 +43,37 @@ Game::~Game()
     }
 }
 
+// State Controller
+void Game::pushState(StateType stateType)
+{
+    switch (stateType)
+    {
+    case MAINMENU:
+        states.push(new MainMenuState(*this));
+        break;
+    case EXIT:
+        states.push(new ExitState(*this));
+        break;
+    case SETTING:
+        states.push(new SettingState(*this));
+        break;
+    case COLOR:
+        states.push(new ColorState(*this));
+        break;
+    case PATTERN:
+        states.push(new PatternState(*this));
+        break;
+    }
+}
+
+void Game::popState()
+{
+    if (states.size() != 0)
+    {
+        states.pop();
+    }
+}
+
 // Update DeltaTime
 void Game::updateDeltaTime()
 {
@@ -52,21 +87,31 @@ void Game::updateEvents()
     {
         if (event.type == sf::Event::MouseMoved)
         {
-            states.top()->updateMouseMove(event.mouseMove.x, event.mouseMove.y);
+            Point point(event.mouseMove.x, event.mouseMove.y);
+            states.top()->updateMouseMove(point);
         }
         else if (event.type == sf::Event::MouseButtonPressed)
         {
-            states.top()->updateMousePress(event.mouseButton.x, event.mouseButton.y);
+            Point point(event.mouseButton.x, event.mouseButton.y);
+            states.top()->updateMousePress(point);
         }
         else if (event.type == sf::Event::MouseButtonReleased)
         {
-            states.top()->updateMouseRelease(event.mouseButton.x, event.mouseButton.y);
+            Point point(event.mouseButton.x, event.mouseButton.y);
+            states.top()->updateMouseRelease(point);
         }
         else if (event.type == sf::Event::KeyPressed)
         {
             if (event.key.code == sf::Keyboard::Escape)
             {
                 states.top()->Quit();
+            }
+            /**
+             * DEBUG
+             */
+            else if(event.key.control && event.key.code == sf::Keyboard::A)
+            {
+                //setting.
             }
         }
         else if (event.type == sf::Event::Closed)
@@ -92,18 +137,6 @@ void Game::update()
     if (!states.empty())
     {
         states.top()->update(deltaTime);
-        if (states.top()->getQuit())
-        {
-            delete states.top();
-            states.pop();
-            /**# Back To Second Top State
-             * - update top state
-             */
-            if (!states.empty())
-            {
-                states.top()->update(deltaTime);
-            }
-        }
     }
     else
     {
@@ -138,4 +171,10 @@ void Game::run()
         update();
         render();
     }
+}
+
+// Stop
+void Game::stop()
+{
+    window->close();
 }
