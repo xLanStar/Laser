@@ -13,7 +13,7 @@ void GameObject::Button::draw(sf::RenderTarget &target, sf::RenderStates states)
 }
 
 // Constructor
-GameObject::Button::Button(Point position, int &characterSize, int &hoverCharacterSize, sf::Font &font, std::string str, std::function<void()> onClick) : GameObject(position), onClick(onClick), pressed(false), text(position, characterSize, font, str), characterSize(characterSize), hoverCharacterSize(hoverCharacterSize)
+GameObject::Button::Button(sf::Vector2f position, int &characterSize, int &hoverCharacterSize, Color &color, sf::Font &font, std::string str, std::function<void()> onClick) : GameObject(position), onClick(onClick), pressed(false), text(position, characterSize, color, font, str), characterSize(characterSize), hoverCharacterSize(hoverCharacterSize)
 {
 }
 
@@ -34,14 +34,19 @@ void GameObject::Button::setHover(bool isHovered)
     }
 }
 
-void GameObject::Button::setPosition(Point &point)
+void GameObject::Button::setColor(Color &color)
+{
+    text.setColor(color);
+}
+
+void GameObject::Button::setPosition(sf::Vector2f &point)
 {
     GameObject::setPosition(point);
     text.setPosition(point);
 }
 
 // Mouse Move
-void GameObject::Button::updateMouseMove(Point &point)
+void GameObject::Button::updateMouseMove(sf::Vector2f &point)
 {
     sf::FloatRect rect = text.getGlobalBounds();
     if (rect.contains(point.x, point.y) && rect.contains(point.x, point.y))
@@ -63,7 +68,7 @@ void GameObject::Button::updateMouseMove(Point &point)
 }
 
 // Mouse Press
-void GameObject::Button::updateMousePress(Point &point)
+void GameObject::Button::updateMousePress(sf::Vector2f &point)
 {
     if (hover && !pressed)
     {
@@ -73,7 +78,7 @@ void GameObject::Button::updateMousePress(Point &point)
 }
 
 // Mouse Release
-void GameObject::Button::updateMouseRelease(Point &point)
+void GameObject::Button::updateMouseRelease(sf::Vector2f &point)
 {
     if (pressed)
     {
@@ -87,6 +92,7 @@ void GameObject::Button::updateMouseRelease(Point &point)
     }
 }
 
-void GameObject::Button::update()
+void GameObject::Button::update(float &deltaTime)
 {
+    //text.update(deltaTime);
 }

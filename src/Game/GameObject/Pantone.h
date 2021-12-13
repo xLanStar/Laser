@@ -12,9 +12,6 @@ namespace GameObject
     class Pantone : public GameObject
     {
     private:
-        // unsigned short PantoneState;
-        // unsigned short id;
-
         // Pantone State
         bool pressed;
         bool hover;
@@ -37,23 +34,18 @@ namespace GameObject
 
     public:
         // Constructor & Deconstructor
-        Pantone(Point position, int &points, int &radius, float &hoverScale, Color &color, std::function<void()> onClick);
+        Pantone(sf::Vector2f position, int &points, int &radius, float &hoverScale, Color &color, std::function<void()> onClick);
         ~Pantone();
 
         // Accessors
         int &getRadius();
-
-        // Functions
-        void setPosition(Point &position) override;
-        // void setPoints(int &points);
-        // void setRadius(int &radius);
-        // void setHoverScale(float &hoverScale);
-        // void setColor(Color &color);
+        void setColor(Color &color) override;
+        void setPosition(sf::Vector2f &position) override;
 
         // Update Functions
-        void updateMouseMove(Point &point) override;
-        void updateMousePress(Point &point) override;
-        void updateMouseRelease(Point &point) override;
-        void update() override;
+        void updateMouseMove(sf::Vector2f &point) override;
+        void updateMousePress(sf::Vector2f &point) override;
+        void updateMouseRelease(sf::Vector2f &point) override;
+        void update(float &deltaTime) override;
     };
 };

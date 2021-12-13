@@ -2,29 +2,30 @@
 
 #include "SFML/Graphics.hpp"
 
-#include "Game/Point.h"
+#include "Game/Color.h"
 
 namespace GameObject
 {
     class GameObject : public sf::Drawable
     {
     private:
-        Point position;
+        sf::Vector2f position;
     public:
         
         // Constructor & Deconstructor
-        GameObject(Point position);
+        GameObject(sf::Vector2f position);
         GameObject();
         virtual ~GameObject();
 
         // Accessors
-        Point &getPosition();
+        sf::Vector2f &getPosition();
 
         // Virtual Functions
-        virtual void setPosition(Point &position);
-        virtual void updateMouseMove(Point &point) = 0;
-        virtual void updateMousePress(Point &point)  = 0;
-        virtual void updateMouseRelease(Point &point) = 0;
-        virtual void update() = 0;
+        virtual void setPosition(sf::Vector2f &position);
+        virtual void setColor(Color &color) = 0;
+        virtual void updateMouseMove(sf::Vector2f &point) = 0;
+        virtual void updateMousePress(sf::Vector2f &point)  = 0;
+        virtual void updateMouseRelease(sf::Vector2f &point) = 0;
+        virtual void update(float &deltaTime) = 0;
     };
 }

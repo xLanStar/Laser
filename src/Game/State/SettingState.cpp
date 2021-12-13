@@ -1,7 +1,6 @@
 #include "Game/State/SettingState.h"
 
 #include <iostream>
-#include <stack>
 
 #include "SFML/Graphics.hpp"
 
@@ -30,6 +29,7 @@ void SettingState::initUI()
         game.setting.getPointAtWindow(50, 40),
         game.setting.getButtonCharacterSize(),
         game.setting.getButtonHoverCharacterSize(),
+        game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "Color",
         [&]{onColorButtonClick();});
@@ -37,6 +37,7 @@ void SettingState::initUI()
         game.setting.getPointAtWindow(50, 60),
         game.setting.getButtonCharacterSize(),
         game.setting.getButtonHoverCharacterSize(),
+        game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "Pattern",
         [&]{onPatternButtonClick();});

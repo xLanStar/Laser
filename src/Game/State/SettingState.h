@@ -7,10 +7,6 @@
 class SettingState : public State
 {
 private:
-    // Variables
-    sf::Font buttonFont;
-
-
     // Initializer
     void initUI();
 

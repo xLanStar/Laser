@@ -1,39 +1,41 @@
 #pragma once
 
-#include <functional>
-
 #include "SFML/Graphics.hpp"
 
-#include "Game/GameObject/GameObject.h"
+#include "Game/Color.h"
+#include "Game/GameObject/Text.h"
 
 namespace GameObject
 {
     class Pattern : public GameObject
     {
     private:
-        // unsigned short PatternState;
-        // unsigned short id;
-
         // Pattern Appearance
-        int x, y;
+        Color &color;
+        int &radius;
+        sf::CircleShape circle;
 
-        // UI Draw Function
-        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-
-        // UI Update Function
+        // Pricate Function
         void setupShape();
 
     public:
         // Constructor
-        Pattern(Point position);
-        Pattern();
+        Pattern(Color &color, int &radius, std::string name);
         ~Pattern();
 
-        // Functions
-        void setPosition(Point &position) override;
-        void updateMouseMove(Point &point) override;
-        void updateMousePress(Point &point) override;
-        void updateMouseRelease(Point &point) override;
-        void update() override;
+        // Accessors
+        int &getRadius();
+        Color &getColor();
+        virtual void setColor(Color &color);
+        virtual void setPosition(sf::Vector2f &point);
+
+        // Update Events
+        virtual void updateMouseMove(sf::Vector2f &point);
+        virtual void updateMousePress(sf::Vector2f &point);
+        virtual void updateMouseRelease(sf::Vector2f &point);
+        virtual void update(float &deltaTime);
+        
+        // UI Draw Function
+        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
     };
 };

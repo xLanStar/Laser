@@ -10,56 +10,48 @@ void GameObject::ColorTile::draw(sf::RenderTarget &target, sf::RenderStates stat
 }
 
 // Constructor & Deconstructor
-GameObject::ColorTile::ColorTile(Point position, int &width, int &height, int &characterSize, sf::Font &font, int &points, int &radius, float &hoverScale, Color &color, std::function<void()> onClick) : Tile(position), width(width), height(height), text(Point(position.x + width / 2, position.y + characterSize / 2), characterSize, font, color.name), pantone(Point(position.x + width / 2, position.y + height - radius), points, radius, hoverScale, color, onClick)
+GameObject::ColorTile::ColorTile(sf::Vector2f position, sf::Vector2f &rect, int &characterSize, sf::Font &font, int &points, int &radius, float &hoverScale, Color &color, std::function<void()> onClick) : GameObject(position), text(sf::Vector2f(position.x + rect.x / 2, position.y + characterSize / 2), characterSize, color, font, color.getName()), pantone(sf::Vector2f(position.x + rect.x / 2, position.y + rect.y - radius), points, radius, hoverScale, color, onClick), rect(rect)
 {
-    std::cout << position.x + width / 2 << ", " <<  position.y + height - radius << '\n';
-    // Text
-    // text.setCharacterSize(characterSize);
-    // text.setFont(font);
-    // text.setText(color.name);
-
-    // Pantone
-    // pantone.setPoints(points);
-    // pantone.setRadius(radius);
-    // pantone.setHoverScale(hoverScale);
-    // pantone.setColor(color);
-    // pantone.setupShape();
-
-    // setPosition(getPosition());
 }
 
 GameObject::ColorTile::~ColorTile()
 {
 }
 
-void GameObject::ColorTile::setPosition(Point &position)
+void GameObject::ColorTile::setColor(Color &color)
+{
+    pantone.setColor(color);
+}
+
+void GameObject::ColorTile::setPosition(sf::Vector2f &position)
 {
     GameObject::setPosition(position);
 
-    Point textPoint(position.x + width / 2, position.y + text.getGlobalBounds().height / 2);
+    sf::Vector2f textPoint(position.x + rect.x / 2, position.y + text.getGlobalBounds().height / 2);
     text.setPosition(textPoint);
 
-    Point pantonePoint(position.x + width / 2, position.y + height - pantone.getRadius());
+    sf::Vector2f pantonePoint(position.x + rect.x / 2, position.y + rect.y - pantone.getRadius());
     pantone.setPosition(pantonePoint);
 }
 
 // Mouse Move
-void GameObject::ColorTile::updateMouseMove(Point &point)
+void GameObject::ColorTile::updateMouseMove(sf::Vector2f &point)
 {
     pantone.updateMouseMove(point);
 }
 
 // Mouse Press
-void GameObject::ColorTile::updateMousePress(Point &point)
+void GameObject::ColorTile::updateMousePress(sf::Vector2f &point)
 {
     pantone.updateMousePress(point);
 }
 
 // Mouse Release
-void GameObject::ColorTile::updateMouseRelease(Point &point)
+void GameObject::ColorTile::updateMouseRelease(sf::Vector2f &point)
 {
     pantone.updateMouseRelease(point);
 }
-void GameObject::ColorTile::update()
+void GameObject::ColorTile::update(float &deltaTime)
 {
+    //pantone.update(deltaTime);
 }

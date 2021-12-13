@@ -7,9 +7,6 @@
 class ExitState : public State
 {
 private:
-    // Variables
-    sf::Font buttonFont;
-
     // Initializer
     void initUI();
 

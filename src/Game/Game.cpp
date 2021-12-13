@@ -7,14 +7,21 @@
 #include "Game/State/ColorState.h"
 #include "Game/State/PatternState.h"
 #include "Game/State/ExitState.h"
+#include "Game/State/DifficultyState.h"
+#include "Game/State/GameState.h"
+#include "Game/State/ReplayState.h"
+
+bool debugged = true;
 
 // Initializer
 void Game::initWindow()
 {
-    videoMode.width = 1280;
-    videoMode.height = 720;
+    videoMode.width = setting.getWindowWidth();
+    videoMode.height = setting.getWindowHeight();
 
     window = new sf::RenderWindow(videoMode, "Laser", sf::Style::Titlebar | sf::Style::Close);
+
+    window->setMouseCursorVisible(false);
 
     window->setFramerateLimit(60);
 }
@@ -25,8 +32,9 @@ void Game::initState()
 }
 
 // Constructor
-Game::Game()
+Game::Game() : setting()
 {
+    cursor = setting.getCursor();
     initWindow();
     initState();
 }
@@ -43,7 +51,30 @@ Game::~Game()
     }
 }
 
+// Accessors
+void Game::setColorTheme(std::string colorTheme)
+{
+    setting.setColorTheme(colorTheme);
+    cursor->setColor(setting.getColor());
+    states.top()->setColor(setting.getColor());
+}
+
+void Game::setCursor(std::string name)
+{
+    setting.setCursor(name);
+    cursor = setting.getCursor();
+    cursor->setColor(setting.getColor());
+    sf::Vector2f mousePosition = getMousePosition();
+    cursor->setPosition(mousePosition);
+}
+
+sf::Vector2f &Game::getMousePosition()
+{
+    return currentMousePosition;
+}
+
 // State Controller
+// Push New State On Top
 void Game::pushState(StateType stateType)
 {
     switch (stateType)
@@ -63,14 +94,38 @@ void Game::pushState(StateType stateType)
     case PATTERN:
         states.push(new PatternState(*this));
         break;
+    case DIFFICULTY:
+        states.push(new DifficultyState(*this));
+        break;
+    case GAME:
+        states.push(new GameState(*this));
+        break;
+    case REPLAY:
+        states.push(new ReplayState(*this));
+        break;
     }
 }
 
+// Pop Top State
 void Game::popState()
 {
     if (states.size() != 0)
     {
         states.pop();
+        if(!states.empty())
+        {
+            states.top()->setColor(setting.getColor());
+        }
+    }
+}
+
+// Switch State
+void Game::switchState(StateType stateType)
+{
+    if (states.size() != 0)
+    {
+        states.pop();
+        pushState(stateType);
     }
 }
 
@@ -87,18 +142,18 @@ void Game::updateEvents()
     {
         if (event.type == sf::Event::MouseMoved)
         {
-            Point point(event.mouseMove.x, event.mouseMove.y);
-            states.top()->updateMouseMove(point);
+            currentMousePosition.x = event.mouseMove.x;
+            currentMousePosition.y = event.mouseMove.y;
+            states.top()->updateMouseMove(currentMousePosition);
+            cursor->updateMouseMove(currentMousePosition);
         }
         else if (event.type == sf::Event::MouseButtonPressed)
         {
-            Point point(event.mouseButton.x, event.mouseButton.y);
-            states.top()->updateMousePress(point);
+            states.top()->updateMousePress(currentMousePosition);
         }
         else if (event.type == sf::Event::MouseButtonReleased)
         {
-            Point point(event.mouseButton.x, event.mouseButton.y);
-            states.top()->updateMouseRelease(point);
+            states.top()->updateMouseRelease(currentMousePosition);
         }
         else if (event.type == sf::Event::KeyPressed)
         {
@@ -111,7 +166,8 @@ void Game::updateEvents()
              */
             else if(event.key.control && event.key.code == sf::Keyboard::A)
             {
-                //setting.
+                debugged = !debugged;
+                std::cout << "[Game] set debugged to " << debugged << '\n';
             }
         }
         else if (event.type == sf::Event::Closed)
@@ -120,6 +176,7 @@ void Game::updateEvents()
             break;
         }
     }
+    
 }
 
 // Update
@@ -128,7 +185,7 @@ void Game::update()
     /**
      * - update deltaTime
      * - update evnets
-     * - update states 
+     * - update states
     **/
     updateDeltaTime();
 
@@ -149,16 +206,19 @@ void Game::render()
 {
     /**
      * - clear old frame
-     * - render objects
+     * - render state
+     * - render cursor
      * - display frame 
     **/
     //window->clear(setting.getColor().backgroundColor);
-    window->clear(setting.getColor().lightColor);
+    window->clear(setting.getColor().getLightColor());
 
     if (!states.empty())
     {
         window->draw(*states.top());
     }
+
+    window->draw(*cursor);
 
     window->display();
 }

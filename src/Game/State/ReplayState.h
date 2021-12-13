@@ -4,7 +4,7 @@
 
 #include "Game/State/State.h"
 
-class PatternState : public State
+class ReplayState : public State
 {
 private:
     // Initializer
@@ -12,9 +12,6 @@ private:
 
 public:
     // Constructor
-    PatternState(Game &game);
-    ~PatternState();
-
-    // Functions
-    //void render();
+    ReplayState(Game &game);
+    ~ReplayState();
 };

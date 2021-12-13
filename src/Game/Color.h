@@ -4,15 +4,21 @@
 
 class Color
 {
-public:
+private:
     std::string name;
-    sf::Color backgroundColor;
     sf::Color darkColor;
     sf::Color lightColor;
-
+    
+public:
     // Constructor & Deconstructor
     Color();
-    Color(std::string name, sf::Color backgroundColor, sf::Color darkColor, sf::Color lightColor);
+    Color(std::string name, sf::Color darkColor, sf::Color lightColor);
     ~Color();
     
+    // Accessors
+    std::string &getName();
+    sf::Color &getDarkColor();
+    sf::Color &getLightColor();
+    
+    const void operator=(Color other);
 };

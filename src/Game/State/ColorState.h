@@ -7,9 +7,6 @@
 class ColorState : public State
 {
 private:
-    // Variables
-    sf::Font buttonFont;
-
     // Initializer
     void initUI();
 

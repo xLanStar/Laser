@@ -7,6 +7,8 @@
 #include "Game/State/State.h"
 #include "Game/Setting.h"
 
+extern bool debugged;
+
 enum StateType
 {
     MAINMENU = 0,
@@ -14,7 +16,9 @@ enum StateType
     SETTING,
     COLOR,
     PATTERN,
-    GAME
+    GAME,
+    DIFFICULTY,
+    REPLAY
 };
 
 class Game
@@ -25,6 +29,10 @@ private:
     sf::RenderWindow *window;
     sf::VideoMode videoMode;
     sf::Event event;
+
+    // Cursor
+    sf::Vector2f currentMousePosition;
+    GameObject::Pattern *cursor;
 
     // States
     std::stack<State *> states;
@@ -45,14 +53,19 @@ public:
     Game();
     ~Game();
 
-    // Accessor
-
-    // push new state on top
-    void pushState(StateType stateType);
-    // back to 2nd state
-    void popState();
+    // Accessors
+    void setColorTheme(std::string colorTheme);
+    void setCursor(std::string name);
+    sf::Vector2f &getMousePosition();
 
     // Functions
+    // push new state on top
+    void pushState(StateType stateType);
+    // pop top state
+    void popState();
+    // pop and push
+    void switchState(StateType stateType);
+
     void updateDeltaTime();
     void updateEvents();
     void update();

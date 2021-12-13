@@ -1,17 +1,16 @@
 #pragma once
 
 #include "Game/Color.h"
-#include "Game/GameObject/Tile.h"
 #include "Game/GameObject/Text.h"
 #include "Game/GameObject/Pantone.h"
 
 namespace GameObject
 {
-    class ColorTile : public Tile
+    class ColorTile : public GameObject
     {
     private:
         // Tile Information
-        int width, height;
+        sf::Vector2f &rect;
         Text text;
         Pantone pantone;
 
@@ -24,14 +23,17 @@ namespace GameObject
 
     public:
         // Constructor & Deconstructor
-        ColorTile(Point position, int &width, int &height, int &characterSize, sf::Font &font, int &points, int &radius, float &hoverScale, Color &color, std::function<void()> onClick);
+        ColorTile(sf::Vector2f position, sf::Vector2f &rect, int &characterSize, sf::Font &font, int &points, int &radius, float &hoverScale, Color &color, std::function<void()> onClick);
         ~ColorTile();
 
+        // Accessors
+        void setColor(Color &color) override;
+        void setPosition(sf::Vector2f &position) override;
+
         // Update Events
-        void setPosition(Point &position) override;
-        void updateMouseMove(Point &point) override;
-        void updateMousePress(Point &point) override;
-        void updateMouseRelease(Point &point) override;
-        void update() override;
+        void updateMouseMove(sf::Vector2f &point) override;
+        void updateMousePress(sf::Vector2f &point) override;
+        void updateMouseRelease(sf::Vector2f &point) override;
+        void update(float &deltaTime) override;
     };
 }

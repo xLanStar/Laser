@@ -4,17 +4,13 @@
 
 #include "Game/State/State.h"
 
-class PatternState : public State
+class DifficultyState : public State
 {
 private:
     // Initializer
     void initUI();
-
 public:
     // Constructor
-    PatternState(Game &game);
-    ~PatternState();
-
-    // Functions
-    //void render();
+    DifficultyState(Game &game);
+    ~DifficultyState();
 };

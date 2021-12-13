@@ -12,8 +12,6 @@ class Game;
 class State : public sf::Drawable
 {
 private:
-    // UI Draw Function
-    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 protected:
 public:
     // Reference
@@ -30,9 +28,12 @@ public:
     virtual void Quit();
 
     // Virtual Functions
-    virtual void updateMouseMove(Point &point);
-    virtual void updateMousePress(Point &point);
-    virtual void updateMouseRelease(Point &point);
-    virtual void update(float deltaTime);
-    // virtual void render() = 0;
+    virtual void setColor(Color &color);
+    virtual void updateMouseMove(sf::Vector2f &point);
+    virtual void updateMousePress(sf::Vector2f &point);
+    virtual void updateMouseRelease(sf::Vector2f &point);
+    virtual void update(float &deltaTime);
+    
+    // UI Draw Function
+    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 };

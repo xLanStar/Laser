@@ -5,6 +5,9 @@
 #include <sstream>
 #include <cstring>
 
+#include "Game/GameObject/Pattern/Round.h"
+#include "Game/GameObject/Pattern/Star.h"
+
 sf::Color stringToColor(std::string string)
 {
     // Split String with ,
@@ -34,26 +37,22 @@ Setting::Setting()
         {
             if (!line.empty())
             {
-                Color color;
-                color.name = line;
-
-                // getline(cFile, line);
-                // color.backgroundColor = stringToColor(line);
+                std::string name = line;
 
                 getline(cFile, line);
-                color.darkColor = stringToColor(line);
+                sf::Color darkColor = stringToColor(line);
 
                 getline(cFile, line);
-                color.lightColor = stringToColor(line);
+                sf::Color lightColor = stringToColor(line);
 
-                ColorTable[color.name] = color;
-                std::cout << "new ColorTheme: " << color.name << '\n';
+                colorTable[name] = Color(name, darkColor, lightColor);
+                std::cout << "[Setting] found new ColorTheme: " << name << '\n';
             }
         }
     }
     else
     {
-        std::cout << "open color.cfg failed!\n";
+        std::cout << "[Setting] open color.cfg failed!\n";
     }
     cFile.close();
 
@@ -63,8 +62,17 @@ Setting::Setting()
     // Font
     if (!font.loadFromFile("virgo.ttf"))
     {
-        std::cout << "load virgo.ttf failed!\n";
+        std::cout << "[Setting] load virgo.ttf failed!\n";
     }
+
+    // Pattern
+    patternTable["Round"] = new GameObject::Round(getColor(), getCursorSize(), (std::string)"Round");
+    patternTable["Star"] = new GameObject::Star(getColor(), getCursorSize(), (std::string)"Star");
+    
+    // Set Default Pattern
+    setCursor("Star");
+
+    movingLaserVelocity = sqrt(pow(getWindowWidth() - getGameBorderSize(), 2) + pow(getWindowHeight() - getGameBorderSize(), 2)) / 2.5f;
 }
 
 Setting::~Setting()
@@ -73,17 +81,18 @@ Setting::~Setting()
 
 std::unordered_map<std::string, Color> &Setting::getColorTable()
 {
-    return ColorTable;
+    return colorTable;
 }
+
 void Setting::setColorTheme(std::string colorTheme)
 {
-    color = ColorTable[colorTheme];
-    std::cout << "set Color:" << color.name << '\n';
+    color = colorTable[colorTheme];
+    std::cout << "[Setting] set Color to " << color.getName() << '\n';
 }
 
 Color &Setting::findColor(std::string colorTheme)
 {
-    return ColorTable[colorTheme];
+    return colorTable[colorTheme];
 }
 
 Color &Setting::getColor()
@@ -96,19 +105,24 @@ int &Setting::getColorStateBorder()
     return colorStateBorder;
 }
 
-int &Setting::getColorTileGap()
+int &Setting::getTileGap()
 {
-    return colorTileGap;
+    return tileGap;
 }
 
-int &Setting::getColorTileWidth()
+int &Setting::getTileWidth()
 {
-    return colorTileWidth;
+    return tileWidth;
 }
 
-int &Setting::getColorTileHeight()
+int &Setting::getTileHeight()
 {
-    return colorTileHeight;
+    return tileHeight;
+}
+
+sf::Vector2f &Setting::getTileRect()
+{
+    return tileRect;
 }
 
 int &Setting::getPantonePoints()
@@ -126,9 +140,30 @@ float &Setting::getPantoneHoverScale()
     return pantoneHoverScale;
 }
 
-GameObject::Pattern &Setting::getPattern()
+std::unordered_map<std::string, GameObject::Pattern*> &Setting::getPatternTable()
 {
-    return pattern;
+    return patternTable;
+}
+
+GameObject::Pattern *Setting::findCursor(std::string name)
+{
+    return patternTable[name];
+}
+
+int &Setting::getCursorSize()
+{
+    return cursorSize;
+}
+
+GameObject::Pattern *Setting::getCursor()
+{
+    return cursor;
+}
+
+void Setting::setCursor(std::string name)
+{
+    std::cout << "[Setting] set Cursor to " << name << '\n';
+    cursor = findCursor(name);
 }
 
 sf::Font &Setting::getFont()
@@ -141,6 +176,11 @@ int &Setting::getTitleCharacterSize()
     return titleCharacterSize;
 }
 
+int &Setting::getSubTitleCharacterSize()
+{
+    return subTitleCharacterSize;
+}
+
 int &Setting::getButtonCharacterSize()
 {
     return buttonCharacterSize;
@@ -151,6 +191,87 @@ int &Setting::getButtonHoverCharacterSize()
     return buttonHoverCharacterSize;
 }
 
+// Difficulty
+Difficulty &Setting::getDifficulty()
+{
+    return difficulty;
+}
+
+void Setting::setDifficulty(Difficulty difficulty)
+{
+    std::cout << "[Setting] set Difficulty to " << difficulty << '\n';
+    this->difficulty = difficulty;
+}
+
+// Score
+int &Setting::getHighestScore(Difficulty difficulty)
+{
+    return highestScore[difficulty];
+}
+
+void Setting::setHighestScore(Difficulty difficulty, int score)
+{
+    std::cout << "[Setting] set HightestScore difficulty: " << difficulty << " to " << score << '\n';
+    highestScore[difficulty] = score;
+}
+
+int &Setting::getCurrentScore()
+{
+    return currentScore;
+}
+
+int &Setting::getCurrentHighestScore()
+{
+    return getHighestScore(getDifficulty());
+}
+
+void Setting::resetCurrentScore()
+{
+    currentScore = 0;
+}
+
+void Setting::increaseCurrentScore()
+{
+    currentScore++;
+}
+
+void Setting::saveCurrentScore()
+{
+    if(getCurrentScore() > getCurrentHighestScore())
+    {
+        setHighestScore(getDifficulty(), getCurrentScore());
+    }
+}
+
+// Game
+int &Setting::getGameBorderSize()
+{
+    return gameBorderSize;
+}
+
+// Laser
+sf::Vector2f &Setting::getNormalLaserRect()
+{
+    return normalLaserRect;
+}
+
+float &Setting::getMovingLaserVelocity()
+{
+    return movingLaserVelocity;
+}
+
+// Laser Generator
+float &Setting::getGenerateInterval(Difficulty difficulty)
+{
+    return generateIntervals[difficulty];
+}
+
+float &Setting::getCurrentGenerateInterval()
+{
+    return getGenerateInterval(getDifficulty());
+}
+
+// Window
 int &Setting::getWindowWidth()
 {
     return windowWidth;
@@ -161,8 +282,13 @@ int &Setting::getWindowHeight()
     return windowHeight;
 }
 
-Point Setting::getPointAtWindow(float x, float y)
+sf::Vector2f &Setting::getWindowRect()
 {
-    return Point(getWindowWidth() * x / 100,
-                 getWindowHeight() * y / 100);
+    return windowRect;
+}
+
+sf::Vector2f Setting::getPointAtWindow(float x, float y)
+{
+    return sf::Vector2f(getWindowWidth() * x / 100,
+                        getWindowHeight() * y / 100);
 }

@@ -21,9 +21,6 @@ namespace GameObject
     class Button : public GameObject
     {
     private:
-        // unsigned short buttonState;
-        // unsigned short id;
-
         // Button State
         bool pressed;
         bool hover;
@@ -43,14 +40,17 @@ namespace GameObject
 
     public:
         // Constructor
-        Button(Point position, int &characterSize, int &hoverCharacterSize, sf::Font &font, std::string str, std::function<void()> onClick);
+        Button(sf::Vector2f position, int &characterSize, int &hoverCharacterSize, Color &color, sf::Font &font, std::string str, std::function<void()> onClick);
         ~Button();
 
-        // Functions
-        void setPosition(Point &point) override;
-        void updateMouseMove(Point &point) override;
-        void updateMousePress(Point &point) override;
-        void updateMouseRelease(Point &point) override;
-        void update() override;
+        // Accessors
+        void setColor(Color &color) override;
+        void setPosition(sf::Vector2f &position) override;
+
+        // Update Functions
+        void updateMouseMove(sf::Vector2f &point) override;
+        void updateMousePress(sf::Vector2f &point) override;
+        void updateMouseRelease(sf::Vector2f &point) override;
+        void update(float &deltaTime) override;
     };
 };

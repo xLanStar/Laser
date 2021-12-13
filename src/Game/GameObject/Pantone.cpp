@@ -4,8 +4,7 @@
 #include <cmath>
 
 #include "Game/Game.h"
-
-#define PI 3.14159265358979323846
+#include "Game/Util.h"
 
 // UI Draw Function
 void GameObject::Pantone::draw(sf::RenderTarget &target, sf::RenderStates states) const
@@ -15,7 +14,7 @@ void GameObject::Pantone::draw(sf::RenderTarget &target, sf::RenderStates states
 }
 
 // Constructor
-GameObject::Pantone::Pantone(Point position, int &points, int &radius, float &hoverScale, Color &color, std::function<void()> onClick) : GameObject(position), color(color), onClick(onClick), pressed(false), points(points), radius(radius), hoverScale(hoverScale)
+GameObject::Pantone::Pantone(sf::Vector2f position, int &points, int &radius, float &hoverScale, Color &color, std::function<void()> onClick) : GameObject(position), color(color), onClick(onClick), pressed(false), points(points), radius(radius), hoverScale(hoverScale)
 {
     setupShape();
 }
@@ -36,13 +35,13 @@ void GameObject::Pantone::setupShape()
     // set Position
     setPosition(getPosition());
 
-    // set Point Count
+    // set sf::Vector2f Count
     leftConvex.setPointCount(points);
     rightConvex.setPointCount(points);
 
     // set Fill Color
-    leftConvex.setFillColor(color.darkColor);
-    rightConvex.setFillColor(color.lightColor);
+    leftConvex.setFillColor(color.getDarkColor());
+    rightConvex.setFillColor(color.getLightColor());
 
     // set Shape Points
     const double step = PI / points;
@@ -80,7 +79,12 @@ void GameObject::Pantone::setHover(bool isHovered)
     }
 }
 
-void GameObject::Pantone::setPosition(Point &position)
+void GameObject::Pantone::setColor(Color &color)
+{
+
+}
+
+void GameObject::Pantone::setPosition(sf::Vector2f &position)
 {
     GameObject::setPosition(position);
     leftConvex.setPosition(position.x, position.y);
@@ -107,7 +111,7 @@ void GameObject::Pantone::setPosition(Point &position)
 // }
 
 // Mouse Move
-void GameObject::Pantone::updateMouseMove(Point &point)
+void GameObject::Pantone::updateMouseMove(sf::Vector2f &point)
 {
     if (leftConvex.getGlobalBounds().contains(point.x, point.y) || rightConvex.getGlobalBounds().contains(point.x, point.y))
     {
@@ -128,7 +132,7 @@ void GameObject::Pantone::updateMouseMove(Point &point)
 }
 
 // Mouse Press
-void GameObject::Pantone::updateMousePress(Point &point)
+void GameObject::Pantone::updateMousePress(sf::Vector2f &point)
 {
     if (hover && !pressed)
     {
@@ -138,7 +142,7 @@ void GameObject::Pantone::updateMousePress(Point &point)
 }
 
 // Mouse Release
-void GameObject::Pantone::updateMouseRelease(Point &point)
+void GameObject::Pantone::updateMouseRelease(sf::Vector2f &point)
 {
     if (pressed)
     {
@@ -152,6 +156,6 @@ void GameObject::Pantone::updateMouseRelease(Point &point)
     }
 }
 
-void GameObject::Pantone::update()
+void GameObject::Pantone::update(float &deltaTime)
 {
 }

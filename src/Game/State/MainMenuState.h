@@ -7,15 +7,8 @@
 class MainMenuState : public State
 {
 private:
-    // Variables
-    sf::Font buttonFont;
-
     // Initializer
     void initUI();
-
-    // UI Event
-    void onPlayButtonClick();
-    void onSettingButtonClick();
 
 public:
     // Constructor

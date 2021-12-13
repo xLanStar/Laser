@@ -8,49 +8,74 @@
 // UI Draw Function
 void GameObject::Pattern::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-    //TODO:
+    target.draw(circle);
 }
 
 // Constructor
-GameObject::Pattern::Pattern(Point position) : GameObject(position)
+GameObject::Pattern::Pattern(Color &color, int &radius, std::string name) : GameObject(), color(color), radius(radius)
 {
-}
-
-GameObject::Pattern::Pattern() : GameObject()
-{
+    setupShape();
 }
 
 GameObject::Pattern::~Pattern()
 {
 }
 
-
+// Private Functions
 void GameObject::Pattern::setupShape()
 {
-    //TODO:
+    circle.setRadius(getRadius());
+    circle.setOutlineThickness(5);
+    circle.setFillColor(getColor().getLightColor());
+    circle.setOutlineColor(getColor().getDarkColor());
+
+    sf::FloatRect rect = circle.getLocalBounds();
+    circle.setOrigin(rect.left + rect.width / 2.0f,
+                     rect.top + rect.height / 2.0f);
 }
 
-void GameObject::Pattern::setPosition(Point &position)
+// Accessors
+int &GameObject::Pattern::getRadius()
+{
+    return radius;
+}
+
+Color &GameObject::Pattern::getColor()
+{
+    return color;
+}
+
+// Functions
+void GameObject::Pattern::setColor(Color &color)
+{
+    circle.setFillColor(color.getLightColor());
+    circle.setOutlineColor(color.getDarkColor());
+}
+
+
+void GameObject::Pattern::setPosition(sf::Vector2f &position)
 {
     GameObject::setPosition(position);
+    circle.setPosition(position);
 }
 
-
 // Mouse Move
-void GameObject::Pattern::updateMouseMove(Point &point)
+void GameObject::Pattern::updateMouseMove(sf::Vector2f &point)
 {
+    circle.setPosition(point);
 }
 
 // Mouse Press
-void GameObject::Pattern::updateMousePress(Point &point)
+void GameObject::Pattern::updateMousePress(sf::Vector2f &point)
 {
 }
 
 // Mouse Release
-void GameObject::Pattern::updateMouseRelease(Point &point)
+void GameObject::Pattern::updateMouseRelease(sf::Vector2f &point)
 {
 }
 
-void GameObject::Pattern::update()
+void GameObject::Pattern::update(float &deltaTime)
 {
+
 }

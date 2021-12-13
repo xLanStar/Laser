@@ -1,7 +1,6 @@
 #include "Game/State/ColorState.h"
 
 #include <iostream>
-#include <stack>
 
 #include "SFML/Graphics.hpp"
 
@@ -17,15 +16,16 @@ void ColorState::initUI()
     gameObjects["Title"] = new GameObject::Text(
         game.setting.getPointAtWindow(50, 20),
         game.setting.getTitleCharacterSize(),
+        game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "CHOOSE THE COLOR\nCOMBINATION YOU WANT");
-    // ColorTiles
+    // Tiles
     int &points = game.setting.getPantonePoints();
     int &radius = game.setting.getPantoneRadius();
     int &borderSize = game.setting.getColorStateBorder();
-    int tileWidth = game.setting.getColorTileWidth();
-    int tileHeight = game.setting.getColorTileHeight();
-    int &minGap = game.setting.getColorTileGap();
+    int tileWidth = game.setting.getTileWidth();
+    int tileHeight = game.setting.getTileHeight();
+    int &minGap = game.setting.getTileGap();
     int validCount = int((game.setting.getWindowWidth() - borderSize * 2 - tileWidth) / (tileWidth + minGap)) + 1;
     int gap = (game.setting.getWindowWidth() - borderSize * 2 - validCount * tileWidth) / (validCount - 1);
 
@@ -34,18 +34,16 @@ void ColorState::initUI()
     for (auto it : game.setting.getColorTable())
     {
         x = borderSize + (tileWidth + gap) * i;
-        Point position(x, y);
         gameObjects[it.first] = new GameObject::ColorTile(
-        position,
-        tileWidth, 
-        tileHeight, 
+        sf::Vector2f(x, y),
+        game.setting.getTileRect(),
         game.setting.getButtonCharacterSize(),
         game.setting.getFont(),
         game.setting.getPantonePoints(),
         game.setting.getPantoneRadius(),
         game.setting.getPantoneHoverScale(),
         game.setting.findColor(it.first),
-        [=]{ game.setting.setColorTheme(it.first); });
+        [=]{ game.setColorTheme(it.first); });
         if (++i == validCount)
         {
             i = 0;
