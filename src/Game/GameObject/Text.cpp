@@ -40,7 +40,7 @@ sf::Font &GameObject::Text::getFont()
 // Functions
 void GameObject::Text::setColor(Color &color)
 {
-    text.setColor(color.getDarkColor());
+    text.setFillColor(color.getDarkColor());
 }
     
 void GameObject::Text::setCharacterSize(int &characterSize)
