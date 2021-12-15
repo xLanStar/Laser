@@ -13,22 +13,20 @@ namespace GameObject
         sf::RectangleShape box;
         sf::RectangleShape box2;
 
-        // Appearance
-        sf::Vector2f &rect;
-        int &borderSize;
-        float &length;
-        float angle, &velocity;
-        float deltaX, deltaY;
-        float endX, endY;
+        // Laser Parameter
+        int &length;          // laser length
+        float angle;          // laser angle
+        float &velocity;      // movement speed
+        float deltaX, deltaY; // 1 second move (deltaX, deltaY)
+        float endX, endY;     // EndPoint At (endX, endY)
         sf::RectangleShape line;
-
-        sf::Vector2f &windowRect;
 
         // UI Draw Function
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+
     public:
         // Constructor
-        NormalLaser(sf::Vector2f position, sf::Vector2f &rect, float &angle, float &velocity, Color &color, int &borderSize, sf::Vector2f &windowRect);
+        NormalLaser(sf::Vector2f position, int &length, int &thickness, float &angle, float &velocity, Color &color, sf::FloatRect &borderRect);
         ~NormalLaser();
 
         // Accessors

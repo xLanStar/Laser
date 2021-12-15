@@ -10,6 +10,8 @@ namespace GameObject
     class Pattern : public GameObject
     {
     private:
+        std::string name;
+
         // Pattern Appearance
         Color &color;
         int &radius;
@@ -24,6 +26,7 @@ namespace GameObject
         ~Pattern();
 
         // Accessors
+        std::string &getName();
         int &getRadius();
         Color &getColor();
         virtual void setColor(Color &color);

@@ -14,9 +14,9 @@
 //Initializer
 void GameState::initUI()
 {
-    border.setSize(sf::Vector2f(game.setting.getWindowWidth() - game.setting.getGameBorderSize() * 2,
-                                game.setting.getWindowHeight() - game.setting.getGameBorderSize() * 2));
-    border.setPosition(sf::Vector2f(game.setting.getGameBorderSize(), game.setting.getGameBorderSize()));
+    border.setSize(sf::Vector2f(game.setting.getWindowSize().x - game.setting.getLaserBorderSize() * 2,
+                                game.setting.getWindowSize().y - game.setting.getLaserBorderSize() * 2));
+    border.setPosition(sf::Vector2f(game.setting.getLaserBorderSize(), game.setting.getLaserBorderSize()));
     border.setFillColor(sf::Color(0, 0, 0, 0));
     border.setOutlineColor(game.setting.getColor().getDarkColor());
     border.setOutlineThickness(10);
@@ -51,6 +51,12 @@ void GameState::draw(sf::RenderTarget &target, sf::RenderStates states) const
 //Constructor
 GameState::GameState(Game &game) : State(game), generateInterval(game.setting.getCurrentGenerateInterval()), mvpText(game.setting.getPointAtWindow(30, 5), game.setting.getSubTitleCharacterSize(), game.setting.getColor(), game.setting.getFont(), (std::string) "MVP:" + toString(game.setting.getCurrentHighestScore())), scoreText(game.setting.getPointAtWindow(70, 5), game.setting.getSubTitleCharacterSize(), game.setting.getColor(), game.setting.getFont(), (std::string) "SCORE:" + toString(game.setting.getCurrentScore()))
 {
+    borderLeft = game.setting.getLaserBorderSize();
+    borderTop = game.setting.getLaserBorderSize();
+    borderRight = game.setting.getWindowSize().x - game.setting.getLaserBorderSize();
+    borderBottom = game.setting.getWindowSize().y - game.setting.getLaserBorderSize();
+    randomPositionWidthSize = borderRight - borderLeft;
+    randomPositionHeightSize = borderBottom - borderTop;
     initUI();
 }
 
@@ -87,10 +93,10 @@ void GameState::update(float &deltaTime)
 {
     // Check For Border Collide
     sf::Vector2f &mousePosition(game.getMousePosition());
-    if (mousePosition.x <= game.setting.getGameBorderSize() + game.setting.getCursorSize() ||
-        mousePosition.x >= game.setting.getWindowWidth() - game.setting.getGameBorderSize() - game.setting.getCursorSize() ||
-        mousePosition.y <= game.setting.getGameBorderSize() + game.setting.getCursorSize() ||
-        mousePosition.y >= game.setting.getWindowHeight() - game.setting.getGameBorderSize() - game.setting.getCursorSize())
+    if (mousePosition.x <= borderLeft + game.setting.getCursorSize() ||
+        mousePosition.x >= borderRight - game.setting.getCursorSize() ||
+        mousePosition.y <= borderTop + game.setting.getCursorSize() ||
+        mousePosition.y >= borderBottom - game.setting.getCursorSize())
     {
         death();
         return;
@@ -104,7 +110,7 @@ void GameState::update(float &deltaTime)
         {
             it = lasers.erase(it);
         }
-        else if ((*it)->isCollided(game.getMousePosition(), game.setting.getCursorSize()))
+        else if (!invincible && (*it)->isCollided(game.getMousePosition(), game.setting.getCursorSize()))
         {
             std::cout << "collided!\n";
             death();
@@ -121,44 +127,65 @@ void GameState::update(float &deltaTime)
     if (counter >= generateInterval)
     {
         counter -= generateInterval;
-        int random = rand() % 25;
-        if (random < 18)
+
+        // random position
+        sf::Vector2f position(0, 0);
+        int randSide = rand() % 4;
+        if (randSide & 1)
         {
-            sf::Vector2f position(0, 0);
-            int randSide = rand() % 4;
-            if (randSide & 1)
+            position.x = rand() % randomPositionWidthSize + borderLeft;
+            if (randSide == 1)
             {
-                position.x = rand() % (game.setting.getWindowWidth() - game.setting.getGameBorderSize()) + game.setting.getGameBorderSize();
-                if (randSide == 1)
-                {
-                    position.y = game.setting.getWindowHeight() - game.setting.getGameBorderSize();
-                }
-                else
-                {
-                    position.y = game.setting.getGameBorderSize();
-                }
+                // 1 - bottom
+                position.y = borderBottom;
             }
             else
             {
-                position.y = rand() % (game.setting.getWindowHeight() - game.setting.getGameBorderSize()) + game.setting.getGameBorderSize();
-                if (randSide == 2)
-                {
-                    position.x = game.setting.getWindowWidth() - game.setting.getGameBorderSize();
-                }
-                else
-                {
-                    position.x = game.setting.getGameBorderSize();
-                }
+                // 3 - top
+                position.y = borderTop;
             }
-            sf::Vector2f mousePosition = game.getMousePosition();
-            float angle = atan2(mousePosition.y - position.y, mousePosition.x - position.x);
+        }
+        else
+        {
+            position.y = rand() % randomPositionHeightSize + borderTop;
+            if (randSide == 2)
+            {
+                // 2 - right
+                position.x = borderRight;
+            }
+            else
+            {
+                // 4 - left
+                position.x = borderLeft;
+            }
+        }
+
+        // calculate angle
+        float angle = atan2(game.getMousePosition().y - position.y, game.getMousePosition().x - position.x);
+
+        // random laser type
+        int random = rand() % 25;
+        if (random < 18)
+        {
             lasers.push_back(new GameObject::NormalLaser(position,
-                                                         game.setting.getNormalLaserRect(),
+                                                         game.setting.getNormalLaserLength(),
+                                                         game.setting.getNormalLaserThickness(),
                                                          angle,
                                                          game.setting.getMovingLaserVelocity(),
                                                          game.setting.getColor(),
-                                                         game.setting.getGameBorderSize(),
-                                                         game.setting.getWindowRect()));
+                                                         game.setting.getLaserBorderRect()));
+        }
+        else
+        {
+            lasers.push_back(new GameObject::PulseLaser(position,
+                                                        game.setting.getPulseLaserThickness(),
+                                                        angle,
+                                                        game.setting.getPulseLaserDelay(),
+                                                        game.setting.getPulseLaserDuration(),
+                                                        game.setting.getDashLineLength(),
+                                                        game.setting.getDashLineThickness(),
+                                                        game.setting.getColor(),
+                                                        game.setting.getLaserBorderRect()));
         }
         game.setting.increaseCurrentScore();
         std::string text = "SCORE:" + toString(game.setting.getCurrentScore());

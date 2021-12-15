@@ -7,7 +7,8 @@
 #include "Game/State/State.h"
 #include "Game/Setting.h"
 
-extern bool debugged;
+extern bool showHitBox;
+extern bool invincible;
 
 enum StateType
 {
@@ -57,6 +58,8 @@ public:
     void setColorTheme(std::string colorTheme);
     void setCursor(std::string name);
     sf::Vector2f &getMousePosition();
+    // sf::Vector2u &getWindowSize();
+    // sf::FloatRect &getLaserBorderRect();
 
     // Functions
     // push new state on top

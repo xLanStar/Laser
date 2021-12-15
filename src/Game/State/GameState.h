@@ -8,6 +8,10 @@
 class GameState : public State
 {
 private:
+    int borderLeft, borderTop, borderRight, borderBottom;
+    int randomPositionWidthSize;    // rand() * randomPositionWidthSize + borderLeft
+    int randomPositionHeightSize; // rand() * randomPositionHeightSize + borderTop
+
     float &generateInterval;
     float counter = 0;
     std::vector<GameObject::Laser *> lasers;
@@ -19,6 +23,7 @@ private:
 
     // Private Functions
     void death();
+
 public:
     // Constructor
     GameState(Game &game);
@@ -29,7 +34,7 @@ public:
     void updateMousePress(sf::Vector2f &point) override;
     void updateMouseRelease(sf::Vector2f &point) override;
     void update(float &deltaTime) override;
-    
+
     // UI Draw Function
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 };

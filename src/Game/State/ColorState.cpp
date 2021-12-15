@@ -26,11 +26,11 @@ void ColorState::initUI()
     int tileWidth = game.setting.getTileWidth();
     int tileHeight = game.setting.getTileHeight();
     int &minGap = game.setting.getTileGap();
-    int validCount = int((game.setting.getWindowWidth() - borderSize * 2 - tileWidth) / (tileWidth + minGap)) + 1;
-    int gap = (game.setting.getWindowWidth() - borderSize * 2 - validCount * tileWidth) / (validCount - 1);
+    int validCount = int((game.setting.getWindowSize().x - borderSize * 2 - tileWidth) / (tileWidth + minGap)) + 1;
+    int gap = (game.setting.getWindowSize().x - borderSize * 2 - validCount * tileWidth) / (validCount - 1);
 
     int i = 0, counter = 0;
-    int x, y = 35 * game.setting.getWindowHeight() / 100;
+    int x, y = 35 * game.setting.getWindowSize().y / 100;
     for (auto it : game.setting.getColorTable())
     {
         x = borderSize + (tileWidth + gap) * i;

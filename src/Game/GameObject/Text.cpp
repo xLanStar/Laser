@@ -8,13 +8,13 @@ void GameObject::Text::draw(sf::RenderTarget &target, sf::RenderStates states) c
     target.draw(text, states);
 }
 
-GameObject::Text::Text(sf::Vector2f position, int &characterSize, Color &color, sf::Font &font, std::string str) : GameObject(position), font(font)
+GameObject::Text::Text(sf::Vector2f position, int &characterSize, Color &color, sf::Font &font, std::string str) : GameObject(position, color), font(font)
 {
     text.setFont(font);
     setColor(color);
     setText(str);
     setCharacterSize(characterSize);
-    setPosition(getPosition());
+    setPosition(position);
 }
 
 GameObject::Text::~Text()

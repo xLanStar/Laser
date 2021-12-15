@@ -13,7 +13,7 @@ void GameObject::Button::draw(sf::RenderTarget &target, sf::RenderStates states)
 }
 
 // Constructor
-GameObject::Button::Button(sf::Vector2f position, int &characterSize, int &hoverCharacterSize, Color &color, sf::Font &font, std::string str, std::function<void()> onClick) : GameObject(position), onClick(onClick), pressed(false), text(position, characterSize, color, font, str), characterSize(characterSize), hoverCharacterSize(hoverCharacterSize)
+GameObject::Button::Button(sf::Vector2f position, int &characterSize, int &hoverCharacterSize, Color &color, sf::Font &font, std::string str, std::function<void()> onClick) : GameObject(position, color), onClick(onClick), pressed(false), text(position, characterSize, color, font, str), characterSize(characterSize), hoverCharacterSize(hoverCharacterSize)
 {
 }
 

@@ -12,7 +12,7 @@ void GameObject::Pattern::draw(sf::RenderTarget &target, sf::RenderStates states
 }
 
 // Constructor
-GameObject::Pattern::Pattern(Color &color, int &radius, std::string name) : GameObject(), color(color), radius(radius)
+GameObject::Pattern::Pattern(Color &color, int &radius, std::string name) : GameObject(), color(color), radius(radius), name(name)
 {
     setupShape();
 }
@@ -35,6 +35,11 @@ void GameObject::Pattern::setupShape()
 }
 
 // Accessors
+std::string &GameObject::Pattern::getName()
+{
+    return name;
+}
+
 int &GameObject::Pattern::getRadius()
 {
     return radius;

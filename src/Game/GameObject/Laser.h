@@ -10,17 +10,20 @@ namespace GameObject
     class Laser : public GameObject
     {
     private:
-        int &borderSize;
+        sf::FloatRect &borderRect;
+        int &thickness;
         bool destroyed = false;
 
     public:
         // Constructor
-        Laser(int &borderSize);
+        Laser(sf::Vector2f position, Color &color, int &thickness, sf::FloatRect &borderRect);
         ~Laser();
 
         // Accessors
         bool &isDestroyed();
         void destroy();
+        int &getThickness();
+        sf::FloatRect &getBorderRect();
         virtual void setColor(Color &color) = 0;
         virtual void setPosition(sf::Vector2f &point) = 0;
         virtual bool isCollided(sf::Vector2f &point, int &radius) = 0;

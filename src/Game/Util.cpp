@@ -1,11 +1,19 @@
 #include "Game/Util.h"
 
-#include "cmath"
+#include <sys/stat.h>
+#include <fstream>
+#include <sstream>
+#include <cmath>
 
-// 用向量法求點到線段的距離
+bool exist(const std::string &name)
+{
+    struct stat buffer;
+    return (stat(name.c_str(), &buffer) == 0);
+}
+
 float distanceOfPointToSeg(float &px, float &py, float &ax, float &ay, float &bx, float &by)
 {
-    // |AB*AP|
+    // |AB|*|AP|
     float cross = (bx - ax) * (px - ax) + (by - ay) * (py - ay);
 
     if (cross <= 0)
@@ -31,10 +39,27 @@ float distanceOfPointToSeg(float &px, float &py, float &ax, float &ay, float &bx
     return sqrt((px - cx) * (px - cx) + (py - cy) * (py - cy));
 }
 
-// 整數轉字串
 std::string toString(int &a)
 {
     char buffer[16];
     itoa(a, buffer, 10);
-    return (std::string) buffer;
+    return (std::string)buffer;
+}
+
+sf::Color stringToColor(std::string string)
+{
+    // Split String with ,
+    // Red, Green, Blue
+    std::stringstream ss(string);
+    std::string temp = "";
+    int colorBytes[3];
+
+    for (int i = 0; i < 3; ++i)
+    {
+        std::getline(ss, temp, ',');
+        colorBytes[i] = atoi(temp.c_str());
+    }
+
+    // return Color(Red, Green, Blue);
+    return sf::Color(colorBytes[0], colorBytes[1], colorBytes[2]);
 }

@@ -6,12 +6,22 @@
 #include "Game/Color.h"
 #include "Game/GameObject/Pattern.h"
 
+struct Data
+{
+    int highestScore[3];
+    std::string colorTheme;
+    std::string cursorName;
+};
+
 enum Difficulty
 {
     EASY = 0,
     NORMAL,
     HARD
 };
+
+static std::string dataFileName = "data.bin";
+static std::string colorFileName = "color.cfg";
 
 class Setting
 {
@@ -20,14 +30,14 @@ private:
     std::unordered_map<std::string, Color> colorTable;
 
     // Pattern Table
-    std::unordered_map<std::string, GameObject::Pattern*> patternTable;
+    std::unordered_map<std::string, GameObject::Pattern *> patternTable;
 
     // Color
     Color color;
-    
+
     // Color State
     int colorStateBorder = 50;
-    
+
     // Tile
     int tileGap = 25, tileWidth = 250, tileHeight = 120;
     sf::Vector2f tileRect = sf::Vector2f(getTileWidth(), getTileHeight());
@@ -40,10 +50,9 @@ private:
     int cursorSize = 48;
     GameObject::Pattern *cursor;
 
-
     // Text
-    int titleCharacterSize = 84; // Title
-    int subTitleCharacterSize = 64; // SubTitle
+    int titleCharacterSize = 84;                                 // Title
+    int subTitleCharacterSize = 64;                              // SubTitle
     int buttonCharacterSize = 48, buttonHoverCharacterSize = 64; // Button Text
     sf::Font font;
 
@@ -51,22 +60,34 @@ private:
     Difficulty difficulty;
 
     // Game
-    int gameBorderSize = 100;
-    
+    int laserBorderSize = 100;
+    sf::FloatRect laserBorderRect;
+
     // Score
     int highestScore[3] = {0, 0, 0};
     int currentScore = 0;
 
     // Laser
-    sf::Vector2f normalLaserRect = sf::Vector2f(300, 10);
-    float movingLaserVelocity = sqrt(pow(getWindowWidth(), 2) + pow(getWindowHeight(), 2)) / 2.5f;
+    // - Moving Laser
+    float movingLaserVelocity;
+    // - Normal Laser
+    int normalLaserLength = 200;
+    int normalLaserThickness = 10;
+    // - Pulse Laser
+    float pulseLaserDelay = 1.0f;
+    float pulseLaserDuration = 1.0f;
+    int pulseLaserThickness = 50;
+
+    // Dash Line
+    int dashLineLength = 75;
+    int dashLineThickness = 10;
 
     // Laser Generator
     float generateIntervals[3] = {0.7f, 0.5f, 0.3f};
-    
+
     // Window Size
-    int windowWidth = 1280, windowHeight = 960;
-    sf::Vector2f windowRect = sf::Vector2f(getWindowWidth(), getWindowHeight());
+    sf::Vector2u windowSize;
+
 public:
     // Constructor & Deconstructor
     Setting();
@@ -94,7 +115,7 @@ public:
     float &getPantoneHoverScale();
 
     // Pattern
-    std::unordered_map<std::string, GameObject::Pattern*> &getPatternTable();
+    std::unordered_map<std::string, GameObject::Pattern *> &getPatternTable();
     GameObject::Pattern *findCursor(std::string name);
     GameObject::Pattern *getCursor();
     int &getCursorSize();
@@ -121,19 +142,35 @@ public:
     void saveCurrentScore();
 
     // Game
-    int &getGameBorderSize();
+    int &getLaserBorderSize();
 
     // Laser
-    sf::Vector2f &getNormalLaserRect();
+    // Moving Laser
     float &getMovingLaserVelocity();
+    // Normal Laser
+    int &getNormalLaserLength();
+    int &getNormalLaserThickness();
+    // Pulse Laser
+    float &getPulseLaserDelay();
+    float &getPulseLaserDuration();
+    int &getPulseLaserThickness();
+
+    // Dash Line
+    int &getDashLineLength();
+    int &getDashLineThickness();
 
     // Laser Generator
     float &getGenerateInterval(Difficulty difficulty);
     float &getCurrentGenerateInterval();
 
     // Window
-    int &getWindowWidth();
-    int &getWindowHeight();
-    sf::Vector2f &getWindowRect();
+    sf::Vector2u &getWindowSize();
+    sf::FloatRect &getLaserBorderRect();
     sf::Vector2f getPointAtWindow(float x, float y);
+
+    void setWindowSize(sf::Vector2u windowSize);
+
+    // Save & Load
+    bool load();
+    void save();
 };

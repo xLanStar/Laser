@@ -7,29 +7,22 @@
 
 #include "Game/GameObject/Pattern/Round.h"
 #include "Game/GameObject/Pattern/Star.h"
-
-sf::Color stringToColor(std::string string)
-{
-    // Split String with ,
-    // Red, Green, Blue
-    std::stringstream ss(string);
-    std::string temp = "";
-    int colorBytes[3];
-
-    for (int i = 0; i < 3; ++i)
-    {
-        std::getline(ss, temp, ',');
-        colorBytes[i] = atoi(temp.c_str());
-    }
-
-    // return Color(Red, Green, Blue);
-    return sf::Color(colorBytes[0], colorBytes[1], colorBytes[2]);
-}
+#include "Game/Util.h"
 
 Setting::Setting()
 {
+    if (!exist(colorFileName))
+    {
+        // Write Default Color Config
+        std::ofstream outfile(colorFileName);
+
+        outfile << "Pink\n255, 138, 188\n255, 202, 225";
+
+        outfile.close();
+    }
+
     // Read Color Config
-    std::ifstream cFile("color.cfg", std::ifstream::in);
+    std::ifstream cFile(colorFileName, std::ifstream::in);
     if (cFile.is_open())
     {
         std::string line;
@@ -56,9 +49,6 @@ Setting::Setting()
     }
     cFile.close();
 
-    // Set Default Color Theme
-    setColorTheme("Pink");
-
     // Font
     if (!font.loadFromFile("virgo.ttf"))
     {
@@ -66,13 +56,23 @@ Setting::Setting()
     }
 
     // Pattern
-    patternTable["Round"] = new GameObject::Round(getColor(), getCursorSize(), (std::string)"Round");
-    patternTable["Star"] = new GameObject::Star(getColor(), getCursorSize(), (std::string)"Star");
-    
-    // Set Default Pattern
-    setCursor("Star");
+    patternTable["Round"] = new GameObject::Round(getColor(), getCursorSize(), (std::string) "Round");
+    patternTable["Star"] = new GameObject::Star(getColor(), getCursorSize(), (std::string) "Star");
 
-    movingLaserVelocity = sqrt(pow(getWindowWidth() - getGameBorderSize(), 2) + pow(getWindowHeight() - getGameBorderSize(), 2)) / 2.5f;
+    // Default Window Size
+    setWindowSize(sf::Vector2u(1280, 960));
+
+    // load saving
+    if (!load())
+    {
+        std::cout << "load fail\n";
+
+        // Set Default Color Theme
+        setColorTheme("Pink");
+
+        // Set Default Pattern
+        setCursor("Star");
+    }
 }
 
 Setting::~Setting()
@@ -140,7 +140,7 @@ float &Setting::getPantoneHoverScale()
     return pantoneHoverScale;
 }
 
-std::unordered_map<std::string, GameObject::Pattern*> &Setting::getPatternTable()
+std::unordered_map<std::string, GameObject::Pattern *> &Setting::getPatternTable()
 {
     return patternTable;
 }
@@ -164,6 +164,7 @@ void Setting::setCursor(std::string name)
 {
     std::cout << "[Setting] set Cursor to " << name << '\n';
     cursor = findCursor(name);
+    cursor->setColor(getColor());
 }
 
 sf::Font &Setting::getFont()
@@ -237,27 +238,61 @@ void Setting::increaseCurrentScore()
 
 void Setting::saveCurrentScore()
 {
-    if(getCurrentScore() > getCurrentHighestScore())
+    if (getCurrentScore() > getCurrentHighestScore())
     {
         setHighestScore(getDifficulty(), getCurrentScore());
     }
 }
 
 // Game
-int &Setting::getGameBorderSize()
+int &Setting::getLaserBorderSize()
 {
-    return gameBorderSize;
+    return laserBorderSize;
 }
 
 // Laser
-sf::Vector2f &Setting::getNormalLaserRect()
-{
-    return normalLaserRect;
-}
-
+// Moving Laser
 float &Setting::getMovingLaserVelocity()
 {
     return movingLaserVelocity;
+}
+
+// Normal Laser
+int &Setting::getNormalLaserLength()
+{
+    return normalLaserLength;
+}
+
+int &Setting::getNormalLaserThickness()
+{
+    return normalLaserThickness;
+}
+
+// PulseLaser
+float &Setting::getPulseLaserDelay()
+{
+    return pulseLaserDelay;
+}
+
+float &Setting::getPulseLaserDuration()
+{
+    return pulseLaserDuration;
+}
+
+int &Setting::getPulseLaserThickness()
+{
+    return pulseLaserThickness;
+}
+
+// Dash Line
+int &Setting::getDashLineLength()
+{
+    return dashLineLength;
+}
+
+int &Setting::getDashLineThickness()
+{
+    return dashLineThickness;
 }
 
 // Laser Generator
@@ -272,23 +307,78 @@ float &Setting::getCurrentGenerateInterval()
 }
 
 // Window
-int &Setting::getWindowWidth()
+sf::Vector2u &Setting::getWindowSize()
 {
-    return windowWidth;
+    return windowSize;
 }
 
-int &Setting::getWindowHeight()
+sf::FloatRect &Setting::getLaserBorderRect()
 {
-    return windowHeight;
-}
-
-sf::Vector2f &Setting::getWindowRect()
-{
-    return windowRect;
+    return laserBorderRect;
 }
 
 sf::Vector2f Setting::getPointAtWindow(float x, float y)
 {
-    return sf::Vector2f(getWindowWidth() * x / 100,
-                        getWindowHeight() * y / 100);
+    return sf::Vector2f(getWindowSize().x * x / 100,
+                        getWindowSize().y * y / 100);
+}
+
+void Setting::setWindowSize(sf::Vector2u windowSize)
+{
+    this->windowSize = windowSize;
+
+    // recalculate parameter
+    movingLaserVelocity = sqrt(pow(windowSize.x, 2) + pow(windowSize.y, 2)) / 2.5f;
+
+    laserBorderRect = sf::FloatRect(getLaserBorderSize(), getLaserBorderSize(), windowSize.x - getLaserBorderSize() * 2, windowSize.y - getLaserBorderSize() * 2);
+}
+
+// Save & Load
+bool Setting::load()
+{
+    // if (exist(dataFileName))
+    // {
+    //     Data data;
+
+    //     std::fstream infile(dataFileName, std::ios::binary | std::ios::in);
+
+    //     if (infile.is_open())
+    //     {
+    //         infile.read((char *)&data, sizeof(data));
+
+    //         infile.close();
+    //     }
+
+    //     for (int i = 0; i < 3; ++i)
+    //     {
+    //         highestScore[i] = data.highestScore[i];
+    //     }
+
+    //     std::cout << "[Setting] load ColorTheme: " << data.colorTheme;
+    //     setColorTheme(data.colorTheme);
+
+    //     std::cout << "[Setting] load CursorName: " << data.cursorName;
+    //     setCursor(data.cursorName);
+    //     return true;
+    // }
+    return false;
+}
+
+void Setting::save()
+{
+    // Data data;
+    // for (int i = 0; i < 3; ++i)
+    // {
+    //     data.highestScore[i] = highestScore[i];
+    // }
+
+    // data.colorTheme = getColor().getName();
+
+    // data.cursorName = getCursor()->getName();
+
+    // std::fstream outfile(dataFileName, std::ios::binary | std::ios::out | std::ios::trunc);
+
+    // outfile.write((char *)&data, sizeof(data));
+
+    // outfile.close();
 }

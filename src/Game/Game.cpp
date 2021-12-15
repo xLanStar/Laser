@@ -11,13 +11,14 @@
 #include "Game/State/GameState.h"
 #include "Game/State/ReplayState.h"
 
-bool debugged = true;
+bool showHitBox = true;
+bool invincible = true;
 
 // Initializer
 void Game::initWindow()
 {
-    videoMode.width = setting.getWindowWidth();
-    videoMode.height = setting.getWindowHeight();
+    videoMode.width = setting.getWindowSize().x;
+    videoMode.height = setting.getWindowSize().y;
 
     window = new sf::RenderWindow(videoMode, "Laser", sf::Style::Titlebar | sf::Style::Close);
 
@@ -63,7 +64,6 @@ void Game::setCursor(std::string name)
 {
     setting.setCursor(name);
     cursor = setting.getCursor();
-    cursor->setColor(setting.getColor());
     sf::Vector2f mousePosition = getMousePosition();
     cursor->setPosition(mousePosition);
 }
@@ -72,6 +72,16 @@ sf::Vector2f &Game::getMousePosition()
 {
     return currentMousePosition;
 }
+
+// sf::Vector2u &Game::getWindowSize()
+// {
+//     return windowSize;
+// }
+
+// sf::FloatRect &Game::getLaserBorderRect()
+// {
+//     return laserBorderRect;
+// }
 
 // State Controller
 // Push New State On Top
@@ -112,7 +122,7 @@ void Game::popState()
     if (states.size() != 0)
     {
         states.pop();
-        if(!states.empty())
+        if (!states.empty())
         {
             states.top()->setColor(setting.getColor());
         }
@@ -125,8 +135,9 @@ void Game::switchState(StateType stateType)
     if (states.size() != 0)
     {
         states.pop();
-        pushState(stateType);
     }
+
+    pushState(stateType);
 }
 
 // Update DeltaTime
@@ -164,19 +175,28 @@ void Game::updateEvents()
             /**
              * DEBUG
              */
-            else if(event.key.control && event.key.code == sf::Keyboard::A)
+            else if (event.key.control && event.key.code == sf::Keyboard::A)
             {
-                debugged = !debugged;
-                std::cout << "[Game] set debugged to " << debugged << '\n';
+                showHitBox = !showHitBox;
+                std::cout << "[Game] set ShowHitBox to " << showHitBox << '\n';
             }
+            else if (event.key.control && event.key.code == sf::Keyboard::S)
+            {
+                invincible = !invincible;
+                std::cout << "[Game] set invincible to " << invincible << '\n';
+            }
+        }
+        else if (event.type == sf::Event::Resized)
+        {
+            setting.setWindowSize(window->getSize());
+            std::cout << "[Game] Resize Window to (" << setting.getWindowSize().x << ", " << setting.getWindowSize().y << ")\n";
         }
         else if (event.type == sf::Event::Closed)
         {
-            window->close();
+            stop();
             break;
         }
     }
-    
 }
 
 // Update
@@ -197,7 +217,7 @@ void Game::update()
     }
     else
     {
-        window->close();
+        stop();
     }
 }
 
@@ -236,5 +256,6 @@ void Game::run()
 // Stop
 void Game::stop()
 {
+    setting.save();
     window->close();
 }
