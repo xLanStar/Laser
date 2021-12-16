@@ -2,8 +2,10 @@
 
 #include "SFML/Graphics.hpp"
 
-#include "Game/GameObject/GameObject.h"
 #include "Game/Game.h"
+#include "Game/GameObject/GameObject.h"
+#include "Game/Particle/ParticleSystem.h"
+#include "Game/Particle/ParticleSystemProp.h"
 
 namespace GameObject
 {
@@ -14,9 +16,11 @@ namespace GameObject
         int &thickness;
         bool destroyed = false;
 
+        // Particle System
+        ParticleSystem particleSystem;
     public:
         // Constructor
-        Laser(sf::Vector2f position, Color &color, int &thickness, sf::FloatRect &borderRect);
+        Laser(sf::Vector2f position, Color &color, int &thickness, sf::FloatRect &borderRect, ParticleSystemProp &prop);
         ~Laser();
 
         // Accessors
@@ -24,6 +28,7 @@ namespace GameObject
         void destroy();
         int &getThickness();
         sf::FloatRect &getBorderRect();
+        ParticleSystem &getParticleSystem();
         virtual void setColor(Color &color) = 0;
         virtual void setPosition(sf::Vector2f &point) = 0;
         virtual bool isCollided(sf::Vector2f &point, int &radius) = 0;

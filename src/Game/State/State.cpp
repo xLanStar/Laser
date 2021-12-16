@@ -18,15 +18,6 @@ State::~State()
     }
 }
 
-// UI Draw Function
-void State::draw(sf::RenderTarget &target, sf::RenderStates states) const
-{
-    // Draw gameObjects
-    for (auto it : gameObjects)
-    {
-        target.draw(*it.second);
-    }
-}
 
 // Accessors
 
@@ -83,5 +74,16 @@ void State::update(float &deltaTime)
     for (auto it : gameObjects)
     {
         it.second->update(deltaTime);
+    }
+}
+
+
+// UI Draw Function
+void State::draw(sf::RenderTarget &target, sf::RenderStates states) const
+{
+    // Draw gameObjects
+    for (auto &it : gameObjects)
+    {
+        target.draw(*it.second);
     }
 }

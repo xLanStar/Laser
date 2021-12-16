@@ -9,7 +9,7 @@ class GameState : public State
 {
 private:
     int borderLeft, borderTop, borderRight, borderBottom;
-    int randomPositionWidthSize;    // rand() * randomPositionWidthSize + borderLeft
+    int randomPositionWidthSize;  // rand() * randomPositionWidthSize + borderLeft
     int randomPositionHeightSize; // rand() * randomPositionHeightSize + borderTop
 
     float &generateInterval;
@@ -17,12 +17,10 @@ private:
     std::vector<GameObject::Laser *> lasers;
     GameObject::Text mvpText, scoreText;
     sf::RectangleShape border;
+    sf::RectangleShape borderBackground;
 
     // Initializer
     void initUI();
-
-    // Private Functions
-    void death();
 
 public:
     // Constructor

@@ -8,7 +8,7 @@
 // UI Draw Function
 void GameObject::PulseLaser::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-    if(showHitBox)
+    if (showHitBox)
     {
         target.draw(box);
     }
@@ -25,29 +25,28 @@ void GameObject::PulseLaser::draw(sf::RenderTarget &target, sf::RenderStates sta
     }
 }
 
-GameObject::PulseLaser::PulseLaser(sf::Vector2f position, int &thickness, float &angle, float &delay, float &duration, int &dashLineLength, int &dashLineThickness, Color &color, sf::FloatRect &borderRect) : Laser(position, color, thickness, borderRect), angle(angle), delay(delay), duration(duration), dashLineLength(dashLineLength), thickness(thickness)
+GameObject::PulseLaser::PulseLaser(sf::Vector2f position, int &thickness, float &angle, float &delay, float &powerTime, float &duration, int &dashLineLength, int &dashLineThickness, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop) : Laser(position, color, thickness, borderRect, prop), angle(angle), delay(delay), duration(duration), dashLineLength(dashLineLength), thickness(thickness), powerTime(powerTime)
 {
-    std::cout << "[PulseLaser] " << position.x << ", " << position.y << '\n';
     liveTime = delay + duration;
     deltaThickness = thickness / (duration * powerTime);
+    deltaShake = sf::Vector2f(cos(angle + PI / 2), sin(angle + PI / 2));
+    std::cout << "deltaShake : " << deltaShake.x << ", " << deltaShake.y << '\n';
 
     line.setPosition(position);
-    line.setRotation(angle);
-    line.setFillColor(color.getDarkColor());
-
-
+    line.setRotation(angle * 180 / PI);
+    line.setOutlineColor(color.getDarkColor());
+    line.setSize(sf::Vector2f(1500, 0));
 
     // ((crossProduct v1, v) * (crossProduct v2, v) >= 0 )
     // (ax * cy + ay * cx) * (bx * cy + by *cx) >= 0
-    if((borderRect.left * position.y + borderRect.top * position.x) * ((borderRect.left+borderRect.width) *position.y + borderRect.top * position.x) >= 0)
+    if (true)
     {
-        box.setSize(sf::Vector2f(20,20));
-        box.setOrigin(sf::Vector2f(10,10));
+        box.setSize(sf::Vector2f(32, 32));
+        box.setOrigin(sf::Vector2f(16, 16));
         box.setPosition(position);
-        box.setFillColor(sf::Color(0,0,0,0));
-        box.setOutlineColor(color.getDarkColor());
+        box.setFillColor(sf::Color(0, 0, 0, 0));
+        box.setOutlineColor(sf::Color(255, 0, 0));
         box.setOutlineThickness(10);
-        std::cout << "between A and B\n";
     }
     //line.setSize(sf::Vector2f(length, 0));
 
@@ -64,7 +63,6 @@ GameObject::PulseLaser::PulseLaser(sf::Vector2f position, int &thickness, float 
         dashPosition.x += deltaX * 2;
         dashPosition.y += deltaY * 2;
     }
-    std::cout << dashLine.size() << '\n';
 }
 
 GameObject::PulseLaser::~PulseLaser()
@@ -82,9 +80,10 @@ void GameObject::PulseLaser::setPosition(sf::Vector2f &point)
 
 bool GameObject::PulseLaser::isCollided(sf::Vector2f &point, int &radius)
 {
-    if(pulsing)
+    if (pulsing)
     {
-        // TODO: distanceOfPointToLine
+        sf::Vector2f position(line.getPosition());
+        return distanceOfPointToLineByAngle(point.x, point.y, position.x, position.y, angle) <= radius + line.getSize().y;
     }
     return false;
 }
@@ -109,14 +108,14 @@ void GameObject::PulseLaser::update(float &deltaTime)
     {
         if (counter >= liveTime)
         {
-            std::cout << "[PulseLaser] death\n";
             destroy();
         }
         else
         {
-            if(line.getSize().y < thickness)
+            line.setPosition(getPosition() + deltaShake * static_cast<float>(rand() % 5 - 5));
+            if (line.getOutlineThickness() < thickness)
             {
-                line.setSize(sf::Vector2f(line.getSize().x, line.getSize().y + deltaThickness * deltaTime));
+                line.setOutlineThickness(line.getOutlineThickness() + deltaThickness * deltaTime);
             }
         }
     }

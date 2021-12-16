@@ -36,6 +36,7 @@ private:
     GameObject::Pattern *cursor;
 
     // States
+    StateType currentStateType;
     std::stack<State *> states;
 
     // Update & Render Values
@@ -68,10 +69,15 @@ public:
     void popState();
     // pop and push
     void switchState(StateType stateType);
+    // GameOver when player fail, only in GAME stateType can use death()
+    void death();
 
+    // update functions
     void updateDeltaTime();
     void updateEvents();
     void update();
+
+    // render functions
     void render();
 
     // Core

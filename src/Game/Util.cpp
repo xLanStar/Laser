@@ -11,9 +11,34 @@ bool exist(const std::string &name)
     return (stat(name.c_str(), &buffer) == 0);
 }
 
+float distanceOfPointToLine(float &x, float &y, float &a, float &b, float &c)
+{
+    // distance = |ax + by + c| / (a^2 + b^2)^0.5
+    return abs(a * x + b * y + c) / sqrt(a * a + b * b);
+}
+
+float distanceOfPointToLineByAngle(float &ax, float &ay, float &bx, float &by, float &angle)
+{
+
+    // find the line (ax + by + c = 0) that pass (bx, by) with angle
+
+    // slope = tan(angle)
+    float slope = tan(angle);
+
+    // y - by = slope * (x - bx)
+    // simplify
+    // slope * x - y + bx - slope * bx = 0
+    // a = slope
+    // b = -1
+    // c = by - slope * bx
+    static float b = -1;
+    float c = by - slope * bx;
+    return distanceOfPointToLine(ax, ay, slope, b, c);
+}
+
 float distanceOfPointToSeg(float &px, float &py, float &ax, float &ay, float &bx, float &by)
 {
-    // |AB|*|AP|
+    // dot proeduct |ABxAP|
     float cross = (bx - ax) * (px - ax) + (by - ay) * (py - ay);
 
     if (cross <= 0)
@@ -37,6 +62,11 @@ float distanceOfPointToSeg(float &px, float &py, float &ax, float &ay, float &bx
 
     // result = |CP|
     return sqrt((px - cx) * (px - cx) + (py - cy) * (py - cy));
+}
+
+float crossProduct(float &ax, float &ay, float &bx, float &by)
+{
+    return ax * by - bx * ay;
 }
 
 std::string toString(int &a)

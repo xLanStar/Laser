@@ -14,11 +14,11 @@ namespace GameObject
         sf::RectangleShape box2;
 
         // Laser Parameter
-        int &length;          // laser length
-        float angle;          // laser angle
-        float &velocity;      // movement speed
-        float deltaX, deltaY; // 1 second move (deltaX, deltaY)
-        float endX, endY;     // EndPoint At (endX, endY)
+        int &length;              // laser length
+        float angle;              // laser angle
+        float &speed;             // movement speed
+        sf::Vector2f velocity;    // 1 second move (deltaX, deltaY)
+        sf::Vector2f endPosition; // EndPoint At (endX, endY)
         sf::RectangleShape line;
 
         // UI Draw Function
@@ -26,7 +26,7 @@ namespace GameObject
 
     public:
         // Constructor
-        NormalLaser(sf::Vector2f position, int &length, int &thickness, float &angle, float &velocity, Color &color, sf::FloatRect &borderRect);
+        NormalLaser(sf::Vector2f position, int &length, int &thickness, float &angle, float &speed, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop);
         ~NormalLaser();
 
         // Accessors

@@ -73,20 +73,20 @@ sf::Vector2f &Game::getMousePosition()
     return currentMousePosition;
 }
 
-// sf::Vector2u &Game::getWindowSize()
-// {
-//     return windowSize;
-// }
-
-// sf::FloatRect &Game::getLaserBorderRect()
-// {
-//     return laserBorderRect;
-// }
+void Game::death()
+{
+    if(currentStateType == GAME)
+    {
+        setting.saveCurrentScore();
+        switchState(REPLAY);
+    }
+}
 
 // State Controller
 // Push New State On Top
 void Game::pushState(StateType stateType)
 {
+    currentStateType = stateType;
     switch (stateType)
     {
     case MAINMENU:
@@ -184,6 +184,11 @@ void Game::updateEvents()
             {
                 invincible = !invincible;
                 std::cout << "[Game] set invincible to " << invincible << '\n';
+            }
+            else if (event.key.control && event.key.code == sf::Keyboard::D)
+            {
+                setting.debugParticleSystem1();
+                std::cout << "[Game] NormalLaserProp debug" << '\n';
             }
         }
         else if (event.type == sf::Event::Resized)

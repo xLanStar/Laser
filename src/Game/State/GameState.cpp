@@ -20,25 +20,26 @@ void GameState::initUI()
     border.setFillColor(sf::Color(0, 0, 0, 0));
     border.setOutlineColor(game.setting.getColor().getDarkColor());
     border.setOutlineThickness(10);
+
+    borderBackground.setSize(sf::Vector2f(game.setting.getWindowSize().x - game.setting.getLaserBorderSize() * 2,
+                                          game.setting.getWindowSize().y - game.setting.getLaserBorderSize() * 2));
+    borderBackground.setPosition(sf::Vector2f(game.setting.getLaserBorderSize(), game.setting.getLaserBorderSize()));
+    borderBackground.setFillColor(sf::Color(0, 0, 0, 0));
+    borderBackground.setOutlineColor(game.setting.getColor().getLightColor());
+    borderBackground.setOutlineThickness(game.setting.getLaserBorderSize());
 }
 
-// Private Functions
-void GameState::death()
-{
-    // TODO: Death Animation
-    game.setting.saveCurrentScore();
-    game.switchState(REPLAY);
-}
 // UI Draw Function
 void GameState::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     // Draw lasers
-    for (auto it : lasers)
+    for (auto &it : lasers)
     {
         target.draw(*it);
     }
 
     // Draw Border
+    target.draw(borderBackground);
     target.draw(border);
 
     // Draw Particle
@@ -46,6 +47,12 @@ void GameState::draw(sf::RenderTarget &target, sf::RenderStates states) const
     // Draw Text
     target.draw(mvpText);
     target.draw(scoreText);
+
+    // Draw lasers Particle System
+    for (auto &it : lasers)
+    {
+        target.draw(it->getParticleSystem());
+    }
 }
 
 //Constructor
@@ -98,11 +105,12 @@ void GameState::update(float &deltaTime)
         mousePosition.y <= borderTop + game.setting.getCursorSize() ||
         mousePosition.y >= borderBottom - game.setting.getCursorSize())
     {
-        death();
+        game.death();
         return;
     }
 
     // Update Lasers
+    bool collided = false;
     for (auto it = lasers.begin(); it != lasers.end();)
     {
         (*it)->update(deltaTime);
@@ -110,17 +118,28 @@ void GameState::update(float &deltaTime)
         {
             it = lasers.erase(it);
         }
-        else if (!invincible && (*it)->isCollided(game.getMousePosition(), game.setting.getCursorSize()))
+        else if ((*it)->isCollided(game.getMousePosition(), game.setting.getCursorSize()))
         {
-            std::cout << "collided!\n";
-            death();
-            return;
+            if (!collided)
+            {
+                collided = true;
+            }
+            if (!invincible)
+            {
+                game.death();
+                return;
+            }
+            it++;
         }
         else
         {
             it++;
         }
     }
+    // if (collided)
+    // {
+    //     std::cout << "[GameState] collided!\n";
+    // }
 
     // Laser Generator
     counter += deltaTime;
@@ -173,7 +192,8 @@ void GameState::update(float &deltaTime)
                                                          angle,
                                                          game.setting.getMovingLaserVelocity(),
                                                          game.setting.getColor(),
-                                                         game.setting.getLaserBorderRect()));
+                                                         game.setting.getLaserBorderRect(),
+                                                         game.setting.getNormalLaserProp()));
         }
         else
         {
@@ -181,15 +201,17 @@ void GameState::update(float &deltaTime)
                                                         game.setting.getPulseLaserThickness(),
                                                         angle,
                                                         game.setting.getPulseLaserDelay(),
+                                                        game.setting.getPulseLaserPowerTime(),
                                                         game.setting.getPulseLaserDuration(),
                                                         game.setting.getDashLineLength(),
                                                         game.setting.getDashLineThickness(),
                                                         game.setting.getColor(),
-                                                        game.setting.getLaserBorderRect()));
+                                                        game.setting.getLaserBorderRect(),
+                                                        game.setting.getNormalLaserProp()));
         }
         game.setting.increaseCurrentScore();
         std::string text = "SCORE:" + toString(game.setting.getCurrentScore());
         scoreText.setText(text);
-        std::cout << "spwan\n";
+        //std::cout << "[GameState] spwan new laser!\n";
     }
 }

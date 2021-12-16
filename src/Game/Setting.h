@@ -5,6 +5,7 @@
 
 #include "Game/Color.h"
 #include "Game/GameObject/Pattern.h"
+#include "Game/Particle/ParticleSystemProp.h"
 
 struct Data
 {
@@ -74,9 +75,10 @@ private:
     int normalLaserLength = 200;
     int normalLaserThickness = 10;
     // - Pulse Laser
-    float pulseLaserDelay = 1.0f;
-    float pulseLaserDuration = 1.0f;
-    int pulseLaserThickness = 50;
+    float pulseLaserDelay = 0.5f;
+    float pulseLaserPowerTime = 0.1f;
+    float pulseLaserDuration = 0.5f;
+    int pulseLaserThickness = 25;
 
     // Dash Line
     int dashLineLength = 75;
@@ -84,6 +86,9 @@ private:
 
     // Laser Generator
     float generateIntervals[3] = {0.7f, 0.5f, 0.3f};
+
+    // Particle System
+    ParticleSystemProp normalLaserProp;
 
     // Window Size
     sf::Vector2u windowSize;
@@ -152,6 +157,7 @@ public:
     int &getNormalLaserThickness();
     // Pulse Laser
     float &getPulseLaserDelay();
+    float &getPulseLaserPowerTime();
     float &getPulseLaserDuration();
     int &getPulseLaserThickness();
 
@@ -163,6 +169,9 @@ public:
     float &getGenerateInterval(Difficulty difficulty);
     float &getCurrentGenerateInterval();
 
+    // Particle System
+    ParticleSystemProp &getNormalLaserProp();
+
     // Window
     sf::Vector2u &getWindowSize();
     sf::FloatRect &getLaserBorderRect();
@@ -173,4 +182,7 @@ public:
     // Save & Load
     bool load();
     void save();
+
+    // DEBUG
+    void debugParticleSystem1();
 };

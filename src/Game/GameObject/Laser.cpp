@@ -1,6 +1,6 @@
 #include "Game/GameObject/Laser.h"
 
-GameObject::Laser::Laser(sf::Vector2f position, Color &color, int &thickness, sf::FloatRect &borderRect) : GameObject(position,color), borderRect(borderRect), thickness(thickness)
+GameObject::Laser::Laser(sf::Vector2f position, Color &color, int &thickness, sf::FloatRect &borderRect, ParticleSystemProp &prop) : GameObject(position, color), borderRect(borderRect), thickness(thickness), particleSystem(prop)
 {
 }
 
@@ -26,6 +26,11 @@ int &GameObject::Laser::getThickness()
 sf::FloatRect &GameObject::Laser::getBorderRect()
 {
     return borderRect;
+}
+
+ParticleSystem &GameObject::Laser::getParticleSystem()
+{
+    return particleSystem;
 }
 
 void GameObject::Laser::update(float &deltaTime)

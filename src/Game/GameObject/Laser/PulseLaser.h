@@ -11,14 +11,14 @@ namespace GameObject
     class PulseLaser : public Laser
     {
     private:
-        constexpr static float powerTime = 0.5f;
-
         // Laser Parameter
         int &thickness;      // laser thickness
         float angle;         // laser angle
         float &delay;        // delay time before laser pulse
+        float &powerTime;
         float &duration;     // duration time during laser pulsing
         int &dashLineLength; // length of dash line
+        sf::Vector2f deltaShake;
 
         sf::RectangleShape line;
 
@@ -36,7 +36,7 @@ namespace GameObject
 
     public:
         // Constructor
-        PulseLaser(sf::Vector2f position, int &thickness, float &angle, float &delay, float &duration, int &dashLineLength, int &dashLineThickness, Color &color, sf::FloatRect &borderRect);
+        PulseLaser(sf::Vector2f position, int &thickness, float &angle, float &delay, float &powerTime, float &duration, int &dashLineLength, int &dashLineThickness, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop);
         ~PulseLaser();
 
         // Accessors

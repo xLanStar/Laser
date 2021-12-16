@@ -65,7 +65,7 @@ Setting::Setting()
     // load saving
     if (!load())
     {
-        std::cout << "load fail\n";
+        std::cout << "[Setting] load save fail!\n";
 
         // Set Default Color Theme
         setColorTheme("Pink");
@@ -73,6 +73,20 @@ Setting::Setting()
         // Set Default Pattern
         setCursor("Star");
     }
+
+    // Particle System
+    normalLaserProp.loop = true;
+    normalLaserProp.duration = 0.f;
+    normalLaserProp.rateOverTime = 20.f;
+    normalLaserProp.maxParticleCount = 10;
+    normalLaserProp.size = 16.f;
+    normalLaserProp.texture.loadFromFile("thunder.png");
+    normalLaserProp.randomLifeTime = true;
+    normalLaserProp.minLifeTimeRange = 0.5f;
+    normalLaserProp.lifeTime = 1.0f;
+    normalLaserProp.speed = 10.f;
+    normalLaserProp.color = getColor().getDarkColor();
+    normalLaserProp.fadeout = true;
 }
 
 Setting::~Setting()
@@ -87,6 +101,9 @@ std::unordered_map<std::string, Color> &Setting::getColorTable()
 void Setting::setColorTheme(std::string colorTheme)
 {
     color = colorTable[colorTheme];
+
+    normalLaserProp.color = color.getDarkColor();
+    
     std::cout << "[Setting] set Color to " << color.getName() << '\n';
 }
 
@@ -274,6 +291,11 @@ float &Setting::getPulseLaserDelay()
     return pulseLaserDelay;
 }
 
+float &Setting::getPulseLaserPowerTime()
+{
+    return pulseLaserPowerTime;
+}
+
 float &Setting::getPulseLaserDuration()
 {
     return pulseLaserDuration;
@@ -304,6 +326,12 @@ float &Setting::getGenerateInterval(Difficulty difficulty)
 float &Setting::getCurrentGenerateInterval()
 {
     return getGenerateInterval(getDifficulty());
+}
+
+// Particle System
+ParticleSystemProp &Setting::getNormalLaserProp()
+{
+    return normalLaserProp;
 }
 
 // Window
@@ -381,4 +409,13 @@ void Setting::save()
     // outfile.write((char *)&data, sizeof(data));
 
     // outfile.close();
+}
+
+void Setting::debugParticleSystem1()
+{
+    normalLaserProp.rateOverTime += 15.f;
+    if (normalLaserProp.rateOverTime >= 60.f)
+    {
+        normalLaserProp.rateOverTime -= 60.f;
+    }
 }
