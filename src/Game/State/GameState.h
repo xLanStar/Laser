@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "Game/State/State.h"
-#include "Game/GameObject/Laser.h"
+#include "Game/GameObject/Laser/Laser.h"
 
 class GameState : public State
 {

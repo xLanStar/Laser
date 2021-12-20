@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/GameObject/Pattern.h"
+#include "Game/GameObject/Pattern/Pattern.h"
 
 namespace GameObject
 {

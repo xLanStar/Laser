@@ -34,9 +34,6 @@ namespace GameObject
         virtual bool isCollided(sf::Vector2f &point, int &radius) = 0;
 
         // Update Events
-        virtual void updateMouseMove(sf::Vector2f &point) = 0;
-        virtual void updateMousePress(sf::Vector2f &point) = 0;
-        virtual void updateMouseRelease(sf::Vector2f &point) = 0;
         virtual void update(float &deltaTime) = 0;
     };
 };

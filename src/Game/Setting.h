@@ -4,7 +4,7 @@
 #include <cmath>
 
 #include "Game/Color.h"
-#include "Game/GameObject/Pattern.h"
+#include "Game/GameObject/Pattern/Pattern.h"
 #include "Game/Particle/ParticleSystemProp.h"
 
 struct Data

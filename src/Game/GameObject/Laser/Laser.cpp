@@ -1,4 +1,4 @@
-#include "Game/GameObject/Laser.h"
+#include "Game/GameObject/Laser/Laser.h"
 
 GameObject::Laser::Laser(sf::Vector2f position, Color &color, int &thickness, sf::FloatRect &borderRect, ParticleSystemProp &prop) : GameObject(position, color), borderRect(borderRect), thickness(thickness), particleSystem(prop)
 {

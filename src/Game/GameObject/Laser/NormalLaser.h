@@ -2,7 +2,7 @@
 
 #include "SFML/Graphics.hpp"
 
-#include "Game/GameObject/Laser.h"
+#include "Game/GameObject/Laser/Laser.h"
 
 namespace GameObject
 {
