@@ -4,19 +4,19 @@
 #include <fstream>
 #include <sstream>
 #include <cmath>
-
+// 檔案是否存在
 bool exist(const std::string &name)
 {
     struct stat buffer;
     return (stat(name.c_str(), &buffer) == 0);
 }
-
+// 點到線的距離
 float distanceOfPointToLine(float &x, float &y, float &a, float &b, float &c)
 {
     // distance = |ax + by + c| / (a^2 + b^2)^0.5
     return abs(a * x + b * y + c) / sqrt(a * a + b * b);
 }
-
+//
 float distanceOfPointToLineByAngle(float &ax, float &ay, float &bx, float &by, float &angle)
 {
 
@@ -35,7 +35,7 @@ float distanceOfPointToLineByAngle(float &ax, float &ay, float &bx, float &by, f
     float c = by - slope * bx;
     return distanceOfPointToLine(ax, ay, slope, b, c);
 }
-
+// 點到線段的距離
 float distanceOfPointToSeg(float &px, float &py, float &ax, float &ay, float &bx, float &by)
 {
     // dot proeduct |ABxAP|
@@ -63,7 +63,7 @@ float distanceOfPointToSeg(float &px, float &py, float &ax, float &ay, float &bx
     // result = |CP|
     return sqrt((px - cx) * (px - cx) + (py - cy) * (py - cy));
 }
-
+//
 float crossProduct(float &ax, float &ay, float &bx, float &by)
 {
     return ax * by - bx * ay;
@@ -75,7 +75,7 @@ std::string toString(int &a)
     itoa(a, buffer, 10);
     return (std::string)buffer;
 }
-
+// 字串轉 RGB
 sf::Color stringToColor(std::string string)
 {
     // Split String with ,

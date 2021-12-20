@@ -10,7 +10,7 @@
 extern bool showHitBox;
 extern bool invincible;
 
-enum StateType
+enum StateType //列舉狀態
 {
     MAINMENU = 0,
     EXIT,

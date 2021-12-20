@@ -63,19 +63,6 @@ bool GameObject::NormalLaser::isCollided(sf::Vector2f &point, int &radius)
     return distance <= radius;
 }
 
-// Update Events
-void GameObject::NormalLaser::updateMouseMove(sf::Vector2f &point)
-{
-}
-
-void GameObject::NormalLaser::updateMousePress(sf::Vector2f &point)
-{
-}
-
-void GameObject::NormalLaser::updateMouseRelease(sf::Vector2f &point)
-{
-}
-
 void GameObject::NormalLaser::update(float &deltaTime)
 {
     // move offset
@@ -101,7 +88,7 @@ void GameObject::NormalLaser::update(float &deltaTime)
         {
             line.setSize(sf::Vector2f(line.getSize().x - speed * deltaTime, getThickness()));
             endPosition += offset;
-            
+
             if (!getParticleSystem().isActive())
             {
                 getParticleSystem().Emit(line.getPosition());
@@ -109,7 +96,7 @@ void GameObject::NormalLaser::update(float &deltaTime)
         }
         else
         {
-            if(getParticleSystem().isEmitting())
+            if (getParticleSystem().isEmitting())
             {
                 getParticleSystem().stopEmitting();
             }

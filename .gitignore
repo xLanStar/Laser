@@ -1,1 +1,26 @@
+# vecode
 .vscode/*.*
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out

@@ -15,7 +15,8 @@ namespace GameObject
         sf::Text text;
 
         // UI Draw Function
-        void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+        void draw(sf::RenderTarget &target, sf::RenderStates states) const; //渲染
+
     public:
         // Constructor & Deconstructor
         Text(sf::Vector2f position, int &characterSize, Color &color, sf::Font &font, std::string str);

@@ -103,7 +103,7 @@ void Setting::setColorTheme(std::string colorTheme)
     color = colorTable[colorTheme];
 
     normalLaserProp.color = color.getDarkColor();
-    
+
     std::cout << "[Setting] set Color to " << color.getName() << '\n';
 }
 

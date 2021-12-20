@@ -22,21 +22,21 @@ namespace GameObject
     {
     private:
         // Button State
-        bool pressed;
-        bool hover;
+        bool pressed; //是否滑鼠按著
+        bool hover;   //是否物件被點擊
 
         // Button Appearance
-        Text text;
-        int &characterSize, &hoverCharacterSize;
-        
+        Text text;                               //文字
+        int &characterSize, &hoverCharacterSize; //字元大小和被 hover 時的字元大小
+
         // Button event
-        std::function<void()> onClick;
+        std::function<void()> onClick; //被點擊時要觸發的 function
 
         // UI Draw Function
-        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const; //渲染
 
         // UI Update Function
-        void setHover(bool isHovered);
+        void setHover(bool isHovered); //設定覆蓋狀態
 
     public:
         // Constructor
@@ -44,13 +44,13 @@ namespace GameObject
         ~Button();
 
         // Accessors
-        void setColor(Color &color) override;
-        void setPosition(sf::Vector2f &position) override;
+        void setColor(Color &color) override;              //設定顏色
+        void setPosition(sf::Vector2f &position) override; //設定位置
 
         // Update Functions
         void updateMouseMove(sf::Vector2f &point) override;
         void updateMousePress(sf::Vector2f &point) override;
         void updateMouseRelease(sf::Vector2f &point) override;
-        void update(float &deltaTime) override;
+        void update(float &deltaTime) override; //更新
     };
 };

@@ -14,9 +14,9 @@ struct Data
     std::string cursorName;
 };
 
-enum Difficulty
+enum Difficulty //難度設定
 {
-    EASY = 0,
+    EASY,
     NORMAL,
     HARD
 };

@@ -9,18 +9,14 @@ const void Color::operator=(Color other)
 
 Color::Color()
 {
-
 }
 
 Color::Color(std::string name, sf::Color darkColor, sf::Color lightColor) : name(name), darkColor(darkColor), lightColor(lightColor)
 {
-
 }
-
 
 Color::~Color()
 {
-
 }
 
 std::string &Color::getName()

@@ -11,13 +11,12 @@ namespace GameObject
     class PulseLaser : public Laser
     {
     private:
-        // Laser Parameter
-        int &thickness;      // laser thickness
-        float angle;         // laser angle
-        float &delay;        // delay time before laser pulse
+        int &thickness; // 線寬
+        float angle;    // 角度
+        float &delay;   // 延遲
         float &powerTime;
         float &duration;     // duration time during laser pulsing
-        int &dashLineLength; // length of dash line
+        int &dashLineLength; // 脈衝長度
         sf::Vector2f deltaShake;
 
         sf::RectangleShape line;
@@ -45,9 +44,6 @@ namespace GameObject
         bool isCollided(sf::Vector2f &point, int &radius) override;
 
         // Update Events
-        void updateMouseMove(sf::Vector2f &point) override;
-        void updateMousePress(sf::Vector2f &point) override;
-        void updateMouseRelease(sf::Vector2f &point) override;
         void update(float &deltaTime) override;
     };
 };

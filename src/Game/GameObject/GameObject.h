@@ -11,8 +11,8 @@ namespace GameObject
     private:
         Color &color;
         sf::Vector2f position;
+
     public:
-        
         // Constructor & Deconstructor
         GameObject(sf::Vector2f position, Color &color);
         GameObject();
@@ -25,9 +25,9 @@ namespace GameObject
         // Virtual Functions
         virtual void setPosition(sf::Vector2f &position);
         virtual void setColor(Color &color) = 0;
-        virtual void updateMouseMove(sf::Vector2f &point) = 0;
-        virtual void updateMousePress(sf::Vector2f &point)  = 0;
-        virtual void updateMouseRelease(sf::Vector2f &point) = 0;
+        virtual void updateMouseMove(sf::Vector2f &point){};
+        virtual void updateMousePress(sf::Vector2f &point){};
+        virtual void updateMouseRelease(sf::Vector2f &point){};
         virtual void update(float &deltaTime) = 0;
     };
 }

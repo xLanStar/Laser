@@ -48,7 +48,7 @@ GameObject::PulseLaser::PulseLaser(sf::Vector2f position, int &thickness, float 
         box.setOutlineColor(sf::Color(255, 0, 0));
         box.setOutlineThickness(10);
     }
-    //line.setSize(sf::Vector2f(length, 0));
+    // line.setSize(sf::Vector2f(length, 0));
 
     // Generate Dashed Lines
     sf::Vector2f dashLineRect(dashLineLength, dashLineThickness);
@@ -86,19 +86,6 @@ bool GameObject::PulseLaser::isCollided(sf::Vector2f &point, int &radius)
         return distanceOfPointToLineByAngle(point.x, point.y, position.x, position.y, angle) <= radius + line.getSize().y;
     }
     return false;
-}
-
-// Update Events
-void GameObject::PulseLaser::updateMouseMove(sf::Vector2f &point)
-{
-}
-
-void GameObject::PulseLaser::updateMousePress(sf::Vector2f &point)
-{
-}
-
-void GameObject::PulseLaser::updateMouseRelease(sf::Vector2f &point)
-{
 }
 
 void GameObject::PulseLaser::update(float &deltaTime)

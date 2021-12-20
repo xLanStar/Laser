@@ -7,7 +7,7 @@
 #include "Game/Game.h"
 
 // UI Draw Function
-void GameObject::Button::draw(sf::RenderTarget &target, sf::RenderStates states) const
+void GameObject::Button::draw(sf::RenderTarget &target, sf::RenderStates states) const //渲染
 {
     target.draw(text, states);
 }
@@ -94,5 +94,5 @@ void GameObject::Button::updateMouseRelease(sf::Vector2f &point)
 
 void GameObject::Button::update(float &deltaTime)
 {
-    //text.update(deltaTime);
+    // text.update(deltaTime);
 }
