@@ -22,5 +22,5 @@
 *.lib
 
 # Executables
-*.exe
+bin/*.exe
 *.out
