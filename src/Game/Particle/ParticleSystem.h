@@ -37,7 +37,6 @@ private:
 public:
     // constructor
     ParticleSystem(ParticleSystemProp &prop);
-    ~ParticleSystem();
 
     // Accessors
     bool &isActive();

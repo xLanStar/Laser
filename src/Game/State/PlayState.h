@@ -25,7 +25,6 @@ private:
 public:
     // Constructor
     PlayState(Game &game);
-    ~PlayState();
 
     // Functions
     void switchState(PlayStateType playStateType);

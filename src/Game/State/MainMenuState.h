@@ -13,7 +13,6 @@ private:
 public:
     // Constructor
     MainMenuState(Game &game);
-    ~MainMenuState();
 
     // Functions
     void Quit() override;

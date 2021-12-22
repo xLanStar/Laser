@@ -11,5 +11,4 @@ public:
     // Constructor
     Particle(sf::Vector2f velocity, float lifeTime);
     Particle();
-    ~Particle();
 };

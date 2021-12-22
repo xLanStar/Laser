@@ -69,6 +69,11 @@ GameState::GameState(Game &game) : State(game), generateInterval(game.setting.ge
 
 GameState::~GameState()
 {
+    // Clear Lasers
+    for(auto it = lasers.begin(); it!=lasers.end(); it++)
+    {
+        lasers.erase(it);
+    }
 }
 
 // Update Functions

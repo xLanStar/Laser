@@ -22,7 +22,7 @@ public:
 
     // Constructor
     State(Game &game);
-    virtual ~State();
+    ~State();
 
     // Functions
     virtual void Quit();

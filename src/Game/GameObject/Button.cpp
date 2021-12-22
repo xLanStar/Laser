@@ -17,10 +17,6 @@ GameObject::Button::Button(sf::Vector2f position, int &characterSize, int &hover
 {
 }
 
-GameObject::Button::~Button()
-{
-}
-
 void GameObject::Button::setHover(bool isHovered)
 {
     hover = isHovered;

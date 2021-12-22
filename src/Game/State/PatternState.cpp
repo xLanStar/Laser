@@ -53,8 +53,4 @@ PatternState::PatternState(Game &game) : State(game)
     initUI();
 }
 
-PatternState::~PatternState()
-{
-}
-
 // Functions

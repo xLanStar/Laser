@@ -17,7 +17,6 @@ private:
 public:
     // Constructor
     ExitState(Game &game);
-    ~ExitState();
 
     // Functions
     //void render();

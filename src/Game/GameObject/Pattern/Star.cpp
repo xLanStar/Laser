@@ -17,10 +17,6 @@ GameObject::Star::Star(Color &color, int &radius, std::string name) : Pattern(co
     setupShape();
 }
 
-GameObject::Star::~Star()
-{
-}
-
 // Private Function
 void GameObject::Star::setupShape()
 {

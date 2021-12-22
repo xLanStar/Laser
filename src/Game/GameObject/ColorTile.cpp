@@ -14,9 +14,6 @@ GameObject::ColorTile::ColorTile(sf::Vector2f position, sf::Vector2f &rect, int 
 {
 }
 
-GameObject::ColorTile::~ColorTile()
-{
-}
 
 void GameObject::ColorTile::setColor(Color &color)
 {

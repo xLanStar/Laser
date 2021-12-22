@@ -23,7 +23,6 @@ namespace GameObject
     public:
         // Constructor
         Pattern(Color &color, int &radius, std::string name);
-        ~Pattern();
 
         // Accessors
         std::string &getName();                        //取得 Pattern 的名稱

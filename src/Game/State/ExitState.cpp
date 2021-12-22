@@ -39,9 +39,4 @@ ExitState::ExitState(Game &game) : State(game)
     initUI();
 }
 
-ExitState::~ExitState()
-{
-
-}
-
 // Functions

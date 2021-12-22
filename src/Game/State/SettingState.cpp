@@ -49,9 +49,4 @@ SettingState::SettingState(Game &game) : State(game)
     initUI();
 }
 
-SettingState::~SettingState()
-{
-
-}
-
 // Functions

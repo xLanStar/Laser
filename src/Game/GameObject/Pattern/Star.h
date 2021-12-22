@@ -18,7 +18,6 @@ namespace GameObject
     public:
         // Constructor
         Star(Color &color, int &radius, std::string name);
-        ~Star();
 
         // Functions
         void setColor(Color &color) override;

@@ -17,7 +17,6 @@ private:
 public:
     // Constructor
     SettingState(Game &game);
-    ~SettingState();
 
     // Functions
     //void render();

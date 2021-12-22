@@ -24,7 +24,6 @@ namespace GameObject
     public:
         // Constructor & Deconstructor
         ColorTile(sf::Vector2f position, sf::Vector2f &rect, int &characterSize, sf::Font &font, int &points, int &radius, float &hoverScale, Color &color, std::function<void()> onClick);
-        ~ColorTile();
 
         // Accessors
         void setColor(Color &color) override;              //設定顏色

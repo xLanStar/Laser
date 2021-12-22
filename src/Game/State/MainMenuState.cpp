@@ -39,11 +39,6 @@ MainMenuState::MainMenuState(Game &game) : State(game)
     initUI();
 }
 
-MainMenuState::~MainMenuState()
-{
-
-}
-
 // Functions
 void MainMenuState::Quit()
 {

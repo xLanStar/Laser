@@ -12,11 +12,6 @@ ParticleSystem::ParticleSystem(ParticleSystemProp &prop) : prop(prop), particles
     emitTime = 1 / prop.rateOverTime;
 }
 
-ParticleSystem::~ParticleSystem()
-{
-    delete &particles;
-}
-
 void ParticleSystem::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     if (active)

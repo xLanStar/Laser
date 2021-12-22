@@ -13,7 +13,6 @@ private:
 public:
     // Constructor
     ColorState(Game &game);
-    ~ColorState();
 
     // Functions
     //void render();

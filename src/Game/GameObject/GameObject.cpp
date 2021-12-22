@@ -3,10 +3,8 @@
 GameObject::GameObject::GameObject(sf::Vector2f position, Color &color) : position(position), color(color)
 {
 }
+
 GameObject::GameObject::GameObject() : position(0, 0), color(color)
-{
-}
-GameObject::GameObject::~GameObject()
 {
 }
 

@@ -17,7 +17,6 @@ namespace GameObject
     public:
         // Constructor
         Round(Color &color, int &radius, std::string name);
-        ~Round();
 
         // Functions
         void setColor(Color &color) override;

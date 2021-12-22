@@ -58,8 +58,4 @@ ColorState::ColorState(Game &game) : State(game)
     initUI();
 }
 
-ColorState::~ColorState()
-{
-}
-
 // Functions

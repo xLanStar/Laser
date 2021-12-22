@@ -12,5 +12,4 @@ private:
 public:
     // Constructor
     DifficultyState(Game &game);
-    ~DifficultyState();
 };

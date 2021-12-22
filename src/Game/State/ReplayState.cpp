@@ -39,7 +39,3 @@ ReplayState::ReplayState(Game &game) : State(game)
 {
     initUI();
 }
-
-ReplayState::~ReplayState()
-{
-}

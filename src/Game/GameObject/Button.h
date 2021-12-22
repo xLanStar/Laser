@@ -41,7 +41,6 @@ namespace GameObject
     public:
         // Constructor
         Button(sf::Vector2f position, int &characterSize, int &hoverCharacterSize, Color &color, sf::Font &font, std::string str, std::function<void()> onClick);
-        ~Button();
 
         // Accessors
         void setColor(Color &color) override;              //設定顏色

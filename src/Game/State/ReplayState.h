@@ -11,5 +11,4 @@ private:
 public:
     // Constructor
     ReplayState(Game &game);
-    ~ReplayState();
 };

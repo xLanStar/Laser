@@ -16,7 +16,6 @@ namespace GameObject
         // Constructor & Deconstructor
         GameObject(sf::Vector2f position, Color &color);
         GameObject();
-        ~GameObject();
 
         // Accessors
         sf::Vector2f &getPosition(); //取得位置

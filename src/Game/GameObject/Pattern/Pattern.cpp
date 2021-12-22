@@ -17,10 +17,6 @@ GameObject::Pattern::Pattern(Color &color, int &radius, std::string name) : Game
     setupShape();
 }
 
-GameObject::Pattern::~Pattern()
-{
-}
-
 // Private Functions
 void GameObject::Pattern::setupShape()
 {

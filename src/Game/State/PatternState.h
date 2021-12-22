@@ -13,7 +13,6 @@ private:
 public:
     // Constructor
     PatternState(Game &game);
-    ~PatternState();
 
     // Functions
     //void render();

@@ -7,7 +7,3 @@ Particle::Particle(sf::Vector2f velocity, float lifeTime) : velocity({0.f,0.f}),
 Particle::Particle() : active(false)
 {
 }
-
-Particle::~Particle()
-{
-}

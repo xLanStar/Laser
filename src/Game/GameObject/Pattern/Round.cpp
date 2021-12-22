@@ -14,10 +14,6 @@ GameObject::Round::Round(Color &color, int &radius, std::string name) : Pattern(
     setupShape();
 }
 
-GameObject::Round::~Round()
-{
-}
-
 // Private Function
 void GameObject::Round::setupShape()
 {
