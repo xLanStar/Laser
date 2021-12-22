@@ -60,15 +60,3 @@ void GameObject::Star::updateMouseMove(sf::Vector2f &point)
     Pattern::updateMouseMove(point);
     star.setPosition(point);
 }
-
-void GameObject::Star::updateMousePress(sf::Vector2f &point)
-{
-}
-
-void GameObject::Star::updateMouseRelease(sf::Vector2f &point)
-{
-}
-
-void GameObject::Star::update(float &deltaTime)
-{
-}

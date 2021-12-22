@@ -5,8 +5,7 @@
 
 #include "Game/Util.h"
 
-// UI Draw Function
-void GameObject::NormalLaser::draw(sf::RenderTarget &target, sf::RenderStates states) const
+void GameObject::NormalLaser::draw(sf::RenderTarget &target, sf::RenderStates states) const //渲染
 {
     target.draw(line);
 

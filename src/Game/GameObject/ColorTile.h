@@ -34,6 +34,6 @@ namespace GameObject
         void updateMouseMove(sf::Vector2f &point) override;
         void updateMousePress(sf::Vector2f &point) override;
         void updateMouseRelease(sf::Vector2f &point) override;
-        void update(float &deltaTime) override;
+        void update(float &deltaTime) override; //更新
     };
 }

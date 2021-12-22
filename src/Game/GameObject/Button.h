@@ -48,9 +48,9 @@ namespace GameObject
         void setPosition(sf::Vector2f &position) override; //設定位置
 
         // Update Functions
-        void updateMouseMove(sf::Vector2f &point) override;
-        void updateMousePress(sf::Vector2f &point) override;
-        void updateMouseRelease(sf::Vector2f &point) override;
-        void update(float &deltaTime) override; //更新
+        void updateMouseMove(sf::Vector2f &point) override;    //滑鼠移動
+        void updateMousePress(sf::Vector2f &point) override;   //滑鼠按下
+        void updateMouseRelease(sf::Vector2f &point) override; //滑鼠放開
+        void update(float &deltaTime) override;                //更新
     };
 };

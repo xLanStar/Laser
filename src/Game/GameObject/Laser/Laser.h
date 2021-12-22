@@ -14,10 +14,8 @@ namespace GameObject
     {
     private:
         sf::FloatRect &borderRect;
-        int &thickness;         //線寬
-        bool destroyed = false; //是否該被刪除
-
-        // Particle System
+        int &thickness;                //線寬
+        bool destroyed = false;        //是否該被刪除
         ParticleSystem particleSystem; //附加的粒子效果
 
     public:
@@ -28,7 +26,7 @@ namespace GameObject
         // Accessors
         bool &isDestroyed();                                           //回傳是否該被消除
         void destroy();                                                //改為可刪除
-        int &getThickness();                                           //回傳線寬
+        int getThickness() const;                                      //回傳線寬
         sf::FloatRect &getBorderRect();                                //回傳
         ParticleSystem &getParticleSystem();                           //回傳對應的粒子特效
         virtual void setColor(Color &color) = 0;                       //設定顏色
@@ -36,6 +34,6 @@ namespace GameObject
         virtual bool isCollided(sf::Vector2f &point, int &radius) = 0; //是否被撞到
 
         // Update Events
-        virtual void update(float &deltaTime) = 0; //更新 要覆寫
+        virtual void update(float &deltaTime); //更新 要覆寫
     };
 };

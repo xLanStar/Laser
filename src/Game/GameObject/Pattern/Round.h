@@ -13,6 +13,7 @@ namespace GameObject
 
         // Pricate Function
         void setupShape();
+
     public:
         // Constructor
         Round(Color &color, int &radius, std::string name);
@@ -24,10 +25,7 @@ namespace GameObject
 
         // Update Events
         void updateMouseMove(sf::Vector2f &point) override;
-        void updateMousePress(sf::Vector2f &point) override;
-        void updateMouseRelease(sf::Vector2f &point) override;
-        void update(float &deltaTime) override;
-        
+
         // UI Draw Function
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
     };

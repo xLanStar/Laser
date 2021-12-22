@@ -18,7 +18,7 @@ void GameObject::Laser::destroy()
     this->destroyed = true;
 }
 
-int &GameObject::Laser::getThickness()
+int GameObject::Laser::getThickness() const
 {
     return thickness;
 }

@@ -50,15 +50,3 @@ void GameObject::Round::updateMouseMove(sf::Vector2f &point)
     Pattern::updateMouseMove(point);
     circle.setPosition(point);
 }
-
-void GameObject::Round::updateMousePress(sf::Vector2f &point)
-{
-}
-
-void GameObject::Round::updateMouseRelease(sf::Vector2f &point)
-{
-}
-
-void GameObject::Round::update(float &deltaTime)
-{
-}

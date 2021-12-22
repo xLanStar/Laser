@@ -57,7 +57,6 @@ void GameObject::Pattern::setColor(Color &color)
     circle.setOutlineColor(color.getDarkColor());
 }
 
-
 void GameObject::Pattern::setPosition(sf::Vector2f &position)
 {
     GameObject::setPosition(position);
@@ -82,5 +81,4 @@ void GameObject::Pattern::updateMouseRelease(sf::Vector2f &point)
 
 void GameObject::Pattern::update(float &deltaTime)
 {
-
 }

@@ -10,7 +10,7 @@ namespace GameObject
     class Pattern : public GameObject
     {
     private:
-        std::string name;
+        std::string name; // Pattern 的名稱
 
         // Pattern Appearance
         Color &color;           //對應的顏色
@@ -18,7 +18,7 @@ namespace GameObject
         sf::CircleShape circle; //圓形
 
         // Pricate Function
-        void setupShape();
+        void setupShape(); //設定圖形
 
     public:
         // Constructor
@@ -26,17 +26,17 @@ namespace GameObject
         ~Pattern();
 
         // Accessors
-        std::string &getName();
-        int &getRadius();
+        std::string &getName();                        //取得 Pattern 的名稱
+        int &getRadius();                              //取得半徑
         Color &getColor();                             //回傳顏色結構
         virtual void setColor(Color &color);           //設定顏色
         virtual void setPosition(sf::Vector2f &point); //設定位置
 
         // Update Events
-        virtual void updateMouseMove(sf::Vector2f &point);
-        virtual void updateMousePress(sf::Vector2f &point);
-        virtual void updateMouseRelease(sf::Vector2f &point);
-        virtual void update(float &deltaTime); //更新
+        virtual void updateMouseMove(sf::Vector2f &point);    //滑鼠移動
+        virtual void updateMousePress(sf::Vector2f &point);   //滑鼠按下(空)
+        virtual void updateMouseRelease(sf::Vector2f &point); //滑鼠按下(空)
+        virtual void update(float &deltaTime);                //更新
 
         // UI Draw Function
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const; //渲染

@@ -13,7 +13,6 @@ namespace GameObject
         sf::RectangleShape box;
         sf::RectangleShape box2;
 
-        // Laser Parameter
         int &length;              // 長度
         float angle;              // 角度
         float &speed;             // 雷射飛行速度
@@ -21,7 +20,6 @@ namespace GameObject
         sf::Vector2f endPosition; // 尾端位置
         sf::RectangleShape line;  //繪製線
 
-        // UI Draw Function
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const; //渲染
 
     public:
@@ -34,6 +32,7 @@ namespace GameObject
         void setPosition(sf::Vector2f &point) override;             //設定位置
         bool isCollided(sf::Vector2f &point, int &radius) override; //檢測是否碰撞到
 
+        // Update Events
         void update(float &deltaTime) override; //更新
     };
 };

@@ -24,7 +24,7 @@ namespace GameObject
         sf::RectangleShape box;
 
         bool pulsing = false;
-        float counter = 0.f;
+        float counter = 0.f; //計時器
         float liveTime;
         float deltaThickness;
 
@@ -39,11 +39,11 @@ namespace GameObject
         ~PulseLaser();
 
         // Accessors
-        void setColor(Color &color) override;
-        void setPosition(sf::Vector2f &point) override;
-        bool isCollided(sf::Vector2f &point, int &radius) override;
+        void setColor(Color &color) override;                       //設定顏色
+        void setPosition(sf::Vector2f &point) override;             //設定位置
+        bool isCollided(sf::Vector2f &point, int &radius) override; //是否碰撞
 
         // Update Events
-        void update(float &deltaTime) override;
+        void update(float &deltaTime) override; //更新
     };
 };
