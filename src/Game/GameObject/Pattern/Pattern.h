@@ -33,10 +33,7 @@ namespace GameObject
         virtual void setPosition(sf::Vector2f &point); //設定位置
 
         // Update Events
-        virtual void updateMouseMove(sf::Vector2f &point);    //滑鼠移動
-        virtual void updateMousePress(sf::Vector2f &point);   //滑鼠按下(空)
-        virtual void updateMouseRelease(sf::Vector2f &point); //滑鼠按下(空)
-        virtual void update(float &deltaTime);                //更新
+        virtual void updateMouseMove(sf::Vector2f &point); //滑鼠移動
 
         // UI Draw Function
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const; //渲染

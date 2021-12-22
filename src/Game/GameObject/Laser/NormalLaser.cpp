@@ -40,10 +40,6 @@ GameObject::NormalLaser::NormalLaser(sf::Vector2f position, int &length, int &th
     box2.setFillColor(sf::Color(0, 0, 0, 0));
 }
 
-GameObject::NormalLaser::~NormalLaser()
-{
-}
-
 // Accessors
 void GameObject::NormalLaser::setColor(Color &color)
 {

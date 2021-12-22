@@ -19,10 +19,6 @@ GameObject::Pantone::Pantone(sf::Vector2f position, int &points, int &radius, fl
     setupShape();
 }
 
-GameObject::Pantone::~Pantone()
-{
-}
-
 // Accessors
 int &GameObject::Pantone::getRadius()
 {
@@ -81,7 +77,6 @@ void GameObject::Pantone::setHover(bool isHovered)
 
 void GameObject::Pantone::setColor(Color &color)
 {
-
 }
 
 void GameObject::Pantone::setPosition(sf::Vector2f &position)
@@ -154,8 +149,4 @@ void GameObject::Pantone::updateMouseRelease(sf::Vector2f &point)
         }
         // std::cout << "[Pantone] " << color.name << " Released!\n";
     }
-}
-
-void GameObject::Pantone::update(float &deltaTime)
-{
 }

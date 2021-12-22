@@ -9,9 +9,9 @@
 
 struct Data
 {
-    int highestScore[3];
-    std::string colorTheme;
-    std::string cursorName;
+    int highestScore[3];    //最高分
+    std::string colorTheme; //顏色主題
+    std::string cursorName; //
 };
 
 enum Difficulty //難度設定
@@ -58,10 +58,10 @@ private:
     sf::Font font;
 
     // Difficulty
-    Difficulty difficulty;
+    Difficulty difficulty; //難度設定
 
     // Game
-    int laserBorderSize = 100;
+    int laserBorderSize = 100; // Border 的寬度
     sf::FloatRect laserBorderRect;
 
     // Score

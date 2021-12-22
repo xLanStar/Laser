@@ -4,10 +4,6 @@ GameObject::Laser::Laser(sf::Vector2f position, Color &color, int &thickness, sf
 {
 }
 
-GameObject::Laser::~Laser()
-{
-}
-
 bool &GameObject::Laser::isDestroyed()
 {
     return destroyed;

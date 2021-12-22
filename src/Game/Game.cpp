@@ -11,8 +11,8 @@
 #include "Game/State/GameState.h"
 #include "Game/State/ReplayState.h"
 
-bool showHitBox = true;
-bool invincible = true;
+bool showHitBox = false; //顯示碰撞箱
+bool invincible = true;  //無敵
 
 // Initializer
 void Game::initWindow()
@@ -75,7 +75,7 @@ sf::Vector2f &Game::getMousePosition()
 
 void Game::death()
 {
-    if(currentStateType == GAME)
+    if (currentStateType == GAME)
     {
         setting.saveCurrentScore();
         switchState(REPLAY);
@@ -211,7 +211,7 @@ void Game::update()
      * - update deltaTime
      * - update evnets
      * - update states
-    **/
+     **/
     updateDeltaTime();
 
     updateEvents();
@@ -233,9 +233,9 @@ void Game::render()
      * - clear old frame
      * - render state
      * - render cursor
-     * - display frame 
-    **/
-    //window->clear(setting.getColor().backgroundColor);
+     * - display frame
+     **/
+    // window->clear(setting.getColor().backgroundColor);
     window->clear(setting.getColor().getLightColor());
 
     if (!states.empty())

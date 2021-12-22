@@ -21,7 +21,6 @@ namespace GameObject
     public:
         // Constructor
         Laser(sf::Vector2f position, Color &color, int &thickness, sf::FloatRect &borderRect, ParticleSystemProp &prop);
-        ~Laser();
 
         // Accessors
         bool &isDestroyed();                                           //回傳是否該被消除

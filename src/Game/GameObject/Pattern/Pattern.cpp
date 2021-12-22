@@ -68,17 +68,3 @@ void GameObject::Pattern::updateMouseMove(sf::Vector2f &point)
 {
     circle.setPosition(point);
 }
-
-// Mouse Press
-void GameObject::Pattern::updateMousePress(sf::Vector2f &point)
-{
-}
-
-// Mouse Release
-void GameObject::Pattern::updateMouseRelease(sf::Vector2f &point)
-{
-}
-
-void GameObject::Pattern::update(float &deltaTime)
-{
-}

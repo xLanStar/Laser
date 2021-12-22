@@ -25,7 +25,6 @@ namespace GameObject
     public:
         // Constructor
         NormalLaser(sf::Vector2f position, int &length, int &thickness, float &angle, float &speed, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop);
-        ~NormalLaser();
 
         // Accessors
         void setColor(Color &color) override;                       //設定顏色

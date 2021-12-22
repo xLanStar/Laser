@@ -65,10 +65,6 @@ GameObject::PulseLaser::PulseLaser(sf::Vector2f position, int &thickness, float 
     }
 }
 
-GameObject::PulseLaser::~PulseLaser()
-{
-}
-
 // Accessors
 void GameObject::PulseLaser::setColor(Color &color)
 {

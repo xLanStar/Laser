@@ -17,10 +17,6 @@ GameObject::Text::Text(sf::Vector2f position, int &characterSize, Color &color, 
     setPosition(position);
 }
 
-GameObject::Text::~Text()
-{
-}
-
 // Accessors
 sf::FloatRect GameObject::Text::getGlobalBounds()
 {
@@ -42,7 +38,7 @@ void GameObject::Text::setColor(Color &color)
 {
     text.setFillColor(color.getDarkColor());
 }
-    
+
 void GameObject::Text::setCharacterSize(int &characterSize)
 {
     text.setCharacterSize(characterSize);
@@ -60,24 +56,4 @@ void GameObject::Text::setPosition(sf::Vector2f &point)
 {
     GameObject::setPosition(point);
     text.setPosition(point.x, point.y);
-}
-
-// Mouse Move
-void GameObject::Text::updateMouseMove(sf::Vector2f &point)
-{
-}
-
-// Mouse Press
-void GameObject::Text::updateMousePress(sf::Vector2f &point)
-{
-}
-
-// Mouse Release
-void GameObject::Text::updateMouseRelease(sf::Vector2f &point)
-{
-}
-
-void GameObject::Text::update(float &deltaTime)
-{
-    
 }

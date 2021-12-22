@@ -6,7 +6,6 @@ GameObject::GameObject::GameObject(sf::Vector2f position, Color &color) : positi
 GameObject::GameObject::GameObject() : position(0, 0), color(color)
 {
 }
-
 GameObject::GameObject::~GameObject()
 {
 }

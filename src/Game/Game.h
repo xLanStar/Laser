@@ -7,8 +7,8 @@
 #include "Game/State/State.h"
 #include "Game/Setting.h"
 
-extern bool showHitBox;
-extern bool invincible;
+extern bool showHitBox; //顯示碰撞箱
+extern bool invincible; //無敵
 
 enum StateType //列舉狀態
 {
@@ -32,33 +32,33 @@ private:
     sf::Event event;
 
     // Cursor
-    sf::Vector2f currentMousePosition;
-    GameObject::Pattern *cursor;
+    sf::Vector2f currentMousePosition; //現在鼠標的位置
+    GameObject::Pattern *cursor;       //鼠標
 
     // States
-    StateType currentStateType;
-    std::stack<State *> states;
+    StateType currentStateType; //現在的狀態
+    std::stack<State *> states; //狀態堆疊
 
     // Update & Render Values
     sf::Clock deltaTimeClock;
     float deltaTime;
 
     // Initializer
-    void initWindow();
-    void initState();
+    void initWindow(); //初始化視窗
+    void initState();  //初始化狀態
 
 public:
     // Setting
-    Setting setting;
+    Setting setting; //設定
 
     // Constructor
     Game();
     ~Game();
 
     // Accessors
-    void setColorTheme(std::string colorTheme);
-    void setCursor(std::string name);
-    sf::Vector2f &getMousePosition();
+    void setColorTheme(std::string colorTheme); //設定顏色主題
+    void setCursor(std::string name);           //設定鼠標者
+    sf::Vector2f &getMousePosition();           //取得滑鼠位置
     // sf::Vector2u &getWindowSize();
     // sf::FloatRect &getLaserBorderRect();
 
@@ -68,19 +68,19 @@ public:
     // pop top state
     void popState();
     // pop and push
-    void switchState(StateType stateType);
+    void switchState(StateType stateType); //切換狀態
     // GameOver when player fail, only in GAME stateType can use death()
-    void death();
+    void death(); //死亡
 
     // update functions
-    void updateDeltaTime();
-    void updateEvents();
-    void update();
+    void updateDeltaTime(); //更新時間
+    void updateEvents();    //更新事件
+    void update();          //更新
 
     // render functions
-    void render();
+    void render(); //渲染
 
     // Core
-    void run();
-    void stop();
+    void run();  //運行
+    void stop(); //停止
 };

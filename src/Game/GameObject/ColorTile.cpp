@@ -51,7 +51,3 @@ void GameObject::ColorTile::updateMouseRelease(sf::Vector2f &point)
 {
     pantone.updateMouseRelease(point);
 }
-void GameObject::ColorTile::update(float &deltaTime)
-{
-    //pantone.update(deltaTime);
-}

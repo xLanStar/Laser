@@ -36,7 +36,6 @@ namespace GameObject
     public:
         // Constructor
         PulseLaser(sf::Vector2f position, int &thickness, float &angle, float &delay, float &powerTime, float &duration, int &dashLineLength, int &dashLineThickness, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop);
-        ~PulseLaser();
 
         // Accessors
         void setColor(Color &color) override;                       //設定顏色
