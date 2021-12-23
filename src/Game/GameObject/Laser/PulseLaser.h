@@ -11,36 +11,32 @@ namespace GameObject
     class PulseLaser : public Laser
     {
     private:
-        int &thickness; // 線寬
-        float angle;    // 角度
-        float &delay;   // 延遲
-        float &powerTime;
-        float &duration;     // duration time during laser pulsing
-        int &dashLineLength; // 脈衝長度
-        sf::Vector2f deltaShake;
-
-        sf::RectangleShape line;
-
-        sf::RectangleShape box;
+        int &thickness;          // 線寬
+        float angle;             // 角度
+        float &delay;            // 延遲
+        float &powerTime;        // 脈衝釋放時間
+        float &duration;         // duration time during laser pulsing
+        int &dashLineLength;     // 脈衝長度
+        sf::Vector2f deltaShake; // 震動幅度
+        sf::RectangleShape line; // 線物件
+        // sf::RectangleShape box;
 
         bool pulsing = false;
-        float counter = 0.f; //計時器
-        float liveTime;
-        float deltaThickness;
+        float counter = 0.f;  //計時器
+        float liveTime;       //脈衝總生存時間
+        float deltaThickness; //寬度變化量
 
-        std::vector<sf::RectangleShape> dashLine;
+        std::vector<sf::RectangleShape> dashLine; //虛線存放器
 
         // UI Draw Function
-        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+        void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
     public:
         // Constructor
         PulseLaser(sf::Vector2f position, int &thickness, float &angle, float &delay, float &powerTime, float &duration, int &dashLineLength, int &dashLineThickness, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop);
 
         // Accessors
-        void setColor(Color &color) override;                       //設定顏色
-        void setPosition(sf::Vector2f &point) override;             //設定位置
-        bool isCollided(sf::Vector2f &point, int &radius) override; //是否碰撞
+        bool isCollided(sf::Vector2f &point, int &radius) const override; //是否碰撞
 
         // Update Events
         void update(float &deltaTime) override; //更新

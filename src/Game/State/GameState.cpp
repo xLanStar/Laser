@@ -11,7 +11,7 @@
 #include "Game/GameObject/Laser/DashLaser.h"
 #include "Game/GameObject/Laser/PulseLaser.h"
 
-//Initializer
+// Initializer
 void GameState::initUI()
 {
     border.setSize(sf::Vector2f(game.setting.getWindowSize().x - game.setting.getLaserBorderSize() * 2,
@@ -55,7 +55,7 @@ void GameState::draw(sf::RenderTarget &target, sf::RenderStates states) const
     }
 }
 
-//Constructor
+// Constructor
 GameState::GameState(Game &game) : State(game), generateInterval(game.setting.getCurrentGenerateInterval()), mvpText(game.setting.getPointAtWindow(30, 5), game.setting.getSubTitleCharacterSize(), game.setting.getColor(), game.setting.getFont(), (std::string) "MVP:" + toString(game.setting.getCurrentHighestScore())), scoreText(game.setting.getPointAtWindow(70, 5), game.setting.getSubTitleCharacterSize(), game.setting.getColor(), game.setting.getFont(), (std::string) "SCORE:" + toString(game.setting.getCurrentScore()))
 {
     borderLeft = game.setting.getLaserBorderSize();
@@ -70,7 +70,7 @@ GameState::GameState(Game &game) : State(game), generateInterval(game.setting.ge
 GameState::~GameState()
 {
     // Clear Lasers
-    for(auto it = lasers.begin(); it!=lasers.end(); it++)
+    for (auto it = lasers.begin(); it != lasers.end(); it++)
     {
         lasers.erase(it);
     }
@@ -217,6 +217,6 @@ void GameState::update(float &deltaTime)
         game.setting.increaseCurrentScore();
         std::string text = "SCORE:" + toString(game.setting.getCurrentScore());
         scoreText.setText(text);
-        //std::cout << "[GameState] spwan new laser!\n";
+        // std::cout << "[GameState] spwan new laser!\n";
     }
 }

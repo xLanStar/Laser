@@ -4,6 +4,7 @@ LIB_DIR := lib# 函式庫目錄
 INC_DIR := include# 函式庫的標頭檔目錄
 TARGET  := bin/Laser.exe# 可執行檔檔名
 SRC_FILES :=$(filter-out $(SRC_DIR)/main.cpp,$(subst \,/,$(subst $(shell cd)\,,$(shell dir *.cpp /B /S))))#取得 SRC_DIR 底下所有的 .cpp 檔
+H_FILES := $(patsubst %.cpp,%.h,$(SRC_FILES))#取得 SRC_DIR 底下的所有 h 檔
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))#取得 OBJ_DIR 底下所有的 .o 檔
 # Compiler
 CPP:=g++
@@ -21,7 +22,7 @@ all:$(TARGET)# 預設進入點
 $(TARGET):$(SRC_DIR)/main.cpp $(OBJ_FILES)# 將所有 .o Link 成 Laser.exe
 	@$(CPP) $(CPPFLAGS) $(INCFLAGS) $< -o $@ $(OBJ_FILES) $(LFLAGS) $(SLFLAGS)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp# 編譯成 .o 檔
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(SRC_DIR)/%.h# 編譯成 .o 檔
 	-@md $(subst /,\,$(@D))
 	$(CPP) $(CPPFLAGS) $(INCFLAGS) -c -o $@ $<
 
@@ -31,4 +32,5 @@ clean:# 清除 obj 底下的所有東西
 
 info:# 印出相關的參數資訊
 	@echo "$(SRC_FILES)"
+	@echo "$(H_FILES)"
 	@echo "$(OBJ_FILES)"

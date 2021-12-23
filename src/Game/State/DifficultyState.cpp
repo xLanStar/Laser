@@ -8,7 +8,7 @@
 #include "Game/Gameobject/Text.h"
 #include "Game/Game.h"
 
-//Initializer
+// Initializer
 void DifficultyState::initUI()
 {
     gameObjects["Easy"] = new GameObject::Button(
@@ -17,27 +17,30 @@ void DifficultyState::initUI()
         game.setting.getButtonHoverCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "EASY",
-        [&] { game.setting.setDifficulty(Difficulty::EASY); game.setting.resetCurrentScore(); game.switchState(GAME); });
+        std::string("EASY"),
+        [&]
+        { game.setting.setDifficulty(Difficulty::EASY); game.setting.resetCurrentScore(); game.switchState(GAME); });
     gameObjects["Normal"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 50),
         game.setting.getButtonCharacterSize(),
         game.setting.getButtonHoverCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "NORMAL",
-        [&] { game.setting.setDifficulty(Difficulty::NORMAL); game.setting.resetCurrentScore(); game.switchState(GAME); });
+        std::string("NORMAL"),
+        [&]
+        { game.setting.setDifficulty(Difficulty::NORMAL); game.setting.resetCurrentScore(); game.switchState(GAME); });
     gameObjects["Hard"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 65),
         game.setting.getButtonCharacterSize(),
         game.setting.getButtonHoverCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "HARD",
-        [&] { game.setting.setDifficulty(Difficulty::HARD); game.setting.resetCurrentScore(); game.switchState(GAME); });
+        std::string("HARD"),
+        [&]
+        { game.setting.setDifficulty(Difficulty::HARD); game.setting.resetCurrentScore(); game.switchState(GAME); });
 }
 
-//Constructor
+// Constructor
 DifficultyState::DifficultyState(Game &game) : State(game)
 {
     initUI();

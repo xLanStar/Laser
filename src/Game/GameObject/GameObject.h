@@ -19,11 +19,11 @@ namespace GameObject
 
         // Accessors
         sf::Vector2f &getPosition(); //取得位置
-        Color &getColor();           //取得顏色
+        Color &getColor() const;     //取得顏色
 
         // Virtual Functions
         virtual void setPosition(sf::Vector2f &position);       //設定位置
-        virtual void setColor(Color &color) = 0;                //設定顏色
+        virtual void setColor(Color &color);                    //設定顏色
         virtual void updateMouseMove(sf::Vector2f &point){};    //滑鼠移動
         virtual void updateMousePress(sf::Vector2f &point){};   //滑鼠按下
         virtual void updateMouseRelease(sf::Vector2f &point){}; //滑鼠放開

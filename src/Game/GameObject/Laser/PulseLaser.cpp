@@ -5,49 +5,49 @@
 
 #include "Game/Util.h"
 
-// UI Draw Function
-void GameObject::PulseLaser::draw(sf::RenderTarget &target, sf::RenderStates states) const
+void GameObject::PulseLaser::draw(sf::RenderTarget &target, sf::RenderStates states) const //渲染
 {
-    if (showHitBox)
+    // if (showHitBox)
+    // {
+    //     target.draw(box);
+    // }
+    if (pulsing) //釋放時
     {
-        target.draw(box);
+        target.draw(line); //繪出實線
     }
-    if (pulsing)
-    {
-        target.draw(line);
-    }
-    else
+    else //充能時
     {
         for (auto line : dashLine)
         {
-            target.draw(line);
+            target.draw(line); //繪出虛線
         }
     }
 }
 
 GameObject::PulseLaser::PulseLaser(sf::Vector2f position, int &thickness, float &angle, float &delay, float &powerTime, float &duration, int &dashLineLength, int &dashLineThickness, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop) : Laser(position, color, thickness, borderRect, prop), angle(angle), delay(delay), duration(duration), dashLineLength(dashLineLength), thickness(thickness), powerTime(powerTime)
 {
-    liveTime = delay + duration;
+    liveTime = delay + duration; //生存時間等於延遲時間加上脈衝持續時間
     deltaThickness = thickness / (duration * powerTime);
-    deltaShake = sf::Vector2f(cos(angle + PI / 2), sin(angle + PI / 2));
-    std::cout << "deltaShake : " << deltaShake.x << ", " << deltaShake.y << '\n';
 
-    line.setPosition(position);
-    line.setRotation(angle * 180 / PI);
-    line.setOutlineColor(color.getDarkColor());
-    line.setSize(sf::Vector2f(1500, 0));
+    deltaShake = sf::Vector2f(cos(angle + PI / 2), sin(angle + PI / 2));
+
+    line.setPosition(position);                 //設定位置
+    line.setRotation(angle * 180 / PI);         //旋轉
+    line.setOutlineColor(color.getDarkColor()); //設定顏色
+    line.setSize(sf::Vector2f(1500, 0));        //線長
+    line.setOutlineThickness(thickness);
 
     // ((crossProduct v1, v) * (crossProduct v2, v) >= 0 )
     // (ax * cy + ay * cx) * (bx * cy + by *cx) >= 0
-    if (true)
-    {
-        box.setSize(sf::Vector2f(32, 32));
-        box.setOrigin(sf::Vector2f(16, 16));
-        box.setPosition(position);
-        box.setFillColor(sf::Color(0, 0, 0, 0));
-        box.setOutlineColor(sf::Color(255, 0, 0));
-        box.setOutlineThickness(10);
-    }
+    // if (true)
+    // {
+    //     box.setSize(sf::Vector2f(32, 32));
+    //     box.setOrigin(sf::Vector2f(16, 16));
+    //     box.setPosition(position);
+    //     box.setFillColor(sf::Color(0, 0, 0, 0));
+    //     box.setOutlineColor(sf::Color(255, 0, 0));
+    //     box.setOutlineThickness(10);
+    // }
     // line.setSize(sf::Vector2f(length, 0));
 
     // Generate Dashed Lines
@@ -65,53 +65,39 @@ GameObject::PulseLaser::PulseLaser(sf::Vector2f position, int &thickness, float 
     }
 }
 
-// Accessors
-void GameObject::PulseLaser::setColor(Color &color)
+bool GameObject::PulseLaser::isCollided(sf::Vector2f &point, int &radius) const
 {
-}
-
-void GameObject::PulseLaser::setPosition(sf::Vector2f &point)
-{
-}
-
-bool GameObject::PulseLaser::isCollided(sf::Vector2f &point, int &radius)
-{
-    if (pulsing)
+    if (pulsing) //釋放時
     {
-        sf::Vector2f position(line.getPosition());
-        return distanceOfPointToLineByAngle(point.x, point.y, position.x, position.y, angle) <= radius + line.getSize().y;
+        const sf::Vector2f &position(line.getPosition());                                                                  //取得位置
+        return distanceOfPointToLineByAngle(point.x, point.y, position.x, position.y, angle) <= radius + line.getSize().y; //點線距離
     }
-    return false;
+    return false; //充能時一定不會碰撞到
 }
 
-void GameObject::PulseLaser::update(float &deltaTime)
+void GameObject::PulseLaser::update(float &deltaTime) //更新
 {
-    counter += deltaTime;
-    if (pulsing)
+    counter += deltaTime; //增加時間變化量
+    if (pulsing)          //釋放中
     {
-        if (counter >= liveTime)
+        if (counter >= liveTime) //如果活太久了
         {
-            destroy();
+            destroy(); //消滅
         }
         else
         {
-            line.setPosition(getPosition() + deltaShake * static_cast<float>(rand() % 5 - 5));
-            if (line.getOutlineThickness() < thickness)
+            line.setPosition(getPosition() + deltaShake * static_cast<float>(rand() % 5 - 5)); //重新定位震動
+            if (line.getOutlineThickness() < thickness)                                        //如果寬度小於指定的寬度
             {
-                line.setOutlineThickness(line.getOutlineThickness() + deltaThickness * deltaTime);
+                line.setOutlineThickness(line.getOutlineThickness() + deltaThickness * deltaTime); //變寬
             }
         }
     }
     else
     {
-        if (counter >= delay)
+        if (counter >= delay) //如果超過充能時間了
         {
-            // Pulse
-            pulsing = true;
-        }
-        else
-        {
-            // waiting
+            pulsing = true; //釋放
         }
     }
 }

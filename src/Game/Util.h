@@ -2,7 +2,7 @@
 
 #include "SFML/Graphics.hpp"
 
-#define inRange(px,py,ax,ay,bx,by) ax<=px&&px<=bx&&ay<=py&&py<=by
+#define inRange(px, py, ax, ay, bx, by) ax <= px &&px <= bx &&ay <= py &&py <= by
 
 #define PI 3.14159265358979323846
 
@@ -10,13 +10,13 @@
 bool exist(const std::string &name);
 
 // 點(ax, ay)到直線(ax+by+c=0)的距離
-float distanceOfPointToLine(float &x, float &y, float &a, float &b, float &c);
+float distanceOfPointToLine(const float &x, const float &y, const float &a, const float &b, const float &c);
 
 // 點(ax, ay)到經過點(bx,by)、角度angle的直線的距離
-float distanceOfPointToLineByAngle(float &ax, float &ay, float &bx, float &by, float &angle);
+float distanceOfPointToLineByAngle(const float &ax, const float &ay, const float &bx, const float &by, const float &angle);
 
 // 點到線段的距離
-float distanceOfPointToSeg(float &px, float &py, float &ax, float &ay, float &bx, float &by);
+float distanceOfPointToSeg(const float &px, const float &py, const float &ax, const float &ay, const float &bx, const float &by);
 
 // 外積
 float crossProduct(float &ax, float &ay, float &bx, float &by);

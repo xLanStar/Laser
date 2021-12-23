@@ -11,13 +11,13 @@ bool exist(const std::string &name)
     return (stat(name.c_str(), &buffer) == 0);
 }
 // 點到線的距離
-float distanceOfPointToLine(float &x, float &y, float &a, float &b, float &c)
+float distanceOfPointToLine(const float &x, const float &y, const float &a, const float &b, const float &c)
 {
     // distance = |ax + by + c| / (a^2 + b^2)^0.5
     return abs(a * x + b * y + c) / sqrt(a * a + b * b);
 }
 //
-float distanceOfPointToLineByAngle(float &ax, float &ay, float &bx, float &by, float &angle)
+float distanceOfPointToLineByAngle(const float &ax, const float &ay, const float &bx, const float &by, const float &angle)
 {
 
     // find the line (ax + by + c = 0) that pass (bx, by) with angle
@@ -36,7 +36,7 @@ float distanceOfPointToLineByAngle(float &ax, float &ay, float &bx, float &by, f
     return distanceOfPointToLine(ax, ay, slope, b, c);
 }
 // 點到線段的距離
-float distanceOfPointToSeg(float &px, float &py, float &ax, float &ay, float &bx, float &by)
+float distanceOfPointToSeg(const float &px, const float &py, const float &ax, const float &ay, const float &bx, const float &by)
 {
     // dot proeduct |ABxAP|
     float cross = (bx - ax) * (px - ax) + (by - ay) * (py - ay);

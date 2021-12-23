@@ -28,10 +28,10 @@ class Setting
 {
 private:
     // Stored Theme Config
-    std::unordered_map<std::string, Color> colorTable;
+    std::unordered_map<std::string, Color> colorTable; // Color 字串對應 Color 物件
 
     // Pattern Table
-    std::unordered_map<std::string, GameObject::Pattern *> patternTable;
+    std::unordered_map<std::string, GameObject::Pattern *> patternTable; // Pattern 字串對應 Pattern 物件
 
     // Color
     Color color;
@@ -40,15 +40,17 @@ private:
     int colorStateBorder = 50;
 
     // Tile
-    int tileGap = 25, tileWidth = 250, tileHeight = 120;
+    int tileGap = 25;     //色票容器之間的距離
+    int tileWidth = 250;  //色票容器的寬度
+    int tileHeight = 120; //色票容器的高度
     sf::Vector2f tileRect = sf::Vector2f(getTileWidth(), getTileHeight());
 
     // Pantone
-    int pantonePoints = 30, pantoneRadius = 32;
-    float pantoneHoverScale = 1.2f;
+    int pantonePoints = 30, pantoneRadius = 32; //色票半徑
+    float pantoneHoverScale = 1.2f;             //放大係數
 
     // Cursor
-    int cursorSize = 48;
+    int cursorSize = 42; //鼠標半徑
     GameObject::Pattern *cursor;
 
     // Text
@@ -65,20 +67,20 @@ private:
     sf::FloatRect laserBorderRect;
 
     // Score
-    int highestScore[3] = {0, 0, 0};
-    int currentScore = 0;
+    int highestScore[3] = {0, 0, 0}; //最高分
+    int currentScore = 0;            //現在的分數
 
     // Laser
     // - Moving Laser
-    float movingLaserVelocity;
+    float movingLaserVelocity; //雷射移動速度
     // - Normal Laser
-    int normalLaserLength = 200;
-    int normalLaserThickness = 10;
+    int normalLaserLength = 300;   //雷射長度
+    int normalLaserThickness = 10; //雷射線寬
     // - Pulse Laser
-    float pulseLaserDelay = 0.5f;
-    float pulseLaserPowerTime = 0.1f;
-    float pulseLaserDuration = 0.5f;
-    int pulseLaserThickness = 25;
+    float pulseLaserDelay = 0.5f;     //雷射延遲
+    float pulseLaserPowerTime = 0.5f; //變寬所需的時間
+    float pulseLaserDuration = 0.5f;  //脈衝雷射持續時間
+    int pulseLaserThickness = 25;     //脈衝雷射線寬
 
     // Dash Line
     int dashLineLength = 75;
@@ -91,7 +93,7 @@ private:
     ParticleSystemProp normalLaserProp;
 
     // Window Size
-    sf::Vector2u windowSize;
+    sf::Vector2u windowSize; //視窗長寬
 
 public:
     // Constructor & Deconstructor
@@ -100,8 +102,8 @@ public:
 
     // Accessors
     // Color
-    std::unordered_map<std::string, Color> &getColorTable();
-    void setColorTheme(std::string colorTheme);
+    std::unordered_map<std::string, Color> &getColorTable(); //取得顏色主題
+    void setColorTheme(std::string colorTheme);              //設定顏色主題
     Color &findColor(std::string colorTheme);
     Color &getColor();
 
@@ -114,7 +116,7 @@ public:
     int &getTileHeight();
     sf::Vector2f &getTileRect();
 
-    // Patone
+    // Pantone
     int &getPantonePoints();
     int &getPantoneRadius();
     float &getPantoneHoverScale();
@@ -177,7 +179,7 @@ public:
     sf::FloatRect &getLaserBorderRect();
     sf::Vector2f getPointAtWindow(float x, float y);
 
-    void setWindowSize(sf::Vector2u windowSize);
+    void setWindowSize(sf::Vector2u windowSize); //設定視窗寬高
 
     // Save & Load
     bool load();

@@ -6,7 +6,7 @@
 #define PI 3.14159265358979323846
 
 // UI Draw Function
-void GameObject::Star::draw(sf::RenderTarget &target, sf::RenderStates states) const
+void GameObject::Star::draw(sf::RenderTarget &target, sf::RenderStates states) const //渲染
 {
     Pattern::draw(target, states);
     target.draw(star);
@@ -17,8 +17,7 @@ GameObject::Star::Star(Color &color, int &radius, std::string name) : Pattern(co
     setupShape();
 }
 
-// Private Function
-void GameObject::Star::setupShape()
+void GameObject::Star::setupShape() //繪製星星
 {
     starSize = getRadius() * 0.7;
 
@@ -36,8 +35,7 @@ void GameObject::Star::setupShape()
     }
 }
 
-// Functions
-void GameObject::Star::setColor(Color &color)
+void GameObject::Star::setColor(Color &color) //設定顏色
 {
     Pattern::setColor(color);
     star.setFillColor(color.getLightColor());

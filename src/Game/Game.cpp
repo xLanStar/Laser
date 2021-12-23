@@ -11,8 +11,8 @@
 #include "Game/State/GameState.h"
 #include "Game/State/ReplayState.h"
 
-bool showHitBox = false; //顯示碰撞箱
-bool invincible = true;  //無敵
+bool showHitBox = true; //顯示碰撞箱
+bool invincible = true; //無敵
 
 // Initializer
 void Game::initWindow()

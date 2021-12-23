@@ -4,7 +4,7 @@
 
 int main()
 {
-    //Init Game Engine
+    // Init Game Engine
     Game game = Game();
 
     game.run();
