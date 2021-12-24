@@ -1,5 +1,7 @@
 #include "Game/Particle/ParticleSystem.h"
 
+#include <cmath>
+
 ParticleSystem::ParticleSystem(ParticleSystemProp &prop) : prop(prop), particles(prop.maxParticleCount), active(false), emitting(true), overTime(0), emitTimeCounter(0), activeParticleCount(0)
 {
     // 初始化粒子
