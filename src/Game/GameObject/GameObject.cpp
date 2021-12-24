@@ -13,13 +13,9 @@ sf::Vector2f &GameObject::GameObject::getPosition()
     return position;
 }
 
-Color &GameObject::GameObject::getColor() const
-{
-    return color;
-}
-
 void GameObject::GameObject::setColor(Color &color)
 {
+    color = color;
 }
 void GameObject::GameObject::setPosition(sf::Vector2f &position)
 {

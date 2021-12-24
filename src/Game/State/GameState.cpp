@@ -8,7 +8,6 @@
 #include "Game/Game.h"
 #include "Game/Util.h"
 #include "Game/GameObject/Laser/NormalLaser.h"
-#include "Game/GameObject/Laser/DashLaser.h"
 #include "Game/GameObject/Laser/PulseLaser.h"
 
 // Initializer

@@ -4,7 +4,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Game/Setting.h"
 #include "Game/GameObject/GameObject.h"
 #include "Game/GameObject/Text.h"
 /**

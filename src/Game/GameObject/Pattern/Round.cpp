@@ -2,47 +2,32 @@
 
 #include <iostream>
 
-// UI Draw Function
-void GameObject::Round::draw(sf::RenderTarget &target, sf::RenderStates states) const
-{
-    Pattern::draw(target, states);
-    target.draw(circle);
-}
-
 GameObject::Round::Round(Color &color, int &radius, std::string name) : Pattern(color, radius, name)
 {
     setupShape();
 }
 
 // Private Function
-void GameObject::Round::setupShape()
+void GameObject::Round::setupShape() //設定形狀
 {
-    circle.setRadius(getRadius() * 0.7);
-    circle.setOutlineThickness(5);
-    circle.setFillColor(getColor().getLightColor());
-    circle.setOutlineColor(getColor().getDarkColor());
-    sf::FloatRect rect = circle.getLocalBounds();
-    circle.setOrigin(rect.left + rect.width / 2.0f,
-                     rect.top + rect.height / 2.0f);
-}
-
-// Functions
-void GameObject::Round::setColor(Color &color)
-{
-    Pattern::setColor(color);
-    circle.setFillColor(color.getLightColor());
-    circle.setOutlineColor(color.getDarkColor());
-}
-
-void GameObject::Round::setPosition(sf::Vector2f &point)
-{
-    Pattern::setPosition(point);
-    circle.setPosition(point);
+    round.setRadius(radius * 0.7);
+    round.setOutlineThickness(5);
+    round.setFillColor(color.getLightColor());
+    round.setOutlineColor(color.getDarkColor());
+    sf::FloatRect rect = round.getLocalBounds();
+    round.setOrigin(rect.left + rect.width / 2.0f,
+                    rect.top + rect.height / 2.0f);
 }
 
 // Update Events
-void GameObject::Round::updateMouseMove(sf::Vector2f &point)
+void GameObject::Round::updateMouseMove(sf::Vector2f &position)
 {
-    Pattern::updateMouseMove(point);
-    circle.setPosition(point);
+    Pattern::updateMouseMove(position);
+    round.setPosition(position);
+}
+// UI Draw Function
+void GameObject::Round::draw(sf::RenderTarget &target, sf::RenderStates states) const
+{
+    Pattern::draw(target, states);
+    target.draw(round);
 }

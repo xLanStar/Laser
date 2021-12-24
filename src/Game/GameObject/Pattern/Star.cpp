@@ -19,33 +19,20 @@ GameObject::Star::Star(Color &color, int &radius, std::string name) : Pattern(co
 
 void GameObject::Star::setupShape() //繪製星星
 {
-    starSize = getRadius() * 0.7;
-
+    starSize = radius * 0.7;
     star.setOutlineThickness(5);
-    star.setFillColor(getColor().getLightColor());
-    star.setOutlineColor(getColor().getDarkColor());
+    star.setFillColor(color.getLightColor());
+    star.setOutlineColor(color.getDarkColor());
     sf::FloatRect rect = star.getLocalBounds();
     star.setOrigin(rect.left + rect.width / 2.0f,
                    rect.top + rect.height / 2.0f);
-    star.setPointCount(10);
+
+    star.setPointCount(10); //多邊形點個數
     for (int i = 1; i <= 5; i++)
     {
         star.setPoint(i * 2 - 2, sf::Vector2f(cos((18 + 72 * i) * PI / 180) * starSize, -sin((18 + 72 * i) * PI / 180) * starSize));
         star.setPoint(i * 2 - 1, sf::Vector2f(cos((54 + 72 * i) * PI / 180) * starSize / 2, -sin((54 + 72 * i) * PI / 180) * starSize / 2));
     }
-}
-
-void GameObject::Star::setColor(Color &color) //設定顏色
-{
-    Pattern::setColor(color);
-    star.setFillColor(color.getLightColor());
-    star.setOutlineColor(color.getDarkColor());
-}
-
-void GameObject::Star::setPosition(sf::Vector2f &point)
-{
-    Pattern::setPosition(point);
-    star.setPosition(point);
 }
 
 // Update Events

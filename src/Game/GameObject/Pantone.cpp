@@ -3,7 +3,6 @@
 #include <iostream>
 #include <cmath>
 
-#include "Game/Game.h"
 #include "Game/Util.h"
 
 // UI Draw Function

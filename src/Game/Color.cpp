@@ -1,14 +1,10 @@
 #include "Game/Color.h"
 
-const void Color::operator=(Color other)
-{
-    name = other.name;
-    darkColor = other.getDarkColor();
-    lightColor = other.getLightColor();
-}
-
 Color::Color()
 {
+    name = "Pink";
+    lightColor = sf::Color(255, 202, 225);
+    darkColor = sf::Color(255, 138, 188);
 }
 
 Color::Color(std::string name, sf::Color darkColor, sf::Color lightColor) : name(name), darkColor(darkColor), lightColor(lightColor)
@@ -19,17 +15,17 @@ Color::~Color()
 {
 }
 
-std::string &Color::getName()
+const std::string Color::getName() const
 {
     return name;
 }
 
-sf::Color &Color::getDarkColor()
+const sf::Color &Color::getDarkColor() const
 {
     return darkColor;
 }
 
-sf::Color &Color::getLightColor()
+const sf::Color &Color::getLightColor() const
 {
     return lightColor;
 }

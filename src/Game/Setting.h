@@ -3,6 +3,8 @@
 #include <unordered_map>
 #include <cmath>
 
+#include "iostream"
+#include "Game/Util.h"
 #include "Game/Color.h"
 #include "Game/GameObject/Pattern/Pattern.h"
 #include "Game/Particle/ParticleSystemProp.h"
@@ -28,10 +30,10 @@ class Setting
 {
 private:
     // Stored Theme Config
-    std::unordered_map<std::string, Color> colorTable; // Color 字串對應 Color 物件
+    std::unordered_map<std::string, Color> colorTable; // 字串和 Color 物件的 Map
 
     // Pattern Table
-    std::unordered_map<std::string, GameObject::Pattern *> patternTable; // Pattern 字串對應 Pattern 物件
+    std::unordered_map<std::string, GameObject::Pattern *> patternTable; // 字串和 Pattern 物件的 Map
 
     // Color
     Color color;

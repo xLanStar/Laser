@@ -56,8 +56,8 @@ Setting::Setting()
     }
 
     // Pattern
-    patternTable["Round"] = new GameObject::Round(getColor(), getCursorSize(), (std::string) "Round");
-    patternTable["Star"] = new GameObject::Star(getColor(), getCursorSize(), (std::string) "Star");
+    patternTable["Round"] = new GameObject::Round(getColor(), getCursorSize(), "Round");
+    patternTable["Star"] = new GameObject::Star(getColor(), getCursorSize(), "Star");
 
     // Default Window Size
     setWindowSize(sf::Vector2u(1280, 960));

@@ -19,7 +19,6 @@ namespace GameObject
 
         // Accessors
         sf::Vector2f &getPosition(); //取得位置
-        Color &getColor() const;     //取得顏色
 
         // Virtual Functions
         virtual void setPosition(sf::Vector2f &position);       //設定位置

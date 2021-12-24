@@ -3,7 +3,6 @@
 
 #include "SFML/Graphics.hpp"
 
-#include "Game/Game.h"
 #include "Game/GameObject/GameObject.h"
 #include "Game/Particle/ParticleSystem.h"
 #include "Game/Particle/ParticleSystemProp.h"
