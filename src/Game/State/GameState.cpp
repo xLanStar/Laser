@@ -1,5 +1,7 @@
 #include "Game/State/GameState.h"
 
+#include <cmath>
+
 #include "Game/Game.h"
 #include "Game/Util.h"
 #include "Game/GameObject/Laser/NormalLaser.h"

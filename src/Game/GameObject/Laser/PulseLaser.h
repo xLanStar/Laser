@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vector>
-
 #include "Game/GameObject/Laser/Laser.h"
 
 namespace GameObject

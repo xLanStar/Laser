@@ -1,5 +1,7 @@
 #include "Game/GameObject/Laser/NormalLaser.h"
 
+#include <cmath>
+
 #include "Game/Util.h"
 
 void GameObject::NormalLaser::draw(sf::RenderTarget &target, sf::RenderStates states) const //渲染
