@@ -1,7 +1,5 @@
 #include "Game/State/ExitState.h"
 
-#include "SFML/Graphics.hpp"
-
 #include "Game/Gameobject/Button.h"
 #include "Game/Gameobject/Text.h"
 #include "Game/Game.h"

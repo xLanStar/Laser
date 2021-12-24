@@ -1,8 +1,5 @@
 #include "Game/GameObject/Laser/PulseLaser.h"
 
-#include <cmath>
-#include <iostream>
-
 #include "Game/Util.h"
 
 void GameObject::PulseLaser::draw(sf::RenderTarget &target, sf::RenderStates states) const //渲染

@@ -1,7 +1,5 @@
 #include "State.h"
 
-#include <iostream>
-
 #include "Game/Game.h"
 
 State::State(Game &game) : game(game)
@@ -23,7 +21,6 @@ State::~State()
 
 void State::Quit()
 {
-    std::cout << "[State] Quit!\n";
     game.popState();
 }
 

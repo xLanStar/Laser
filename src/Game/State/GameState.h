@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vector>
-
 #include "Game/State/State.h"
 #include "Game/GameObject/Laser/Laser.h"
 #include "Game/GameObject/Text.h"

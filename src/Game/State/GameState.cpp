@@ -1,10 +1,5 @@
 #include "Game/State/GameState.h"
 
-#include <iostream>
-#include <cmath>
-
-#include "SFML/Graphics.hpp"
-
 #include "Game/Game.h"
 #include "Game/Util.h"
 #include "Game/GameObject/Laser/NormalLaser.h"

@@ -1,9 +1,8 @@
 #include "Game/GameObject/Pattern/Star.h"
 
 #include <cmath>
-#include <iostream>
 
-#define PI 3.14159265358979323846
+#include "Game/Util.h"
 
 // UI Draw Function
 void GameObject::Star::draw(sf::RenderTarget &target, sf::RenderStates states) const //渲染

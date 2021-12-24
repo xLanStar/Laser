@@ -1,9 +1,6 @@
 #pragma once
 
-#include "SFML/Graphics.hpp"
-
 #include "Game/GameObject/GameObject.h"
-#include "Game/Color.h"
 
 namespace GameObject
 {

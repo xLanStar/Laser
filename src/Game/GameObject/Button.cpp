@@ -1,9 +1,5 @@
 #include "Button.h"
 
-#include <iostream>
-
-#include "SFML/Graphics.hpp"
-
 // UI Draw Function
 void GameObject::Button::draw(sf::RenderTarget &target, sf::RenderStates states) const //渲染
 {

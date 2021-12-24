@@ -1,13 +1,11 @@
 #include "Pattern.h"
 
-#include <iostream>
 #include <cmath>
 
 // Constructor
 GameObject::Pattern::Pattern(Color &color, int &radius, std::string name, int boundRoundThickness)
     : GameObject(), color(color), radius(radius), name(name), boundRoundThickness(boundRoundThickness)
 {
-    std::cout << boundRoundThickness;
     setupShape();
 }
 // Getter

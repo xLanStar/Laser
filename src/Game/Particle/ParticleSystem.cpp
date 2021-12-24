@@ -1,21 +1,21 @@
 #include "Game/Particle/ParticleSystem.h"
 
-#include <iostream>
-
 ParticleSystem::ParticleSystem(ParticleSystemProp &prop) : prop(prop), particles(prop.maxParticleCount), active(false), emitting(true), overTime(0), emitTimeCounter(0), activeParticleCount(0)
 {
+    // 初始化粒子
     for (Particle &particle : particles)
     {
-        particle.setTexture(prop.texture);
-        particle.setOrigin(sf::Vector2f(particle.getTextureRect().width / 2, particle.getTextureRect().height / 2));
+        particle.setTexture(prop.texture); // 設置貼圖
+        particle.setOrigin(sf::Vector2f(particle.getTextureRect().width / 2, particle.getTextureRect().height / 2)); // 設置中心點
     }
-    emitTime = 1 / prop.rateOverTime;
+    emitTime = 1 / prop.rateOverTime; // 計算發射間隔時間
 }
 
 void ParticleSystem::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     if (active)
     {
+        // 繪製每一個粒子
         for (auto &particle : particles)
         {
             if(particle.active)
@@ -28,56 +28,56 @@ void ParticleSystem::draw(sf::RenderTarget &target, sf::RenderStates states) con
 
 void ParticleSystem::resetParticle(Particle &particle)
 {
-    // reset the position of particle
+    // 重置位置
     particle.setPosition(position);
 
-    // give a random velocity and lifetime to the particle
+    // 隨機角度與速度
     float angle = (std::rand() % 360) * PI / 180.f;
     float speed = (std::rand() % 50) + 50.f;
     particle.velocity = sf::Vector2f(std::cos(angle) * speed, std::sin(angle) * speed);
 
-    // set lifeTime of particle
+    // 設置粒子的生命週期
     if (prop.randomLifeTime)
     {
+        // 隨機
         static int randomRange = 1000 * prop.lifeTime * (1.0f - prop.minLifeTimeRange);
         static float minLifeTime = prop.lifeTime * prop.minLifeTimeRange;
         particle.lifeTime = (std::rand() % randomRange) / 1000.0f + minLifeTime;
     }
     else
     {
+        // 固定
         particle.lifeTime = prop.lifeTime;
     }
 
-    // reset the color of particle
+    // 重置粒子的顏色
     particle.setColor(prop.color);
 }
 
-bool &ParticleSystem::isActive()
+bool &ParticleSystem::isActive() // 粒子系統是否啟用
 {
     return active;
 }
 
-void ParticleSystem::Emit(sf::Vector2f position)
+void ParticleSystem::Emit(sf::Vector2f position) // 粒子系統啟動發射
 {
-    std::cout << "[ParticleSystem] Activate\n";
-
     this->position = position;
 
     emitting = true;
     active = true;
 }
 
-void ParticleSystem::stopEmitting()
+void ParticleSystem::stopEmitting() // 粒子系統停止發射 (但活著的粒子並不會立即消失)
 {
     emitting = false;
 }
 
-bool &ParticleSystem::isEmitting()
+bool &ParticleSystem::isEmitting() // 粒子系統是否正在發射
 {
     return emitting;
 }
 
-bool ParticleSystem::isAlive()
+bool ParticleSystem::isAlive() // 粒子系統是否還有粒子存活
 {
     return activeParticleCount != 0;
 }

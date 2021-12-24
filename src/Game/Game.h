@@ -2,8 +2,6 @@
 
 #include <stack>
 
-#include "SFML/Window.hpp"
-
 #include "Game/State/State.h"
 #include "Game/Setting.h"
 

@@ -2,9 +2,6 @@
 
 #include <functional>
 
-#include <SFML/Graphics.hpp>
-
-#include "Game/GameObject/GameObject.h"
 #include "Game/GameObject/Text.h"
 /**
 enum button_states

@@ -1,10 +1,5 @@
 #pragma once
 
-#include <stack>
-
-#include <SFML/Graphics.hpp>
-
-#include "Game/Setting.h"
 #include "Game/GameObject/GameObject.h"
 
 class Game;

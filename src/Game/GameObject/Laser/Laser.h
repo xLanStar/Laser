@@ -1,8 +1,6 @@
 // Laser 的抽象類別
 #pragma once
 
-#include "SFML/Graphics.hpp"
-
 #include "Game/GameObject/GameObject.h"
 #include "Game/Particle/ParticleSystem.h"
 #include "Game/Particle/ParticleSystemProp.h"

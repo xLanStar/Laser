@@ -1,9 +1,5 @@
 #include "Game/State/SettingState.h"
 
-#include <iostream>
-
-#include "SFML/Graphics.hpp"
-
 #include "Game/Game.h"
 #include "Game/Gameobject/Button.h"
 
@@ -11,13 +7,11 @@
 
 void SettingState::onColorButtonClick()
 {
-    std::cout << "Color Button Click!\n";
     game.pushState(COLOR);
 }
 
 void SettingState::onPatternButtonClick()
 {
-    std::cout << "Pattern Button Click!\n";
     game.pushState(PATTERN);
 }
 

@@ -1,6 +1,5 @@
 #include "Pantone.h"
 
-#include <iostream>
 #include <cmath>
 
 #include "Game/Util.h"

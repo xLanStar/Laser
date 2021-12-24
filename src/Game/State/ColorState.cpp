@@ -1,9 +1,5 @@
 #include "Game/State/ColorState.h"
 
-#include <iostream>
-
-#include "SFML/Graphics.hpp"
-
 #include "Game/Gameobject/Button.h"
 #include "Game/Gameobject/Text.h"
 #include "Game/Gameobject/ColorTile.h"

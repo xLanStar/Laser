@@ -1,7 +1,5 @@
 #include "Game/GameObject/Text.h"
 
-#include <iostream>
-
 // UI Draw Function
 void GameObject::Text::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {

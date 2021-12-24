@@ -1,7 +1,5 @@
 #pragma once
 
-#include <map>
-
 #include "Game/State/State.h"
 
 class PatternState : public State

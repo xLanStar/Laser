@@ -1,10 +1,7 @@
 #pragma once
 
 #include <unordered_map>
-#include <cmath>
 
-#include "iostream"
-#include "Game/Util.h"
 #include "Game/Color.h"
 #include "Game/GameObject/Pattern/Pattern.h"
 #include "Game/Particle/ParticleSystemProp.h"

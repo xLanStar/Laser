@@ -1,6 +1,6 @@
 #include <string>
 
-#include "SFML/Graphics.hpp"
+#include "SFML/Graphics/Color.hpp"
 
 #define inRange(px, py, ax, ay, bx, by) ax <= px &&px <= bx &&ay <= py &&py <= by
 

@@ -17,6 +17,3 @@ void GameObject::GameObject::setColor(Color &color)
 {
     color = color;
 }
-void GameObject::GameObject::setPosition(sf::Vector2f &position)
-{
-}

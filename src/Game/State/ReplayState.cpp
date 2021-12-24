@@ -1,7 +1,5 @@
 #include "Game/State/ReplayState.h"
 
-#include "SFML/Graphics.hpp"
-
 #include "Game/Game.h"
 #include "Game/Gameobject/Button.h"
 #include "Game/Gameobject/Text.h"

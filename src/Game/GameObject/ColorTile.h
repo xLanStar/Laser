@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/Color.h"
 #include "Game/GameObject/Text.h"
 #include "Game/GameObject/Pantone.h"
 

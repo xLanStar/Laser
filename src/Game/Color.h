@@ -1,6 +1,8 @@
 #pragma once
 
-#include "SFML/Graphics.hpp"
+#include <string>
+
+#include "SFML/Graphics/Color.hpp"
 //使用 sf::color 複合而成的顏色結構
 class Color
 {

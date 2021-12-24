@@ -1,7 +1,5 @@
 #include <cmath>
 
-#include "SFML/Graphics.hpp"
-
 #include "Game/Particle/Particle.h"
 #include "Game/Particle/ParticleSystemProp.h"
 #include "Game/Util.h"

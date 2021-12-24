@@ -1,13 +1,12 @@
 #include "Game/Setting.h"
 
+#include <cmath>
 #include <iostream>
 #include <fstream>
-#include <sstream>
-#include <cstring>
 
+#include "Game/Util.h"
 #include "Game/GameObject/Pattern/Round.h"
 #include "Game/GameObject/Pattern/Star.h"
-#include "Game/Util.h"
 
 Setting::Setting()
 {

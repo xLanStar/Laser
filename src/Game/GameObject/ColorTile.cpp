@@ -1,7 +1,5 @@
 #include "Game/GameObject/ColorTile.h"
 
-#include <iostream>
-
 // UI Draw Function
 void GameObject::ColorTile::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {

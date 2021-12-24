@@ -1,9 +1,5 @@
 #include "Game/State/DifficultyState.h"
 
-#include <iostream>
-
-#include "SFML/Graphics.hpp"
-
 #include "Game/Gameobject/Button.h"
 #include "Game/Gameobject/Text.h"
 #include "Game/Game.h"

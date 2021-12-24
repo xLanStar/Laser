@@ -1,7 +1,5 @@
 #include "Game/GameObject/Pattern/Round.h"
 
-#include <iostream>
-
 GameObject::Round::Round(Color &color, int &radius, std::string name) : Pattern(color, radius, name)
 {
     setupShape();
