@@ -7,18 +7,18 @@
 // UI Draw Function
 void GameObject::Pantone::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-    target.draw(leftConvex);
-    target.draw(rightConvex);
+    target.draw(leftConvex);  //畫左邊
+    target.draw(rightConvex); //畫右邊
 }
 
 // Constructor
-GameObject::Pantone::Pantone(sf::Vector2f position, int &points, int &radius, float &hoverScale, Color &color, std::function<void()> onClick) : GameObject(position, color), color(color), onClick(onClick), pressed(false), points(points), radius(radius), hoverScale(hoverScale)
+GameObject::Pantone::Pantone(sf::Vector2f position, int points, int radius, float hoverScale, Color &color, std::function<void()> onClick) : GameObject(position, color), color(color), onClick(onClick), pressed(false), points(points), radius(radius), hoverScale(hoverScale)
 {
-    setupShape();
+    setupShape(); //設定圖案
 }
 
 // Accessors
-int &GameObject::Pantone::getRadius()
+int &GameObject::Pantone::getRadius() const
 {
     return radius;
 }
@@ -26,14 +26,11 @@ int &GameObject::Pantone::getRadius()
 // Functions
 void GameObject::Pantone::setupShape()
 {
-    // set Position
-    setPosition(getPosition());
+    setPosition(getPosition()); //設定位置
 
-    // set sf::Vector2f Count
-    leftConvex.setPointCount(points);
+    leftConvex.setPointCount(points); //設定位置
     rightConvex.setPointCount(points);
 
-    // set Fill Color
     leftConvex.setFillColor(color.getDarkColor());
     rightConvex.setFillColor(color.getLightColor());
 
@@ -84,25 +81,6 @@ void GameObject::Pantone::setPosition(sf::Vector2f &position)
     rightConvex.setPosition(position.x, position.y);
 }
 
-// void GameObject::Pantone::setPoints(int &points)
-// {
-//     this->points = points;
-// }
-// void GameObject::Pantone::setRadius(int &radius)
-// {
-//     this->radius = radius;
-// }
-
-// void GameObject::Pantone::setHoverScale(float &hoverScale)
-// {
-//     this->hoverScale = hoverScale;
-// }
-
-// void GameObject::Pantone::setColor(Color &color)
-// {
-//     this->color = color;
-// }
-
 // Mouse Move
 void GameObject::Pantone::updateMouseMove(sf::Vector2f &point)
 {
@@ -111,7 +89,6 @@ void GameObject::Pantone::updateMouseMove(sf::Vector2f &point)
         if (!hover)
         {
             setHover(true);
-            // std::cout << "[Pantone] " << color.name << " Hover In!\n";
         }
     }
     else
@@ -119,7 +96,6 @@ void GameObject::Pantone::updateMouseMove(sf::Vector2f &point)
         if (hover)
         {
             setHover(false);
-            // std::cout << "[Pantone] " << color.name << " Hover Out!\n";
         }
     }
 }
@@ -127,24 +103,21 @@ void GameObject::Pantone::updateMouseMove(sf::Vector2f &point)
 // Mouse Press
 void GameObject::Pantone::updateMousePress(sf::Vector2f &point)
 {
-    if (hover && !pressed)
+    if (hover && !pressed) //如果被覆蓋又被壓
     {
-        pressed = true;
-        // std::cout << "[Pantone] " << color.name << " Mouse Press!\n";
+        pressed = true; //狀態改為被壓著
     }
 }
 
 // Mouse Release
 void GameObject::Pantone::updateMouseRelease(sf::Vector2f &point)
 {
-    if (pressed)
+    if (pressed) //如果被按著
     {
-        pressed = false;
-        if (hover)
+        pressed = false; //改為放開
+        if (hover)       //如果被覆蓋
         {
-            onClick();
-            // std::cout << "[Pantone] " << color.name << " Triggered!\n";
+            onClick(); //觸發點擊事件
         }
-        // std::cout << "[Pantone] " << color.name << " Released!\n";
     }
 }

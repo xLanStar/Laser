@@ -36,12 +36,12 @@ private:
     Color color;
 
     // Color State
-    int colorStateBorder = 50;
+    int colorStateBorder = 300;
 
     // Tile
-    int tileGap = 25;     //色票容器之間的距離
-    int tileWidth = 250;  //色票容器的寬度
-    int tileHeight = 120; //色票容器的高度
+    int tileGap = 25;     //磁磚容器之間的距離
+    int tileWidth = 250;  //磁磚容器的寬度
+    int tileHeight = 120; //磁磚容器的高度
     sf::Vector2f tileRect = sf::Vector2f(getTileWidth(), getTileHeight());
 
     // Pantone
@@ -53,10 +53,10 @@ private:
     GameObject::Pattern *cursor;
 
     // Text
-    int titleCharacterSize = 84;                                 // Title
-    int subTitleCharacterSize = 64;                              // SubTitle
-    int buttonCharacterSize = 48, buttonHoverCharacterSize = 64; // Button Text
-    sf::Font font;
+    int titleCharacterSize = 84;                                 // 標題字大小
+    int subTitleCharacterSize = 64;                              // 副標題字大小
+    int buttonCharacterSize = 48, buttonHoverCharacterSize = 64; // 字體大小和碰到後的字體大小
+    sf::Font font;                                               //字形
 
     // Difficulty
     Difficulty difficulty; //難度設定

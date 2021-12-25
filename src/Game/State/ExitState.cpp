@@ -4,7 +4,7 @@
 #include "Game/Gameobject/Text.h"
 #include "Game/Game.h"
 
-//Initializer
+// Initializer
 void ExitState::initUI()
 {
     gameObjects["Title"] = new GameObject::Text(
@@ -12,26 +12,28 @@ void ExitState::initUI()
         game.setting.getTitleCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "ARE YOU SURE TO\nQUIT THE GAME?");
+        "ARE YOU SURE TO\nQUIT THE GAME?");
     gameObjects["Yes"] = new GameObject::Button(
         game.setting.getPointAtWindow(40, 60),
         game.setting.getButtonCharacterSize(),
         game.setting.getButtonHoverCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "YES",
-        [&]{game.stop();});
+        "YES",
+        [&]
+        { game.stop(); });
     gameObjects["No"] = new GameObject::Button(
         game.setting.getPointAtWindow(60, 60),
         game.setting.getButtonCharacterSize(),
         game.setting.getButtonHoverCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "NO",
-        [&]{Quit();});
+        "NO",
+        [&]
+        { Quit(); });
 }
 
-//Constructor
+// Constructor
 ExitState::ExitState(Game &game) : State(game)
 {
     initUI();

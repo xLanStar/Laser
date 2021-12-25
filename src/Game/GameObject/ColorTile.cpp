@@ -8,10 +8,9 @@ void GameObject::ColorTile::draw(sf::RenderTarget &target, sf::RenderStates stat
 }
 
 // Constructor & Deconstructor
-GameObject::ColorTile::ColorTile(sf::Vector2f position, sf::Vector2f &rect, int &characterSize, sf::Font &font, int &points, int &radius, float &hoverScale, Color &color, std::function<void()> onClick) : GameObject(position, color), text(sf::Vector2f(position.x + rect.x / 2, position.y + characterSize / 2), characterSize, color, font, color.getName()), pantone(sf::Vector2f(position.x + rect.x / 2, position.y + rect.y - radius), points, radius, hoverScale, color, onClick), rect(rect)
+GameObject::ColorTile::ColorTile(sf::Vector2f position, sf::Vector2f &rect, int characterSize, sf::Font &font, int points, int radius, float hoverScale, Color &color, std::function<void()> onClick) : GameObject(position, color), text(sf::Vector2f(position.x + rect.x / 2, position.y + characterSize / 2), characterSize, color, font, color.getName()), pantone(sf::Vector2f(position.x + rect.x / 2, position.y + rect.y - radius), points, radius, hoverScale, color, onClick), rect(rect)
 {
 }
-
 
 void GameObject::ColorTile::setColor(Color &color)
 {

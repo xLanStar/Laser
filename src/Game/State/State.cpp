@@ -4,22 +4,18 @@
 
 State::State(Game &game) : game(game)
 {
-    
 }
 
 State::~State()
 {
     // Clear gameObjects
-    for(auto it = gameObjects.begin(); it!=gameObjects.end(); it++)
+    for (auto it = gameObjects.begin(); it != gameObjects.end(); it++) //清除容器內的所有物件
     {
-        gameObjects.erase(it);
+        gameObjects.erase(it); //清除
     }
 }
 
-
-// Accessors
-
-void State::Quit()
+void State::Quit() //將堆疊的狀態 Pop
 {
     game.popState();
 }
@@ -27,7 +23,7 @@ void State::Quit()
 // Functions
 void State::setColor(Color &color)
 {
-    for(auto it : gameObjects)
+    for (auto it : gameObjects)
     {
         it.second->setColor(color);
     }
@@ -61,25 +57,17 @@ void State::updateMouseRelease(sf::Vector2f &point)
     }
 }
 
-
-//
-void State::update(float &deltaTime)
+void State::update(float &deltaTime) //更新
 {
-    /**
-     * - update UI
-    **/
     for (auto it : gameObjects)
     {
         it.second->update(deltaTime);
     }
 }
 
-
-// UI Draw Function
-void State::draw(sf::RenderTarget &target, sf::RenderStates states) const
+void State::draw(sf::RenderTarget &target, sf::RenderStates states) const //渲染
 {
-    // Draw gameObjects
-    for (auto &it : gameObjects)
+    for (auto &it : gameObjects) //將容器內的所有 GameObject 渲染
     {
         target.draw(*it.second);
     }

@@ -7,15 +7,9 @@
 void GameObject::NormalLaser::draw(sf::RenderTarget &target, sf::RenderStates states) const //渲染
 {
     target.draw(line); //渲染
-
-    // if (showHitBox)
-    // {
-    //     target.draw(box);
-    //     target.draw(box2);
-    // }
 }
 
-GameObject::NormalLaser::NormalLaser(sf::Vector2f position, int &length, int &thickness, float &angle, float &speed, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop) : Laser(position, color, thickness, borderRect, prop), angle(angle), speed(speed), length(length)
+GameObject::NormalLaser::NormalLaser(sf::Vector2f position, int length, int thickness, float angle, float speed, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop) : Laser(position, color, thickness, borderRect, prop), angle(angle), speed(speed), length(length)
 {
     velocity = sf::Vector2f(cos(angle) * speed, sin(angle) * speed); //對不同座標的垂直速度和水平速度
     endPosition = position;                                          //尾端點
@@ -23,29 +17,15 @@ GameObject::NormalLaser::NormalLaser(sf::Vector2f position, int &length, int &th
     line.setFillColor(color.getDarkColor());                         //線的顏色
     line.setPosition(position);                                      //設定位置
     line.setRotation(angle * 180 / PI + 180);                        //線旋轉
-
-    // Debug Box
-    // box.setSize(sf::Vector2f(16, 16));
-    // box.setOrigin(8, 8);
-    // box.setOutlineColor(sf::Color(255, 0, 0));
-    // box.setOutlineThickness(5);
-    // box.setFillColor(sf::Color(0, 0, 0, 0));
-
-    // box2.setSize(sf::Vector2f(16, 16));
-    // box2.setOrigin(8, 8);
-    // box2.setOutlineColor(sf::Color(255, 0, 0));
-    // box2.setOutlineThickness(5);
-    // box2.setFillColor(sf::Color(0, 0, 0, 0));
 }
 
-bool GameObject::NormalLaser::isCollided(sf::Vector2f &point, int &radius) const //是否碰撞
+bool GameObject::NormalLaser::isCollided(sf::Vector2f &point, int radius) const //是否碰撞
 {
     float distance = distanceOfPointToSeg(point.x, point.y, startPosition.x, startPosition.y, endPosition.x, endPosition.y); //點線距離
-
-    return distance < radius; //回傳是否碰撞到
+    return distance < radius;                                                                                                //回傳是否碰撞到
 }
 
-void GameObject::NormalLaser::update(float &deltaTime) //更新
+void GameObject::NormalLaser::update(float deltaTime) //更新
 {
     startPosition = line.getPosition();         //取得起點座標
     sf::Vector2f offset = velocity * deltaTime; //座標變化量
@@ -87,12 +67,4 @@ void GameObject::NormalLaser::update(float &deltaTime) //更新
         }
     }
     getParticleSystem().update(deltaTime); //更新粒子效果
-    // if (showHitBox)
-    // {
-    //     box.setPosition(endPosition);
-    //     box2.setPosition(line.getPosition());
-    // }
 }
-void GameObject::NormalLaser::setPosition(sf::Vector2f position){
-
-};

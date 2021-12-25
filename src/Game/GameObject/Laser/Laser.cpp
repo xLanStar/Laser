@@ -1,6 +1,6 @@
 #include "Game/GameObject/Laser/Laser.h"
 
-GameObject::Laser::Laser(sf::Vector2f position, Color &color, int &thickness, sf::FloatRect &borderRect, ParticleSystemProp &prop) : GameObject(position, color), borderRect(borderRect), thickness(thickness), particleSystem(prop)
+GameObject::Laser::Laser(sf::Vector2f position, Color &color, int thickness, sf::FloatRect &borderRect, ParticleSystemProp &prop) : GameObject(position, color), borderRect(borderRect), thickness(thickness), particleSystem(prop)
 {
 }
 
@@ -19,7 +19,7 @@ int GameObject::Laser::getThickness() const //取得寬度
     return thickness;
 }
 
-sf::FloatRect &GameObject::Laser::getBorderRect() //取得邊界
+sf::FloatRect &GameObject::Laser::getBorderRect() const //取得邊界
 {
     return borderRect;
 }

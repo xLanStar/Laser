@@ -26,15 +26,15 @@ namespace GameObject
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const; //渲染
 
         // UI Update Function
-        void setupShape(); //設定形狀
-        void setHover(bool isHovered);
+        void setupShape();             //設定形狀
+        void setHover(bool isHovered); //設定被覆蓋
 
     public:
         // Constructor & Deconstructor
-        Pantone(sf::Vector2f position, int &points, int &radius, float &hoverScale, Color &color, std::function<void()> onClick);
+        Pantone(sf::Vector2f position, int points, int radius, float hoverScale, Color &color, std::function<void()> onClick);
 
         // Accessors
-        int &getRadius();                                  //取得半徑
+        int &getRadius() const;                            //取得半徑
         void setColor(Color &color) override;              //取得顏色
         void setPosition(sf::Vector2f &position) override; //取得位置
 

@@ -26,6 +26,6 @@ namespace GameObject
         virtual void updateMouseMove(sf::Vector2f &point){};    //滑鼠移動
         virtual void updateMousePress(sf::Vector2f &point){};   //滑鼠按下
         virtual void updateMouseRelease(sf::Vector2f &point){}; //滑鼠放開
-        virtual void update(float &deltaTime){};                //更新
+        virtual void update(float deltaTime){};                 //更新
     };
 }

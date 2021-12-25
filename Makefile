@@ -31,7 +31,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp# 編譯 .d 檔
 # 創建 obj 底下的目檔
 	-@md $(subst /,\,$(@D))
 # 創建 dep 底下的目錄
-	-md $(subst /,\,$(DEP_DIR)/$(subst $(@F),,$*))
+	-@md $(subst /,\,$(subst $(OBJ_DIR),$(DEP_DIR),$(@D)))
 	$(CPP) $(CPPFLAGS) $(INCFLAGS) -c -MMD -MF $(DEP_DIR)/$*.d $< -o $@
 
 clean:# 清除 obj 底下的所有東西

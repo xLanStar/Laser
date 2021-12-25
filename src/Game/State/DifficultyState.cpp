@@ -41,5 +41,3 @@ DifficultyState::DifficultyState(Game &game) : State(game)
 {
     initUI();
 }
-
-// Functions

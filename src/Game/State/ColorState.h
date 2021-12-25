@@ -1,3 +1,4 @@
+// 選取顏色的狀態
 #pragma once
 
 #include "Game/State/State.h"
@@ -11,7 +12,4 @@ private:
 public:
     // Constructor
     ColorState(Game &game);
-
-    // Functions
-    //void render();
 };

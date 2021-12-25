@@ -4,7 +4,7 @@
 
 class Game;
 
-class State : public sf::Drawable
+class State : public sf::Drawable //可繪的
 {
 private:
 protected:
@@ -23,12 +23,12 @@ public:
     virtual void Quit();
 
     // Virtual Functions
-    virtual void setColor(Color &color); //設定顏色
-    virtual void updateMouseMove(sf::Vector2f &point);
-    virtual void updateMousePress(sf::Vector2f &point);
-    virtual void updateMouseRelease(sf::Vector2f &point);
-    virtual void update(float &deltaTime);
+    virtual void setColor(Color &color);                  //設定顏色
+    virtual void updateMouseMove(sf::Vector2f &point);    //滑鼠移動
+    virtual void updateMousePress(sf::Vector2f &point);   //滑鼠按下
+    virtual void updateMouseRelease(sf::Vector2f &point); //滑鼠釋放
+    virtual void update(float &deltaTime);                //更新
 
     // UI Draw Function
-    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const; //渲染
 };
