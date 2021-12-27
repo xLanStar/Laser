@@ -54,6 +54,7 @@ public:
     ~Game();
 
     // Accessors
+    const GameObject::Pattern &getCursor() const;
     void setColorTheme(std::string colorTheme); //設定顏色主題
     void setCursor(std::string name);           //設定鼠標者
     sf::Vector2f &getMousePosition();           //取得滑鼠位置

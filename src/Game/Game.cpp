@@ -35,7 +35,8 @@ void Game::initState()
 // Constructor
 Game::Game() : setting()
 {
-    cursor = setting.getCursor();
+    cursor = setting.findCursor("Round");
+    cursor->setColor(setting.getColor());
     initWindow();
     initState();
 }
@@ -52,6 +53,10 @@ Game::~Game()
     }
 }
 
+const GameObject::Pattern &Game::getCursor() const
+{
+    return *cursor;
+}
 // Accessors
 void Game::setColorTheme(std::string colorTheme)
 {
@@ -62,8 +67,8 @@ void Game::setColorTheme(std::string colorTheme)
 
 void Game::setCursor(std::string name)
 {
-    setting.setCursor(name);
-    cursor = setting.getCursor();
+    cursor = setting.findCursor(name);
+    cursor->setColor(setting.getColor());
     sf::Vector2f mousePosition = getMousePosition();
     cursor->setPosition(mousePosition);
 }

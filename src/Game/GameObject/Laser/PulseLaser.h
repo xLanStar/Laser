@@ -31,7 +31,7 @@ namespace GameObject
         PulseLaser(sf::Vector2f position, int thickness, float angle, float delay, float powerTime, float duration, int dashLineLength, int dashLineThickness, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop);
 
         // Accessors
-        bool isCollided(sf::Vector2f &point, int radius) const override; //是否碰撞
+        bool isCollided(const Pattern &player) const override; //是否碰撞
 
         // Update Events
         void update(float deltaTime) override; //更新

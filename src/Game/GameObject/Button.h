@@ -28,8 +28,8 @@ namespace GameObject
         Button(sf::Vector2f position, int characterSize, int hoverCharacterSize, Color &color, sf::Font &font, std::string str, std::function<void()> onClick);
 
         // Accessors
-        void setColor(Color &color) override;              //設定顏色
-        void setPosition(sf::Vector2f &position) override; //設定位置
+        void setColor(Color &color) override;             //設定顏色
+        void setPosition(sf::Vector2f position) override; //設定位置
 
         // Update Functions
         void updateMouseMove(sf::Vector2f &point) override;    //滑鼠移動

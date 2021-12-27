@@ -50,7 +50,6 @@ private:
 
     // Cursor
     int cursorSize = 42; //鼠標半徑
-    GameObject::Pattern *cursor;
 
     // Text
     int titleCharacterSize = 84;                                 // 標題字大小
@@ -123,9 +122,7 @@ public:
     // Pattern
     std::unordered_map<std::string, GameObject::Pattern *> &getPatternTable();
     GameObject::Pattern *findCursor(std::string name);
-    GameObject::Pattern *getCursor();
     int &getCursorSize();
-    void setCursor(std::string name);
 
     // Text
     sf::Font &getFont();

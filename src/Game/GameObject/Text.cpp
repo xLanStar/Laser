@@ -45,7 +45,7 @@ void GameObject::Text::setText(std::string &str) //設定文字
     text.setString(str);
 }
 
-void GameObject::Text::setPosition(sf::Vector2f &position) //設定位置
+void GameObject::Text::setPosition(sf::Vector2f position) //設定位置
 {
     GameObject::setPosition(position);
     text.setPosition(position.x, position.y);

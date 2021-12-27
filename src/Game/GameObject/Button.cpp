@@ -17,7 +17,7 @@ void GameObject::Button::setColor(Color &color)
     text.setColor(color);
 }
 
-void GameObject::Button::setPosition(sf::Vector2f &point)
+void GameObject::Button::setPosition(sf::Vector2f point)
 {
     GameObject::setPosition(point);
     text.setPosition(point);

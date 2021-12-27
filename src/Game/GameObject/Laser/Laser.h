@@ -4,6 +4,7 @@
 #include "Game/GameObject/GameObject.h"
 #include "Game/Particle/ParticleSystem.h"
 #include "Game/Particle/ParticleSystemProp.h"
+#include "Game/GameObject/Pattern/Pattern.h"
 
 namespace GameObject
 {
@@ -22,11 +23,9 @@ namespace GameObject
 
         bool isDestroyed() const;                                                       //回傳是否該被消除
         int getThickness() const;                                                       //回傳線寬
-        void setColor(Color &color);                                                    //設定顏色
-        void setPosition(sf::Vector2f position);                                        //設定位置
         sf::FloatRect &getBorderRect() const;                                           //回傳
         ParticleSystem &getParticleSystem();                                            //回傳對應的粒子特效
-        virtual bool isCollided(sf::Vector2f &point, int radius) const = 0;             //是否被撞到
+        virtual bool isCollided(const Pattern &player) const = 0;                       //是否被撞到
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const = 0; //渲染
     };
 };

@@ -19,9 +19,8 @@ void GameObject::Pattern::setRadius(int radius) //取得 Pattern 名稱
     this->radius = radius;
 }
 
-void GameObject::Pattern::setPosition(sf::Vector2f &position) //設定位置
+void GameObject::Pattern::setPosition(sf::Vector2f position) //設定位置
 {
-    // GameObject::setPosition(position);
     boundRound.setPosition(position);
 }
 // Public Functions
@@ -38,6 +37,7 @@ void GameObject::Pattern::draw(sf::RenderTarget &target, sf::RenderStates states
 // Private Functions
 void GameObject::Pattern::setupShape()
 {
+
     boundRound.setRadius(radius);                        //設定半徑
     boundRound.setOutlineThickness(boundRoundThickness); //設定線寬
     boundRound.setFillColor(color.getLightColor());      //內部填滿亮色
@@ -46,4 +46,15 @@ void GameObject::Pattern::setupShape()
     sf::FloatRect rect = boundRound.getLocalBounds();
     boundRound.setOrigin(rect.left + rect.width / 2.0f,
                          rect.top + rect.height / 2.0f);
+}
+
+void GameObject::Pattern::setColor(Color &color)
+{
+    GameObject::setColor(color);
+    boundRound.setFillColor(color.getLightColor());   //內部填滿亮色
+    boundRound.setOutlineColor(color.getDarkColor()); //外框深色
+}
+int GameObject::Pattern::getRadius() const
+{
+    return radius;
 }

@@ -17,7 +17,7 @@ void GameObject::ColorTile::setColor(Color &color)
     pantone.setColor(color);
 }
 
-void GameObject::ColorTile::setPosition(sf::Vector2f &position)
+void GameObject::ColorTile::setPosition(sf::Vector2f position)
 {
     GameObject::setPosition(position);
 

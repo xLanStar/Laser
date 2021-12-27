@@ -68,9 +68,6 @@ Setting::Setting()
 
         // Set Default Color Theme
         setColorTheme("Pink");
-
-        // Set Default Pattern
-        setCursor("Star");
     }
 
     // Particle System
@@ -169,18 +166,6 @@ GameObject::Pattern *Setting::findCursor(std::string name)
 int &Setting::getCursorSize()
 {
     return cursorSize;
-}
-
-GameObject::Pattern *Setting::getCursor()
-{
-    return cursor;
-}
-
-void Setting::setCursor(std::string name)
-{
-    std::cout << "[Setting] set Cursor to " << name << '\n';
-    cursor = findCursor(name);
-    cursor->setColor(getColor());
 }
 
 sf::Font &Setting::getFont()

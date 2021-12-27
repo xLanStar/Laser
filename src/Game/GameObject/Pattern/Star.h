@@ -10,6 +10,10 @@ namespace GameObject
         // Constructor
         Star(Color &color, int &radius, std::string name);
 
+        // Accessors
+        void setColor(Color &color) override;          //設定顏色
+        void setPosition(sf::Vector2f point) override; //設定位置
+
         // Update Events
         void updateMouseMove(sf::Vector2f &point) override;
 

@@ -28,6 +28,3 @@ ParticleSystem &GameObject::Laser::getParticleSystem() //取得粒子效果
 {
     return particleSystem;
 }
-
-void GameObject::Laser::setColor(Color &color) {}
-void GameObject::Laser::setPosition(sf::Vector2f position){};

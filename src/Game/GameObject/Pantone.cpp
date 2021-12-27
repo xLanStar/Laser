@@ -18,7 +18,7 @@ GameObject::Pantone::Pantone(sf::Vector2f position, int points, int radius, floa
 }
 
 // Accessors
-int &GameObject::Pantone::getRadius() const
+int GameObject::Pantone::getRadius() const
 {
     return radius;
 }
@@ -26,7 +26,7 @@ int &GameObject::Pantone::getRadius() const
 // Functions
 void GameObject::Pantone::setupShape()
 {
-    setPosition(getPosition()); //設定位置
+    setPosition(getPosition());
 
     leftConvex.setPointCount(points); //設定位置
     rightConvex.setPointCount(points);
@@ -55,47 +55,36 @@ void GameObject::Pantone::setupShape()
     leftConvex.setPoint(points - 1, sf::Vector2f(cos(angle + PI) * radius, sin(angle + PI) * radius));
 }
 
-void GameObject::Pantone::setHover(bool isHovered)
-{
-    hover = isHovered;
-    if (hover)
-    {
-        rightConvex.setScale(sf::Vector2f(hoverScale, hoverScale));
-        leftConvex.setScale(sf::Vector2f(hoverScale, hoverScale));
-    }
-    else
-    {
-        rightConvex.setScale(sf::Vector2f(1.f, 1.f));
-        leftConvex.setScale(sf::Vector2f(1.f, 1.f));
-    }
-}
-
 void GameObject::Pantone::setColor(Color &color)
 {
 }
 
-void GameObject::Pantone::setPosition(sf::Vector2f &position)
+void GameObject::Pantone::setPosition(sf::Vector2f position)
 {
     GameObject::setPosition(position);
-    leftConvex.setPosition(position.x, position.y);
-    rightConvex.setPosition(position.x, position.y);
+    leftConvex.setPosition(position);
+    rightConvex.setPosition(position);
 }
 
 // Mouse Move
 void GameObject::Pantone::updateMouseMove(sf::Vector2f &point)
 {
-    if (leftConvex.getGlobalBounds().contains(point.x, point.y) || rightConvex.getGlobalBounds().contains(point.x, point.y))
+    if (leftConvex.getGlobalBounds().contains(point) || rightConvex.getGlobalBounds().contains(point))
     {
         if (!hover)
         {
-            setHover(true);
+            hover = true;
+            rightConvex.setScale(sf::Vector2f(hoverScale, hoverScale));
+            leftConvex.setScale(sf::Vector2f(hoverScale, hoverScale));
         }
     }
     else
     {
         if (hover)
         {
-            setHover(false);
+            hover = false;
+            rightConvex.setScale(sf::Vector2f(1.f, 1.f));
+            leftConvex.setScale(sf::Vector2f(1.f, 1.f));
         }
     }
 }

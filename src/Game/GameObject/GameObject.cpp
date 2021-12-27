@@ -8,7 +8,7 @@ GameObject::GameObject::GameObject() : position(0, 0), color(color)
 {
 }
 
-sf::Vector2f &GameObject::GameObject::getPosition()
+sf::Vector2f GameObject::GameObject::getPosition() const
 {
     return position;
 }
@@ -16,4 +16,9 @@ sf::Vector2f &GameObject::GameObject::getPosition()
 void GameObject::GameObject::setColor(Color &color)
 {
     color = color;
+}
+
+void GameObject::GameObject::setPosition(sf::Vector2f point)
+{
+    position = point;
 }

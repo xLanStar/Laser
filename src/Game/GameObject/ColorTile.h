@@ -25,8 +25,8 @@ namespace GameObject
         ColorTile(sf::Vector2f position, sf::Vector2f &rect, int characterSize, sf::Font &font, int points, int radius, float hoverScale, Color &color, std::function<void()> onClick);
 
         // Accessors
-        void setColor(Color &color) override;              //設定顏色
-        void setPosition(sf::Vector2f &position) override; //設定位置
+        void setColor(Color &color) override;             //設定顏色
+        void setPosition(sf::Vector2f position) override; //設定位置
 
         // Update Events
         void updateMouseMove(sf::Vector2f &point) override;    //滑鼠移動

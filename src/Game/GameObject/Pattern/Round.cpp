@@ -17,6 +17,19 @@ void GameObject::Round::setupShape() //設定形狀
                     rect.top + rect.height / 2.0f);
 }
 
+void GameObject::Round::setColor(Color &color)
+{
+    Pattern::setColor(color);
+    round.setFillColor(color.getLightColor());
+    round.setOutlineColor(color.getDarkColor());
+}
+
+void GameObject::Round::setPosition(sf::Vector2f point)
+{
+    Pattern::setPosition(point);
+    round.setPosition(point);
+}
+
 // Update Events
 void GameObject::Round::updateMouseMove(sf::Vector2f &position)
 {

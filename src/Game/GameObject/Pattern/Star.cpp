@@ -34,6 +34,19 @@ void GameObject::Star::setupShape() //繪製星星
     }
 }
 
+void GameObject::Star::setColor(Color &color)
+{
+    Pattern::setColor(color);
+    star.setFillColor(color.getLightColor());
+    star.setOutlineColor(color.getDarkColor());
+}
+
+void GameObject::Star::setPosition(sf::Vector2f point)
+{
+    Pattern::setPosition(point);
+    star.setPosition(point);
+}
+
 // Update Events
 void GameObject::Star::updateMouseMove(sf::Vector2f &point)
 {

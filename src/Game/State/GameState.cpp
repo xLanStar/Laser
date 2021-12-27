@@ -119,7 +119,7 @@ void GameState::update(float &deltaTime)
         {
             it = lasers.erase(it);
         }
-        else if ((*it)->isCollided(game.getMousePosition(), game.setting.getCursorSize()))
+        else if ((*it)->isCollided(game.getCursor()))
         {
             if (!collided)
             {

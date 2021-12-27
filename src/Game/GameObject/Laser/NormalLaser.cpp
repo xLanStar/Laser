@@ -19,10 +19,11 @@ GameObject::NormalLaser::NormalLaser(sf::Vector2f position, int length, int thic
     line.setRotation(angle * 180 / PI + 180);                        //線旋轉
 }
 
-bool GameObject::NormalLaser::isCollided(sf::Vector2f &point, int radius) const //是否碰撞
+bool GameObject::NormalLaser::isCollided(const Pattern &player) const //是否碰撞
 {
-    float distance = distanceOfPointToSeg(point.x, point.y, startPosition.x, startPosition.y, endPosition.x, endPosition.y); //點線距離
-    return distance < radius;                                                                                                //回傳是否碰撞到
+    const sf::Vector2f &position = player.getPosition();
+    float distance = distanceOfPointToSeg(position.x, position.y, startPosition.x, startPosition.y, endPosition.x, endPosition.y); //點線距離
+    return distance < player.getRadius();                                                                                          //回傳是否碰撞到
 }
 
 void GameObject::NormalLaser::update(float deltaTime) //更新
