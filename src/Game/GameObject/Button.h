@@ -14,6 +14,7 @@ namespace GameObject
         bool hover;   //是否物件被點擊
 
         // Button Appearance
+        int buttonCharacterSize, buttonHoverCharacterSize;
         Text text;                             //文字
         int characterSize, hoverCharacterSize; //字元大小和被 hover 時的字元大小
 
@@ -25,7 +26,7 @@ namespace GameObject
 
     public:
         // Constructor
-        Button(sf::Vector2f position, int characterSize, int hoverCharacterSize, Color &color, sf::Font &font, std::string str, std::function<void()> onClick);
+        Button(sf::Vector2f position, Color &color, sf::Font &font, std::string str, std::function<void()> onClick, int characterSize = 48, int hoverCharacterSize = 64);
 
         // Accessors
         void setColor(Color &color) override;             //設定顏色

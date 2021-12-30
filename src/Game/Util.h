@@ -22,7 +22,7 @@ float distanceOfPointToSeg(const float &px, const float &py, const float &ax, co
 float crossProduct(float &ax, float &ay, float &bx, float &by);
 
 // 整數轉字串
-std::string toString(int &a);
+std::string toString(int a);
 
 // 字串 "R, G, B" 轉顏色
 sf::Color stringToColor(std::string string);

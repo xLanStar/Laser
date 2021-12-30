@@ -15,16 +15,12 @@ void MainMenuState::initUI()
         (std::string) "THUNDER LASER");
     gameObjects["Play"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 50),
-        game.setting.getButtonCharacterSize(),
-        game.setting.getButtonHoverCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "PLAY",
         [&]{game.pushState(DIFFICULTY);});
     gameObjects["Setting"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 70),
-        game.setting.getButtonCharacterSize(),
-        game.setting.getButtonHoverCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "SETTING",

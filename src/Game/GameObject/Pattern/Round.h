@@ -9,7 +9,7 @@ namespace GameObject
     {
     public:
         // Constructor
-        Round(Color &color, int &radius, std::string name);
+        Round(Color &color, std::string name);
 
         // Accessors
         void setColor(Color &color) override;          //設定顏色

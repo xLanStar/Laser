@@ -9,7 +9,7 @@ void GameObject::NormalLaser::draw(sf::RenderTarget &target, sf::RenderStates st
     target.draw(line); //渲染
 }
 
-GameObject::NormalLaser::NormalLaser(sf::Vector2f position, int length, int thickness, float angle, float speed, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop) : Laser(position, color, thickness, borderRect, prop), angle(angle), speed(speed), length(length)
+GameObject::NormalLaser::NormalLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, float speed, int length, int thickness) : Laser(position, thickness, color, borderRect, prop), angle(angle), speed(speed), length(length)
 {
     velocity = sf::Vector2f(cos(angle) * speed, sin(angle) * speed); //對不同座標的垂直速度和水平速度
     endPosition = position;                                          //尾端點
@@ -23,7 +23,7 @@ bool GameObject::NormalLaser::isCollided(const Pattern &player) const //是否�
 {
     const sf::Vector2f &position = player.getPosition();
     float distance = distanceOfPointToSeg(position.x, position.y, startPosition.x, startPosition.y, endPosition.x, endPosition.y); //點線距離
-    return distance < player.getRadius();                                                                                          //回傳是否碰撞到
+    return distance <= player.getRadius();                                                                                         //回傳是否碰撞到
 }
 
 void GameObject::NormalLaser::update(float deltaTime) //更新

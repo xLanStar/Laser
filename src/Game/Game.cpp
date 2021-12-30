@@ -11,9 +11,6 @@
 #include "Game/State/GameState.h"
 #include "Game/State/ReplayState.h"
 
-bool showHitBox = true; //顯示碰撞箱
-bool invincible = true; //無敵
-
 // Initializer
 void Game::initWindow()
 {
@@ -177,24 +174,6 @@ void Game::updateEvents()
             {
                 states.top()->Quit();
             }
-            /**
-             * DEBUG
-             */
-            else if (event.key.control && event.key.code == sf::Keyboard::A)
-            {
-                showHitBox = !showHitBox;
-                std::cout << "[Game] set ShowHitBox to " << showHitBox << '\n';
-            }
-            else if (event.key.control && event.key.code == sf::Keyboard::S)
-            {
-                invincible = !invincible;
-                std::cout << "[Game] set invincible to " << invincible << '\n';
-            }
-            else if (event.key.control && event.key.code == sf::Keyboard::D)
-            {
-                setting.debugParticleSystem1();
-                std::cout << "[Game] NormalLaserProp debug" << '\n';
-            }
         }
         else if (event.type == sf::Event::Resized)
         {
@@ -266,6 +245,5 @@ void Game::run()
 // Stop
 void Game::stop()
 {
-    setting.save();
     window->close();
 }

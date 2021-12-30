@@ -14,7 +14,7 @@ namespace GameObject
 
     public:
         // Constructor & Deconstructor
-        Text(sf::Vector2f position, int &characterSize, Color &color, sf::Font &font, std::string str);
+        Text(sf::Vector2f position, int characterSize, Color &color, sf::Font &font, std::string str);
 
         // Accessors
         sf::FloatRect getGlobalBounds() const;            //取得外框邊界

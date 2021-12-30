@@ -8,8 +8,9 @@ void GameObject::ColorTile::draw(sf::RenderTarget &target, sf::RenderStates stat
 }
 
 // Constructor & Deconstructor
-GameObject::ColorTile::ColorTile(sf::Vector2f position, sf::Vector2f &rect, int characterSize, sf::Font &font, int points, int radius, float hoverScale, Color &color, std::function<void()> onClick) : GameObject(position, color), text(sf::Vector2f(position.x + rect.x / 2, position.y + characterSize / 2), characterSize, color, font, color.getName()), pantone(sf::Vector2f(position.x + rect.x / 2, position.y + rect.y - radius), points, radius, hoverScale, color, onClick), rect(rect)
+GameObject::ColorTile::ColorTile(sf::Vector2f position, sf::Font &font, Color &color, std::function<void()> onClick, int tileWidth, int tileHeight) : GameObject(position, color), text(position, 48, color, font, color.getName()), pantone(position, color, onClick), tileWidth(tileWidth), tileHeight(tileHeight)
 {
+    setPosition(position);
 }
 
 void GameObject::ColorTile::setColor(Color &color)
@@ -21,11 +22,9 @@ void GameObject::ColorTile::setPosition(sf::Vector2f position)
 {
     GameObject::setPosition(position);
 
-    sf::Vector2f textPoint(position.x + rect.x / 2, position.y + text.getGlobalBounds().height / 2);
-    text.setPosition(textPoint);
+    text.setPosition(sf::Vector2f(position.x + tileWidth / 2, position.y + text.getGlobalBounds().height / 2));
 
-    sf::Vector2f pantonePoint(position.x + rect.x / 2, position.y + rect.y - pantone.getRadius());
-    pantone.setPosition(pantonePoint);
+    pantone.setPosition(sf::Vector2f(position.x + tileWidth / 2, position.y + text.getGlobalBounds().height + pantone.getRadius()));
 }
 
 // Mouse Move

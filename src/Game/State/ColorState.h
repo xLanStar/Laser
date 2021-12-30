@@ -6,6 +6,8 @@
 class ColorState : public State
 {
 private:
+    int borderSize = 300;
+    
     // Initializer
     void initUI();
 

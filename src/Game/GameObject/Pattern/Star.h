@@ -8,7 +8,7 @@ namespace GameObject
     {
     public:
         // Constructor
-        Star(Color &color, int &radius, std::string name);
+        Star(Color &color, std::string name);
 
         // Accessors
         void setColor(Color &color) override;          //設定顏色

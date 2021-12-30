@@ -21,16 +21,12 @@ void SettingState::initUI()
 {
     gameObjects["Color"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 40),
-        game.setting.getButtonCharacterSize(),
-        game.setting.getButtonHoverCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "Color",
         [&]{onColorButtonClick();});
     gameObjects["Pattern"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 60),
-        game.setting.getButtonCharacterSize(),
-        game.setting.getButtonHoverCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "Pattern",

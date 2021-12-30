@@ -19,7 +19,7 @@ namespace GameObject
         void destroy(); //改為可刪除
 
     public:
-        Laser(sf::Vector2f position, Color &color, int thickness, sf::FloatRect &borderRect, ParticleSystemProp &prop);
+        Laser(sf::Vector2f position, int thickness, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop);
 
         bool isDestroyed() const;                                                       //回傳是否該被消除
         int getThickness() const;                                                       //回傳線寬

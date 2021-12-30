@@ -68,7 +68,7 @@ float crossProduct(float &ax, float &ay, float &bx, float &by)
     return ax * by - bx * ay;
 }
 
-std::string toString(int &a)
+std::string toString(int a)
 {
     char buffer[16];
     itoa(a, buffer, 10);
