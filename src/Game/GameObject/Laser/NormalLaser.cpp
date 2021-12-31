@@ -23,7 +23,7 @@ bool GameObject::NormalLaser::isCollided(const Pattern &player) const //是否�
 {
     const sf::Vector2f &position = player.getPosition();
     float distance = distanceOfPointToSeg(position.x, position.y, startPosition.x, startPosition.y, endPosition.x, endPosition.y); //點線距離
-    return distance < player.getRadius();                                                                                          //回傳是否碰撞到
+    return distance <= player.getRadius();                                                                                         //回傳是否碰撞到
 }
 
 void GameObject::NormalLaser::update(float deltaTime) //更新

@@ -9,19 +9,22 @@
 void ColorState::initUI()
 {
     // Title 文字
-    gameObjects["Title"] = new GameObject::Text(
+    gameObjects["Title1"] = new GameObject::Text(
         game.setting.getPointAtWindow(50, 20),
         game.setting.getTitleCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "CHOOSE THE COLOR\nCOMBINATION YOU WANT");
+        (std::string) "CHOOSE THE COLOR");
+    gameObjects["Title2"] = new GameObject::Text(
+        game.setting.getPointAtWindow(50, 30),
+        game.setting.getTitleCharacterSize(),
+        game.setting.getColor(),
+        game.setting.getFont(),
+        (std::string) "COMBINATION YOU WANT");
     // Tiles 容器
-    int &points = game.setting.getPantonePoints();                                                                  //取得座標
-    int &radius = game.setting.getPantoneRadius();                                                                  //取得色票大小
-    int &borderSize = game.setting.getColorStateBorder();                                                           //取得邊界寬度
-    int tileWidth = game.setting.getTileWidth();                                                                    //取得容器寬度
-    int tileHeight = game.setting.getTileHeight();                                                                  //取得容器高度
-    int &minGap = game.setting.getTileGap();                                                                        //取得容器之間的間距
+    int tileWidth = 250;                                                                                            //容器寬度
+    int tileHeight = 120;                                                                                           //容器高度
+    int minGap = 25;                                                                                                //容器之間的間距
     int validCount = int((game.setting.getWindowSize().x - borderSize * 2 - tileWidth) / (tileWidth + minGap)) + 1; //取得寬度的有效個數
     int gap = (game.setting.getWindowSize().x - borderSize * 2 - validCount * tileWidth) / (validCount - 1);        //取得兩側的 Gap
 
@@ -33,12 +36,7 @@ void ColorState::initUI()
         x = borderSize + (tileWidth + gap) * i;
         gameObjects[it.first] = new GameObject::ColorTile(
             sf::Vector2f(x, y),
-            game.setting.getTileRect(),
-            game.setting.getButtonCharacterSize(),
             game.setting.getFont(),
-            game.setting.getPantonePoints(),
-            game.setting.getPantoneRadius(),
-            game.setting.getPantoneHoverScale(),
             game.setting.findColor(it.first),
             [=]
             { game.setColorTheme(it.first); });

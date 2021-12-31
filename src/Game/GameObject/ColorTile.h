@@ -9,8 +9,9 @@ namespace GameObject
     {
     private:
         // Tile Information
-        sf::Vector2f &rect; //框架
-        Text text;          //文字內容
+        int tileWidth;      //磁磚容器的寬度
+        int tileHeight;     //磁磚容器的高度
+        Text text;          //文字
         Pantone pantone;    //色票
 
         // Tile State
@@ -22,7 +23,7 @@ namespace GameObject
 
     public:
         // Constructor & Deconstructor
-        ColorTile(sf::Vector2f position, sf::Vector2f &rect, int characterSize, sf::Font &font, int points, int radius, float hoverScale, Color &color, std::function<void()> onClick);
+        ColorTile(sf::Vector2f position, sf::Font &font, Color &color, std::function<void()> onClick, int tileWidth = 250, int tileHeight = 120);
 
         // Accessors
         void setColor(Color &color) override;             //設定顏色

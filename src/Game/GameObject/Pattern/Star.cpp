@@ -11,7 +11,7 @@ void GameObject::Star::draw(sf::RenderTarget &target, sf::RenderStates states) c
     target.draw(star);
 }
 
-GameObject::Star::Star(Color &color, int &radius, std::string name) : Pattern(color, radius, name)
+GameObject::Star::Star(Color &color, std::string name) : Pattern(color, name)
 {
     setupShape();
 }

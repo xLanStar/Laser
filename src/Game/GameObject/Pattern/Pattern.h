@@ -8,7 +8,7 @@ namespace GameObject
     {
     public:
         // Constructor
-        Pattern(Color &color, int &radius, std::string name, int boundRoundThickness = 12);
+        Pattern(Color &color, std::string name, int radius = 42, int boundRoundThickness = 12);
 
         // Getter
         const std::string &getName() const; //取得 Pattern 的名稱
@@ -28,7 +28,7 @@ namespace GameObject
 
     protected:
         Color &color; //對應的顏色
-        int &radius;  //半徑長
+        int radius;  //半徑長
 
     private:
         int boundRoundThickness; //外圓線寬

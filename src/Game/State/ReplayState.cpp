@@ -8,24 +8,26 @@
 //Initializer
 void ReplayState::initUI()
 {
-    gameObjects["Title"] = new GameObject::Text(
+    gameObjects["MVP"] = new GameObject::Text(
         game.setting.getPointAtWindow(50, 30),
         game.setting.getTitleCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "MVP:" + toString(game.setting.getCurrentHighestScore()) + "\nSCORE:" + toString(game.setting.getCurrentScore()));
+        (std::string) "MVP:" + toString(game.setting.getCurrentHighestScore()));
+    gameObjects["SCORE"] = new GameObject::Text(
+        game.setting.getPointAtWindow(50, 40),
+        game.setting.getTitleCharacterSize(),
+        game.setting.getColor(),
+        game.setting.getFont(),
+        (std::string) "SCORE:" + toString(game.setting.getCurrentScore()));
     gameObjects["Again"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 50),
-        game.setting.getButtonCharacterSize(),
-        game.setting.getButtonHoverCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "AGAIN",
         [&] { game.setting.resetCurrentScore(); game.switchState(GAME); });
     gameObjects["Menu"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 70),
-        game.setting.getButtonCharacterSize(),
-        game.setting.getButtonHoverCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "MENU",

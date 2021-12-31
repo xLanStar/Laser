@@ -5,9 +5,6 @@
 #include "Game/State/State.h"
 #include "Game/Setting.h"
 
-extern bool showHitBox; //顯示碰撞箱
-extern bool invincible; //無敵
-
 enum StateType //列舉狀態
 {
     MAINMENU = 0,

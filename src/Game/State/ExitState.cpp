@@ -7,16 +7,20 @@
 // Initializer
 void ExitState::initUI()
 {
-    gameObjects["Title"] = new GameObject::Text(
+    gameObjects["Title1"] = new GameObject::Text(
         game.setting.getPointAtWindow(50, 40),
         game.setting.getTitleCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
-        "ARE YOU SURE TO\nQUIT THE GAME?");
+        "ARE YOU SURE TO");
+    gameObjects["Title2"] = new GameObject::Text(
+        game.setting.getPointAtWindow(50, 50),
+        game.setting.getTitleCharacterSize(),
+        game.setting.getColor(),
+        game.setting.getFont(),
+        "QUIT THE GAME?");
     gameObjects["Yes"] = new GameObject::Button(
         game.setting.getPointAtWindow(40, 60),
-        game.setting.getButtonCharacterSize(),
-        game.setting.getButtonHoverCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
         "YES",
@@ -24,8 +28,6 @@ void ExitState::initUI()
         { game.stop(); });
     gameObjects["No"] = new GameObject::Button(
         game.setting.getPointAtWindow(60, 60),
-        game.setting.getButtonCharacterSize(),
-        game.setting.getButtonHoverCharacterSize(),
         game.setting.getColor(),
         game.setting.getFont(),
         "NO",

@@ -7,11 +7,13 @@
 class GameState : public State
 {
 private:
+    int borderSize = 100;
+    sf::FloatRect borderRect;
     int borderLeft, borderTop, borderRight, borderBottom;
     int randomPositionWidthSize;  // rand() * randomPositionWidthSize + borderLeft
     int randomPositionHeightSize; // rand() * randomPositionHeightSize + borderTop
 
-    float &generateInterval;
+    float generateInterval;
     float counter = 0;
     std::vector<GameObject::Laser *> lasers;
     GameObject::Text mvpText, scoreText;

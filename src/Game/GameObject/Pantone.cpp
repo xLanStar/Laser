@@ -12,7 +12,7 @@ void GameObject::Pantone::draw(sf::RenderTarget &target, sf::RenderStates states
 }
 
 // Constructor
-GameObject::Pantone::Pantone(sf::Vector2f position, int points, int radius, float hoverScale, Color &color, std::function<void()> onClick) : GameObject(position, color), color(color), onClick(onClick), pressed(false), points(points), radius(radius), hoverScale(hoverScale)
+GameObject::Pantone::Pantone(sf::Vector2f position, Color &color, std::function<void()> onClick, int points, int radius, float hoverScale) : GameObject(position, color), color(color), onClick(onClick), pressed(false), points(points), radius(radius), hoverScale(hoverScale)
 {
     setupShape(); //設定圖案
 }

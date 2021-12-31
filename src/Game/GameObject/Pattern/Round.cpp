@@ -1,6 +1,6 @@
 #include "Game/GameObject/Pattern/Round.h"
 
-GameObject::Round::Round(Color &color, int &radius, std::string name) : Pattern(color, radius, name)
+GameObject::Round::Round(Color &color, std::string name) : Pattern(color, name)
 {
     setupShape();
 }

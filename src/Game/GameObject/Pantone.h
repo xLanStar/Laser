@@ -30,7 +30,7 @@ namespace GameObject
 
     public:
         // Constructor & Deconstructor
-        Pantone(sf::Vector2f position, int points, int radius, float hoverScale, Color &color, std::function<void()> onClick);
+        Pantone(sf::Vector2f position, Color &color, std::function<void()> onClick, int points = 30, int radius = 32, float hoverScale = 1.2f);
 
         // Accessors
         int getRadius() const;                            //取得半徑
