@@ -20,6 +20,12 @@ void PatternState::initUI()
         game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "YOU WANT");
+    gameObjects["Exit"] = new GameObject::Button(
+        game.setting.getPointAtWindow(94, 96),
+        game.setting.getColor(),
+        game.setting.getFont(),
+        (std::string) "EXIT",
+        [&]{Quit();});
     int tileWidth = 250;                                                                                            //容器寬度
     int tileHeight = 120;                                                                                           //容器高度
     int minGap = 25;                                                                                                //容器之間的間距

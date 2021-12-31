@@ -31,6 +31,12 @@ void SettingState::initUI()
         game.setting.getFont(),
         (std::string) "Pattern",
         [&]{onPatternButtonClick();});
+    gameObjects["Exit"] = new GameObject::Button(
+        game.setting.getPointAtWindow(94, 96),
+        game.setting.getColor(),
+        game.setting.getFont(),
+        (std::string) "EXIT",
+        [&]{Quit();});
 }
 
 //Constructor

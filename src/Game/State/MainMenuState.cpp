@@ -25,6 +25,18 @@ void MainMenuState::initUI()
         game.setting.getFont(),
         (std::string) "SETTING",
         [&]{game.pushState(SETTING);});
+    gameObjects["Exit"] = new GameObject::Button(
+        game.setting.getPointAtWindow(94, 96),
+        game.setting.getColor(),
+        game.setting.getFont(),
+        (std::string) "EXIT",
+        [&]{Quit();});
+    gameObjects["Producer"] = new GameObject::Button(
+        game.setting.getPointAtWindow(13, 96),
+        game.setting.getColor(),
+        game.setting.getFont(),
+        (std::string) "PRODUCER",
+        [&]{game.pushState(PRODUCER);});
 }
 
 //Constructor

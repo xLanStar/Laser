@@ -51,6 +51,8 @@ void GameState::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {
         target.draw(it->getParticleSystem());
     }
+    
+    State::draw(target, states);
 }
 
 // Constructor

@@ -8,7 +8,7 @@ void GameObject::Button::draw(sf::RenderTarget &target, sf::RenderStates states)
 
 // Constructor
 GameObject::Button::Button(sf::Vector2f position, Color &color, sf::Font &font, std::string str, std::function<void()> onClick, int characterSize, int hoverCharacterSize)
-    : GameObject(position, color), onClick(onClick), pressed(false), text(position, characterSize, color, font, str), characterSize(characterSize), hoverCharacterSize(hoverCharacterSize)
+    : GameObject(position, color), onClick(onClick), hover(false), pressed(false), text(position, characterSize, color, font, str), characterSize(characterSize), hoverCharacterSize(hoverCharacterSize)
 {
 }
 

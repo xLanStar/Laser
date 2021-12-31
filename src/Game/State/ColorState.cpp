@@ -21,6 +21,12 @@ void ColorState::initUI()
         game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "COMBINATION YOU WANT");
+    gameObjects["Exit"] = new GameObject::Button(
+        game.setting.getPointAtWindow(94, 96),
+        game.setting.getColor(),
+        game.setting.getFont(),
+        (std::string) "EXIT",
+        [&]{Quit();});
     // Tiles 容器
     int tileWidth = 250;                                                                                            //容器寬度
     int tileHeight = 120;                                                                                           //容器高度

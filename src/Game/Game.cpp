@@ -10,6 +10,7 @@
 #include "Game/State/DifficultyState.h"
 #include "Game/State/GameState.h"
 #include "Game/State/ReplayState.h"
+#include "Game/State/ProducerState.h"
 
 // Initializer
 void Game::initWindow()
@@ -114,6 +115,9 @@ void Game::pushState(StateType stateType)
         break;
     case REPLAY:
         states.push(new ReplayState(*this));
+        break;
+    case PRODUCER:
+        states.push(new ProducerState(*this));
         break;
     }
 }

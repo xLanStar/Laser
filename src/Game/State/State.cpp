@@ -1,9 +1,16 @@
 #include "State.h"
 
+#include <iostream>
+
 #include "Game/Game.h"
 
 State::State(Game &game) : game(game)
 {
+    border.setPosition(sf::Vector2f(borderSize,borderSize));
+    border.setSize(sf::Vector2f(game.setting.getWindowSize().x-borderSize*2, game.setting.getWindowSize().y-borderSize*2));
+    border.setFillColor(sf::Color(0,0,0,0));
+    border.setOutlineColor(sf::Color(game.setting.getColor().getDarkColor()));
+    border.setOutlineThickness(borderSize);
 }
 
 State::~State()
@@ -71,4 +78,5 @@ void State::draw(sf::RenderTarget &target, sf::RenderStates states) const //æ¸²æ
     {
         target.draw(*it.second);
     }
+    target.draw(border);
 }

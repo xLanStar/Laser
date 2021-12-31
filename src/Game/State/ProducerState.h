@@ -2,13 +2,12 @@
 
 #include "Game/State/State.h"
 
-class ExitState : public State
+class ProducerState : public State
 {
 private:
     // Initializer
     void initUI();
-
 public:
     // Constructor
-    ExitState(Game &game);
+    ProducerState(Game &game);
 };

@@ -7,7 +7,7 @@ ParticleSystem::ParticleSystem(ParticleSystemProp &prop) : prop(prop), particles
     // 初始化粒子
     for (Particle &particle : particles)
     {
-        particle.setTexture(prop.texture); // 設置貼圖
+        particle.setRadius(8);
         particle.setOrigin(sf::Vector2f(particle.getTextureRect().width / 2, particle.getTextureRect().height / 2)); // 設置中心點
     }
     emitTime = 1 / prop.rateOverTime; // 計算發射間隔時間
@@ -53,7 +53,7 @@ void ParticleSystem::resetParticle(Particle &particle)
     }
 
     // 重置粒子的顏色
-    particle.setColor(prop.color);
+    particle.setFillColor(prop.color);
 }
 
 bool &ParticleSystem::isActive() // 粒子系統是否啟用
@@ -128,7 +128,7 @@ void ParticleSystem::update(float deltaTime)
                 if (prop.fadeout)
                 {
                     float ratio = particle->lifeTime / prop.lifeTime;
-                    sf::Color color = particle->getColor();
+                    sf::Color color = particle->getFillColor();
                     if (ratio <= 0)
                     {
                         color.a = 0;
@@ -137,7 +137,7 @@ void ParticleSystem::update(float deltaTime)
                     {
                         color.a = static_cast<sf::Uint8>(ratio * 255);
                     }
-                    particle->setColor(color);
+                    particle->setFillColor(color);
                 }
             }
             particle++;

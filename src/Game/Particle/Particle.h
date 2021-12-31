@@ -1,6 +1,6 @@
 #include "SFML/Graphics.hpp"
 
-class Particle : public sf::Sprite
+class Particle : public sf::CircleShape
 {
 private:
 public:

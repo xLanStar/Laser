@@ -14,7 +14,8 @@ enum StateType //列舉狀態
     PATTERN,
     GAME,
     DIFFICULTY,
-    REPLAY
+    REPLAY,
+    PRODUCER
 };
 
 class Game
