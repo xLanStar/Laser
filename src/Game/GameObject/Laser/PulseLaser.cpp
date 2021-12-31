@@ -23,7 +23,7 @@ void GameObject::PulseLaser::draw(sf::RenderTarget &target, sf::RenderStates sta
     }
 }
 
-GameObject::PulseLaser::PulseLaser(sf::Vector2f position, int thickness, float angle, float delay, float powerTime, float duration, int dashLineLength, int dashLineThickness, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop) : Laser(position, color, thickness, angle, borderRect, prop), delay(delay), duration(duration), dashLineLength(dashLineLength), thickness(thickness), powerTime(powerTime)
+GameObject::PulseLaser::PulseLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int thickness, float delay, float powerTime, float duration, int dashLineLength, int dashLineThickness) : Laser(position, color, thickness, angle, borderRect, prop), delay(delay), duration(duration), dashLineLength(dashLineLength), powerTime(powerTime)
 {
     liveTime = delay + duration; //生存時間等於延遲時間加上脈衝持續時間
     deltaThickness = thickness / (duration * powerTime);
