@@ -8,7 +8,6 @@ namespace GameObject
     {
     private:
         int length;                 // 長度
-        float angle;                // 角度
         float speed;                // 雷射飛行速度
         sf::Vector2f velocity;      // 單位時間移動的距離
         sf::Vector2f endPosition;   // 尾端位置

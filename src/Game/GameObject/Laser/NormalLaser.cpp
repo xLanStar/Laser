@@ -9,14 +9,14 @@ void GameObject::NormalLaser::draw(sf::RenderTarget &target, sf::RenderStates st
     target.draw(line); //渲染
 }
 
-GameObject::NormalLaser::NormalLaser(sf::Vector2f position, int length, int thickness, float angle, float speed, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop) : Laser(position, color, thickness, borderRect, prop), angle(angle), speed(speed), length(length)
+GameObject::NormalLaser::NormalLaser(sf::Vector2f position, int length, int thickness, float angle, float speed, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop) : Laser(position, color, thickness, angle, borderRect, prop), speed(speed), length(length)
 {
-    velocity = sf::Vector2f(cos(angle) * speed, sin(angle) * speed); //對不同座標的垂直速度和水平速度
-    endPosition = position;                                          //尾端點
-    line = sf::RectangleShape(sf::Vector2f(0, thickness));           //線物件的長寬
-    line.setFillColor(color.getDarkColor());                         //線的顏色
-    line.setPosition(position);                                      //設定位置
-    line.setRotation(angle * 180 / PI + 180);                        //線旋轉
+    velocity = sf::Vector2f(cos(getAngle()) * speed, sin(getAngle()) * speed); //對不同座標的垂直速度和水平速度
+    endPosition = position;                                                    //尾端點
+    line = sf::RectangleShape(sf::Vector2f(0, thickness));                     //線物件的長寬
+    line.setFillColor(color.getDarkColor());                                   //線的顏色
+    line.setPosition(position);                                                //設定位置
+    line.setRotation(angle * 180 / PI + 180);                                  //線旋轉
 }
 
 bool GameObject::NormalLaser::isCollided(const Pattern &player) const //是否碰撞
