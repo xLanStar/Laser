@@ -34,6 +34,7 @@ void State::setColor(Color &color)
     {
         it.second->setColor(color);
     }
+    border.setOutlineColor(color.getDarkColor());
 }
 
 // update Events
