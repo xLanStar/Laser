@@ -23,7 +23,7 @@ void GameObject::PulseLaser::draw(sf::RenderTarget &target, sf::RenderStates sta
     }
 }
 
-GameObject::PulseLaser::PulseLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int thickness, float delay, float powerTime, float duration, int dashLineLength, int dashLineThickness) : Laser(position, thickness, color, borderRect, prop), angle(angle), delay(delay), duration(duration), dashLineLength(dashLineLength), thickness(thickness), powerTime(powerTime)
+GameObject::PulseLaser::PulseLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int thickness, float delay, float powerTime, float duration, int dashLineLength, int dashLineThickness) : Laser(position, color, thickness, angle, borderRect, prop), delay(delay), duration(duration), dashLineLength(dashLineLength), powerTime(powerTime)
 {
     liveTime = delay + duration; //生存時間等於延遲時間加上脈衝持續時間
     deltaThickness = thickness / (duration * powerTime);
@@ -56,8 +56,8 @@ bool GameObject::PulseLaser::isCollided(const Pattern &player) const
     if (pulsing) //釋放時
     {
         const sf::Vector2f &playerPosition = player.getPosition();
-        const sf::Vector2f &position(line.getPosition());                                                                                                //取得位置
-        return distanceOfPointToLineByAngle(playerPosition.x, playerPosition.y, position.x, position.y, angle) <= player.getRadius() + line.getSize().y; //點線距離
+        const sf::Vector2f &position(line.getPosition());                                                                                                     //取得位置
+        return distanceOfPointToLineByAngle(playerPosition.x, playerPosition.y, position.x, position.y, getAngle()) <= player.getRadius() + line.getSize().y; //點線距離
     }
     return false; //充能時一定不會碰撞到
 }

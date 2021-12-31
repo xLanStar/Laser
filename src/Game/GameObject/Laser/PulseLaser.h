@@ -8,7 +8,6 @@ namespace GameObject
     {
     private:
         int thickness;           // 線寬
-        float angle;             // 角度
         float delay;             // 延遲
         float powerTime;         // 脈衝充能的時間
         float duration;          // 釋放的持續時間
@@ -28,7 +27,7 @@ namespace GameObject
 
     public:
         // Constructor
-        PulseLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int thickness = 25, float delay = 0.25f, float powerTime = 0.25f, float duration = 0.5f, int dashLineLength = 75, int dashLineThickness = 10);
+        PulseLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int thickness = 25, float delay = 0.6f, float powerTime = 0.25f, float duration = 0.5f, int dashLineLength = 75, int dashLineThickness = 10);
 
         // Accessors
         bool isCollided(const Pattern &player) const override; //是否碰撞
