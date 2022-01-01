@@ -15,9 +15,9 @@ namespace GameObject
 
         // Button Appearance
         int buttonCharacterSize, buttonHoverCharacterSize;
-        Text text;           //文字
-        int characterSize;   //字元大小
-        int characterScaler; //放大倍率
+        Text text;             //文字
+        int characterSize;     //字元大小
+        float characterScaler; //放大倍率
 
         // Button event
         std::function<void()> onClick; //被點擊時要觸發的 function
@@ -27,7 +27,7 @@ namespace GameObject
 
     public:
         // Constructor
-        Button(sf::Vector2f position, Color &color, sf::Font &font, std::string str, int characterSize, std::function<void()> onClick, int characterScaler = 1.3);
+        Button(sf::Vector2f position, Color &color, sf::Font &font, std::string str, int characterSize, std::function<void()> onClick, float characterScaler = 1.2);
 
         // Accessors
         void setColor(Color &color) override;             //設定顏色

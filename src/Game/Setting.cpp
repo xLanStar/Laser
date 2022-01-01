@@ -76,6 +76,10 @@ Setting::Setting()
     normalLaserProp.speed = 10.f;
     normalLaserProp.color = getColor().getDarkColor();
     normalLaserProp.fadeout = true;
+    // init Difficulty Table
+    difficultyTable[EASY] = "Easy";
+    difficultyTable[NORMAL] = "Normal";
+    difficultyTable[HARD] = "Hard";
 }
 
 Setting::~Setting()
@@ -214,4 +218,9 @@ void Setting::setWindowSize(sf::Vector2u windowSize)
 
     // recalculate parameter
     movingLaserVelocity = sqrt(pow(windowSize.x, 2) + pow(windowSize.y, 2)) / 2.5f;
+}
+
+std::string &Setting::getDifficultyName()
+{
+    return difficultyTable[difficulty];
 }

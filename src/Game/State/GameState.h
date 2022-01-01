@@ -16,7 +16,7 @@ private:
     float generateInterval;
     float counter = 0;
     std::vector<GameObject::Laser *> lasers;
-    GameObject::Text mvpText, scoreText;
+    GameObject::Text mvpText, scoreText, difficultyText;
     sf::RectangleShape border;
     sf::RectangleShape borderBackground;
 

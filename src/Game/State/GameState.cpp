@@ -43,6 +43,7 @@ void GameState::draw(sf::RenderTarget &target, sf::RenderStates states) const
     // Draw Text
     target.draw(mvpText);
     target.draw(scoreText);
+    target.draw(difficultyText);
 
     // Draw lasers Particle System
     for (auto &it : lasers)
@@ -54,7 +55,10 @@ void GameState::draw(sf::RenderTarget &target, sf::RenderStates states) const
 }
 
 // Constructor
-GameState::GameState(Game &game) : State(game), generateInterval(game.setting.getCurrentGenerateInterval()), mvpText(game.setting.getPointAtWindow(35, 4.3), 44, game.setting.getColor(), game.setting.getFont(), (std::string) "MVP : " + toString(game.setting.getCurrentHighestScore())), scoreText(game.setting.getPointAtWindow(65, 4.3), 44, game.setting.getColor(), game.setting.getFont(), (std::string) "Score : " + toString(game.setting.getCurrentScore()))
+GameState::GameState(Game &game) : State(game), generateInterval(game.setting.getCurrentGenerateInterval()),
+                                   mvpText(game.setting.getPointAtWindow(35, 4.3), 44, game.setting.getColor(), game.setting.getFont(), (std::string) "MVP : " + toString(game.setting.getCurrentHighestScore())),
+                                   scoreText(game.setting.getPointAtWindow(65, 4.3), 44, game.setting.getColor(), game.setting.getFont(), (std::string) "Score : " + toString(game.setting.getCurrentScore())),
+                                   difficultyText(game.setting.getPointAtWindow(50, 95.7), 47, game.setting.getColor(), game.setting.getFont(), (std::string) "Difficulty : " + game.setting.getDifficultyName())
 {
     borderLeft = borderSize;
     borderTop = borderSize;

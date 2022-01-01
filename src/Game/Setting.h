@@ -19,6 +19,9 @@ class Setting
 {
 private:
     // Stored Theme Config
+    std::unordered_map<Difficulty, std::string> difficultyTable; // 字串和 Color 物件的 Map
+
+    // Stored Theme Config
     std::unordered_map<std::string, Color> colorTable; // 字串和 Color 物件的 Map
 
     // Pattern Table
@@ -69,6 +72,7 @@ public:
 
     // Difficulty
     Difficulty &getDifficulty();
+    std::string &getDifficultyName();
     void setDifficulty(Difficulty difficulty);
 
     // Score
