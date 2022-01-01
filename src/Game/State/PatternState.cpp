@@ -9,47 +9,49 @@ void PatternState::initUI()
 {
     // Title
     gameObjects["Title1"] = new GameObject::Text(
-        game.setting.getPointAtWindow(50, 20),
-        game.setting.getTitleCharacterSize(),
+        game.setting.getPointAtWindow(50, 22),
+        78,
         game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "CHOOSE THE PATTERN");
     gameObjects["Title2"] = new GameObject::Text(
         game.setting.getPointAtWindow(50, 30),
-        game.setting.getTitleCharacterSize(),
+        78,
         game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "YOU WANT");
     gameObjects["Exit"] = new GameObject::Button(
-        game.setting.getPointAtWindow(94, 96),
+        game.setting.getPointAtWindow(94.5, 97),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "EXIT",
-        [&]{Quit();});
-    int tileWidth = 250;                                                                                            //容器寬度
-    int tileHeight = 120;                                                                                           //容器高度
-    int minGap = 25;                                                                                                //容器之間的間距
+        (std::string) "Exit",
+        [&]
+        { Quit(); },
+        44);
+    int tileWidth = 250;  //容器寬度
+    int tileHeight = 120; //容器高度
+    int minGap = 25;      //容器之間的間距
     int validCount = int((game.setting.getWindowSize().x - borderSize * 2 - tileWidth) / (tileWidth + minGap)) + 1;
     int gap = (game.setting.getWindowSize().x - borderSize * 2 - validCount * tileWidth) / (validCount - 1);
-    
+
     int i = 0, counter = 0;
     int x, y = 35 * game.setting.getWindowSize().y / 100;
-    for(auto it : game.setting.getPatternTable())
+    for (auto it : game.setting.getPatternTable())
     {
         x = borderSize + (tileWidth + gap) * i;
         gameObjects[it.first] = new GameObject::Button(
-        sf::Vector2f(x+tileWidth/2, y+tileHeight/2),
-        game.setting.getColor(),
-        game.setting.getFont(),
-        it.first,
-        [=]{ game.setCursor(it.first); });
+            sf::Vector2f(x + tileWidth / 2, y + tileHeight / 2),
+            game.setting.getColor(),
+            game.setting.getFont(),
+            it.first,
+            [=]
+            { game.setCursor(it.first); });
         if (++i == validCount)
         {
             i = 0;
             y += tileHeight;
         }
     }
-
 }
 
 // Constructor

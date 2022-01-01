@@ -7,7 +7,7 @@
 class GameState : public State
 {
 private:
-    int borderSize = 100;
+    int borderSize = 80;
     sf::FloatRect borderRect;
     int borderLeft, borderTop, borderRight, borderBottom;
     int randomPositionWidthSize;  // rand() * randomPositionWidthSize + borderLeft

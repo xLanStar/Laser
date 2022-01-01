@@ -17,7 +17,7 @@ void GameState::initUI()
     border.setPosition(sf::Vector2f(borderSize, borderSize));
     border.setFillColor(sf::Color(0, 0, 0, 0));
     border.setOutlineColor(game.setting.getColor().getDarkColor());
-    border.setOutlineThickness(10);
+    border.setOutlineThickness(6);
 
     borderBackground.setSize(sf::Vector2f(game.setting.getWindowSize().x - borderSize * 2,
                                           game.setting.getWindowSize().y - borderSize * 2));
@@ -40,8 +40,6 @@ void GameState::draw(sf::RenderTarget &target, sf::RenderStates states) const
     target.draw(borderBackground);
     target.draw(border);
 
-    // Draw Particle
-
     // Draw Text
     target.draw(mvpText);
     target.draw(scoreText);
@@ -51,12 +49,12 @@ void GameState::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {
         target.draw(it->getParticleSystem());
     }
-    
+
     State::draw(target, states);
 }
 
 // Constructor
-GameState::GameState(Game &game) : State(game), generateInterval(game.setting.getCurrentGenerateInterval()), mvpText(game.setting.getPointAtWindow(30, 5), game.setting.getSubTitleCharacterSize(), game.setting.getColor(), game.setting.getFont(), (std::string) "MVP:" + toString(game.setting.getCurrentHighestScore())), scoreText(game.setting.getPointAtWindow(70, 5), game.setting.getSubTitleCharacterSize(), game.setting.getColor(), game.setting.getFont(), (std::string) "SCORE:" + toString(game.setting.getCurrentScore()))
+GameState::GameState(Game &game) : State(game), generateInterval(game.setting.getCurrentGenerateInterval()), mvpText(game.setting.getPointAtWindow(35, 4.3), 44, game.setting.getColor(), game.setting.getFont(), (std::string) "MVP : " + toString(game.setting.getCurrentHighestScore())), scoreText(game.setting.getPointAtWindow(65, 4.3), 44, game.setting.getColor(), game.setting.getFont(), (std::string) "Score : " + toString(game.setting.getCurrentScore()))
 {
     borderLeft = borderSize;
     borderTop = borderSize;
@@ -195,7 +193,7 @@ void GameState::update(float &deltaTime)
                                                         game.setting.getNormalLaserProp()));
         }
         game.setting.increaseCurrentScore();
-        std::string text = "SCORE:" + toString(game.setting.getCurrentScore());
+        std::string text = "SCORE : " + toString(game.setting.getCurrentScore());
         scoreText.setText(text);
         // std::cout << "[GameState] spwan new laser!\n";
     }

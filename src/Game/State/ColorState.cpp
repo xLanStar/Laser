@@ -10,27 +10,29 @@ void ColorState::initUI()
 {
     // Title 文字
     gameObjects["Title1"] = new GameObject::Text(
-        game.setting.getPointAtWindow(50, 20),
-        game.setting.getTitleCharacterSize(),
+        game.setting.getPointAtWindow(50, 22),
+        78,
         game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "CHOOSE THE COLOR");
     gameObjects["Title2"] = new GameObject::Text(
         game.setting.getPointAtWindow(50, 30),
-        game.setting.getTitleCharacterSize(),
+        78,
         game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "COMBINATION YOU WANT");
     gameObjects["Exit"] = new GameObject::Button(
-        game.setting.getPointAtWindow(94, 96),
+        game.setting.getPointAtWindow(94.5, 97),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "EXIT",
-        [&]{Quit();});
+        (std::string) "Exit",
+        [&]
+        { Quit(); },
+        44);
     // Tiles 容器
-    int tileWidth = 250;                                                                                            //容器寬度
-    int tileHeight = 120;                                                                                           //容器高度
-    int minGap = 25;                                                                                                //容器之間的間距
+    int tileWidth = 150;                                                                                            //容器寬度
+    int tileHeight = 140;                                                                                           //容器高度
+    int minGap = 20;                                                                                                //容器之間的間距
     int validCount = int((game.setting.getWindowSize().x - borderSize * 2 - tileWidth) / (tileWidth + minGap)) + 1; //取得寬度的有效個數
     int gap = (game.setting.getWindowSize().x - borderSize * 2 - validCount * tileWidth) / (validCount - 1);        //取得兩側的 Gap
 

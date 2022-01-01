@@ -8,35 +8,37 @@
 void ProducerState::initUI()
 {
     gameObjects["Code"] = new GameObject::Text(
-        game.setting.getPointAtWindow(50, 20),
-        game.setting.getTitleCharacterSize(),
+        game.setting.getPointAtWindow(50, 18),
+        82,
         game.setting.getColor(),
         game.setting.getFont(),
-        "CODE");
-    gameObjects["A"] = new GameObject::Text(
-        game.setting.getPointAtWindow(50, 30),
-        game.setting.getTitleCharacterSize(),
+        "Code");
+    gameObjects["CoderList"] = new GameObject::Text(
+        game.setting.getPointAtWindow(50, 36),
+        76,
         game.setting.getColor(),
         game.setting.getFont(),
-        "A");
-    gameObjects["ART"] = new GameObject::Text(
-        game.setting.getPointAtWindow(50, 60),
-        game.setting.getTitleCharacterSize(),
+        "x.LanStar\nNinja Code");
+    gameObjects["Art"] = new GameObject::Text(
+        game.setting.getPointAtWindow(50, 58),
+        82,
         game.setting.getColor(),
         game.setting.getFont(),
-        "ART");
-    gameObjects["Y.DOOG"] = new GameObject::Text(
-        game.setting.getPointAtWindow(50, 70),
-        game.setting.getTitleCharacterSize(),
+        "Art");
+    gameObjects["ArtList"] = new GameObject::Text(
+        game.setting.getPointAtWindow(50, 78),
+        76,
         game.setting.getColor(),
         game.setting.getFont(),
-        "Y.DOOG");
-    gameObjects["JTT.YANG"] = new GameObject::Text(
-        game.setting.getPointAtWindow(50, 80),
-        game.setting.getTitleCharacterSize(),
+        "x.LanStar\nNinja Code");
+    gameObjects["Exit"] = new GameObject::Button(
+        game.setting.getPointAtWindow(94.5, 97),
         game.setting.getColor(),
         game.setting.getFont(),
-        "JTT.YANG");
+        (std::string) "EXIT",
+        [&]
+        { Quit(); },
+        44);
 }
 
 // Constructor

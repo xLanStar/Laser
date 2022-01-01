@@ -18,9 +18,6 @@ float distanceOfPointToLineByAngle(const float &ax, const float &ay, const float
 // 點到線段的距離
 float distanceOfPointToSeg(const float &px, const float &py, const float &ax, const float &ay, const float &bx, const float &by);
 
-// 外積
-float crossProduct(float &ax, float &ay, float &bx, float &by);
-
 // 整數轉字串
 std::string toString(int a);
 

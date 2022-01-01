@@ -27,7 +27,7 @@ namespace GameObject
 
     public:
         // Constructor
-        PulseLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int thickness = 25, float delay = 0.6f, float powerTime = 0.25f, float duration = 0.5f, int dashLineLength = 75, int dashLineThickness = 10);
+        PulseLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int thickness = 25, float delay = 0.6f, float powerTime = 0.25f, float duration = 0.5f, int dashLineLength = 28, int dashLineThickness = 7);
 
         // Accessors
         bool isCollided(const Pattern &player) const override; //是否碰撞

@@ -13,7 +13,7 @@ public:
     Game &game;
 
     // UI
-    const int borderSize = 10;
+    const int borderSize = 8;
     sf::RectangleShape border;
     std::map<std::string, GameObject::GameObject *> gameObjects; //模式文字對應到模式物件
 

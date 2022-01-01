@@ -8,31 +8,33 @@
 void ExitState::initUI()
 {
     gameObjects["Title1"] = new GameObject::Text(
-        game.setting.getPointAtWindow(50, 40),
-        game.setting.getTitleCharacterSize(),
+        game.setting.getPointAtWindow(50, 43),
+        84,
         game.setting.getColor(),
         game.setting.getFont(),
         "ARE YOU SURE TO");
     gameObjects["Title2"] = new GameObject::Text(
-        game.setting.getPointAtWindow(50, 50),
-        game.setting.getTitleCharacterSize(),
+        game.setting.getPointAtWindow(50, 53),
+        84,
         game.setting.getColor(),
         game.setting.getFont(),
         "QUIT THE GAME?");
     gameObjects["Yes"] = new GameObject::Button(
-        game.setting.getPointAtWindow(40, 60),
+        game.setting.getPointAtWindow(40, 68),
         game.setting.getColor(),
         game.setting.getFont(),
         "YES",
         [&]
-        { game.stop(); });
+        { game.stop(); },
+        60);
     gameObjects["No"] = new GameObject::Button(
-        game.setting.getPointAtWindow(60, 60),
+        game.setting.getPointAtWindow(60, 68),
         game.setting.getColor(),
         game.setting.getFont(),
         "NO",
         [&]
-        { Quit(); });
+        { Quit(); },
+        60);
 }
 
 // Constructor

@@ -18,9 +18,7 @@ float distanceOfPointToLine(const float &x, const float &y, const float &a, cons
 //
 float distanceOfPointToLineByAngle(const float &ax, const float &ay, const float &bx, const float &by, const float &angle)
 {
-
     // find the line (ax + by + c = 0) that pass (bx, by) with angle
-
     // slope = tan(angle)
     float slope = tan(angle);
 
@@ -63,10 +61,6 @@ float distanceOfPointToSeg(const float &px, const float &py, const float &ax, co
     return sqrt((px - cx) * (px - cx) + (py - cy) * (py - cy));
 }
 //
-float crossProduct(float &ax, float &ay, float &bx, float &by)
-{
-    return ax * by - bx * ay;
-}
 
 std::string toString(int a)
 {

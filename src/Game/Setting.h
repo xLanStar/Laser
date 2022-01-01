@@ -35,10 +35,7 @@ private:
     // Color
     Color color;
 
-    // Text
-    int titleCharacterSize = 84;                                 // 標題字大小
-    int subTitleCharacterSize = 64;                              // 副標題字大小
-    sf::Font font;                                               //字形
+    sf::Font font; //字形
 
     // Difficulty
     Difficulty difficulty; //難度設定
@@ -77,8 +74,6 @@ public:
 
     // Text
     sf::Font &getFont();
-    int getTitleCharacterSize();
-    int getSubTitleCharacterSize();
 
     // Difficulty
     Difficulty &getDifficulty();

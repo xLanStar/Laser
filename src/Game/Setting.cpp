@@ -70,7 +70,6 @@ Setting::Setting()
     normalLaserProp.rateOverTime = 20.f;
     normalLaserProp.maxParticleCount = 10;
     normalLaserProp.size = 16.f;
-    normalLaserProp.texture.loadFromFile("thunder.png");
     normalLaserProp.randomLifeTime = true;
     normalLaserProp.minLifeTimeRange = 0.5f;
     normalLaserProp.lifeTime = 1.0f;
@@ -120,16 +119,6 @@ GameObject::Pattern *Setting::findCursor(std::string name)
 sf::Font &Setting::getFont()
 {
     return font;
-}
-
-int Setting::getTitleCharacterSize()
-{
-    return titleCharacterSize;
-}
-
-int Setting::getSubTitleCharacterSize()
-{
-    return subTitleCharacterSize;
 }
 
 // Difficulty
@@ -183,7 +172,6 @@ void Setting::saveCurrentScore()
         setHighestScore(getDifficulty(), getCurrentScore());
     }
 }
-
 
 // Moving Laser
 float Setting::getMovingLaserVelocity()

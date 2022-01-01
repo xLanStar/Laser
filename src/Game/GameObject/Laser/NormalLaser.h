@@ -17,7 +17,7 @@ namespace GameObject
         void draw(sf::RenderTarget &target, sf::RenderStates states) const override; //渲染
 
     public:
-        NormalLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, float speed = 1.2f, int length = 300, int thickness = 10);
+        NormalLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, float speed = 1.2f, int length = 300, int thickness = 7);
 
         bool isCollided(const Pattern &player) const override; //檢測是否碰撞到
 

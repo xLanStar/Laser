@@ -15,31 +15,36 @@ void SettingState::onPatternButtonClick()
     game.pushState(PATTERN);
 }
 
-
-//Initializer
+// Initializer
 void SettingState::initUI()
 {
     gameObjects["Color"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 40),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "Color",
-        [&]{onColorButtonClick();});
+        (std::string) "Color Setting",
+        [&]
+        { onColorButtonClick(); },
+        72);
     gameObjects["Pattern"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 60),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "Pattern",
-        [&]{onPatternButtonClick();});
+        (std::string) "Pattern Setting",
+        [&]
+        { onPatternButtonClick(); },
+        72);
     gameObjects["Exit"] = new GameObject::Button(
-        game.setting.getPointAtWindow(94, 96),
+        game.setting.getPointAtWindow(94.5, 97),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "EXIT",
-        [&]{Quit();});
+        (std::string) "Exit",
+        [&]
+        { Quit(); },
+        44);
 }
 
-//Constructor
+// Constructor
 SettingState::SettingState(Game &game) : State(game)
 {
     initUI();

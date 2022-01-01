@@ -5,36 +5,40 @@
 #include "Game/Gameobject/Text.h"
 #include "Game/Util.h"
 
-//Initializer
+// Initializer
 void ReplayState::initUI()
 {
     gameObjects["MVP"] = new GameObject::Text(
-        game.setting.getPointAtWindow(50, 30),
-        game.setting.getTitleCharacterSize(),
+        game.setting.getPointAtWindow(50, 34),
+        134,
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "MVP:" + toString(game.setting.getCurrentHighestScore()));
-    gameObjects["SCORE"] = new GameObject::Text(
-        game.setting.getPointAtWindow(50, 40),
-        game.setting.getTitleCharacterSize(),
+        (std::string) "MVP : " + toString(game.setting.getCurrentHighestScore()));
+    gameObjects["Score"] = new GameObject::Text(
+        game.setting.getPointAtWindow(50, 48),
+        96,
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "SCORE:" + toString(game.setting.getCurrentScore()));
+        (std::string) "Score : " + toString(game.setting.getCurrentScore()));
     gameObjects["Again"] = new GameObject::Button(
-        game.setting.getPointAtWindow(50, 50),
+        game.setting.getPointAtWindow(50, 68),
         game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "AGAIN",
-        [&] { game.setting.resetCurrentScore(); game.switchState(GAME); });
+        [&]
+        { game.setting.resetCurrentScore(); game.switchState(GAME); },
+        50);
     gameObjects["Menu"] = new GameObject::Button(
-        game.setting.getPointAtWindow(50, 70),
+        game.setting.getPointAtWindow(50, 80),
         game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "MENU",
-        [&] { Quit(); });
+        [&]
+        { Quit(); },
+        50);
 }
 
-//Constructor
+// Constructor
 ReplayState::ReplayState(Game &game) : State(game)
 {
     initUI();
