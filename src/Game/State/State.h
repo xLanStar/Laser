@@ -29,7 +29,7 @@ public:
     virtual void updateMouseMove(sf::Vector2f &point);    //滑鼠移動
     virtual void updateMousePress(sf::Vector2f &point);   //滑鼠按下
     virtual void updateMouseRelease(sf::Vector2f &point); //滑鼠釋放
-    virtual void update(float &deltaTime);                //更新
+    virtual void update(float deltaTime);                 //更新
 
     // UI Draw Function
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const; //渲染

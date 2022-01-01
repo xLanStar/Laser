@@ -177,21 +177,24 @@ void Setting::saveCurrentScore()
     }
 }
 
-// Moving Laser
-float Setting::getMovingLaserVelocity()
-{
-    return movingLaserVelocity;
-}
-
 // Laser Generator
-float Setting::getGenerateInterval(Difficulty difficulty)
+float Setting::getNormalLaserGenerateInterval(Difficulty difficulty)
 {
-    return generateIntervals[difficulty];
+    return normalLaserGenerateIntervals[difficulty];
 }
 
-float Setting::getCurrentGenerateInterval()
+float Setting::getCurrentNormalLaserGenerateInterval()
 {
-    return getGenerateInterval(getDifficulty());
+    return getNormalLaserGenerateInterval(getDifficulty());
+}
+float Setting::getPulseLaserGenerateInterval(Difficulty difficulty)
+{
+    return pulseLaserGenerateIntervals[difficulty];
+}
+
+float Setting::getCurrentPulseLaserGenerateInterval()
+{
+    return getPulseLaserGenerateInterval(getDifficulty());
 }
 
 // Particle System
@@ -215,9 +218,6 @@ sf::Vector2f Setting::getPointAtWindow(float x, float y)
 void Setting::setWindowSize(sf::Vector2u windowSize)
 {
     this->windowSize = windowSize;
-
-    // recalculate parameter
-    movingLaserVelocity = sqrt(pow(windowSize.x, 2) + pow(windowSize.y, 2)) / 2.5f;
 }
 
 std::string &Setting::getDifficultyName()

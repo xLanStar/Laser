@@ -39,11 +39,9 @@ private:
     int highestScore[3] = {0, 0, 0}; //各不同模式對應的最高分
     int currentScore = 0;            //現在的分數
 
-    // Moving Laser
-    float movingLaserVelocity; //雷射移動速度
-
     // Laser Generator
-    float generateIntervals[3] = {0.9f, 0.8f, 0.7f};
+    float normalLaserGenerateIntervals[3] = {0.9f, 0.8f, 0.7f};
+    float pulseLaserGenerateIntervals[3] = {1.5f, 1.3f, 1.1f};
 
     // Particle System
     ParticleSystemProp normalLaserProp;
@@ -84,12 +82,11 @@ public:
     void increaseCurrentScore();
     void saveCurrentScore();
 
-    // Moving Laser
-    float getMovingLaserVelocity();
-
     // Laser Generator
-    float getGenerateInterval(Difficulty difficulty);
-    float getCurrentGenerateInterval();
+    float getNormalLaserGenerateInterval(Difficulty difficulty);
+    float getCurrentNormalLaserGenerateInterval();
+    float getPulseLaserGenerateInterval(Difficulty difficulty);
+    float getCurrentPulseLaserGenerateInterval();
 
     // Particle System
     ParticleSystemProp &getNormalLaserProp();

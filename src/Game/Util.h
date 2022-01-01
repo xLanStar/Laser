@@ -2,8 +2,6 @@
 
 #include "SFML/Graphics/Color.hpp"
 
-#define inRange(px, py, ax, ay, bx, by) ax <= px &&px <= bx &&ay <= py &&py <= by
-
 #define PI 3.14159265358979323846
 
 // 檔案是否存在

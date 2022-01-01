@@ -18,13 +18,10 @@ int GameObject::Laser::getThickness() const //取得寬度
 {
     return thickness;
 }
+
 float GameObject::Laser::getAngle() const
 {
     return angle;
-}
-sf::FloatRect &GameObject::Laser::getBorderRect() const //取得邊界
-{
-    return borderRect;
 }
 
 ParticleSystem &GameObject::Laser::getParticleSystem() //取得粒子效果

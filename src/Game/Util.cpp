@@ -3,6 +3,7 @@
 #include <sys/stat.h>
 #include <sstream>
 #include <cmath>
+
 // 檔案是否存在
 bool exist(const std::string &name)
 {

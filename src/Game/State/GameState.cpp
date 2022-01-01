@@ -54,7 +54,7 @@ void GameState::draw(sf::RenderTarget &target, sf::RenderStates states) const
 }
 
 // Constructor
-GameState::GameState(Game &game) : State(game), generateInterval(game.setting.getCurrentGenerateInterval())
+GameState::GameState(Game &game) : State(game), normalLaserGenerateInterval(game.setting.getCurrentNormalLaserGenerateInterval()), pulseLaserGenerateInterval(game.setting.getCurrentPulseLaserGenerateInterval())
 {
     borderLeft = borderSize;
     borderTop = borderSize;
@@ -99,7 +99,7 @@ void GameState::updateMouseRelease(sf::Vector2f &point)
     }
 }
 
-void GameState::update(float &deltaTime)
+void GameState::update(float deltaTime)
 {
     // Check For Border Collide
     sf::Vector2f &mousePosition(game.getMousePosition());
@@ -113,7 +113,7 @@ void GameState::update(float &deltaTime)
         return;
     }
 
-    // Update Lasers
+    //
     for (auto it = lasers.begin(); it != lasers.end();)
     {
         (*it)->update(deltaTime);
@@ -133,12 +133,11 @@ void GameState::update(float &deltaTime)
     }
 
     // Laser Generator
-    counter += deltaTime;
-    if (counter >= generateInterval)
+    normalLaserCounter += deltaTime;
+    pulseLaserCounter += deltaTime;
+    if (normalLaserCounter >= normalLaserGenerateInterval || pulseLaserCounter >= pulseLaserGenerateInterval)
     {
-        counter -= generateInterval;
-
-        // random position
+        //隨機定位到四個邊界上
         sf::Vector2f position(0, 0);
         int randSide = rand() % 4;
         if (randSide & 1)
@@ -170,31 +169,22 @@ void GameState::update(float &deltaTime)
             }
         }
 
-        // calculate angle
+        //計算角度，朝向玩家現在的位置
         float angle = atan2(game.getMousePosition().y - position.y, game.getMousePosition().x - position.x);
 
-        // random laser type
-        int random = rand() % 25;
-        if (random < 18)
+        //計時器達標，產生雷射
+        if (normalLaserCounter >= normalLaserGenerateInterval)
         {
-            lasers.push_back(new GameObject::NormalLaser(position,
-                                                         angle,
-                                                         game.setting.getColor(),
-                                                         borderRect,
-                                                         game.setting.getNormalLaserProp(),
-                                                         game.setting.getMovingLaserVelocity()));
+            normalLaserCounter -= normalLaserGenerateInterval;
+            lasers.push_back(new GameObject::NormalLaser(position, angle, game.setting.getColor(), borderRect, game.setting.getNormalLaserProp()));
         }
-        else
+        if (pulseLaserCounter >= pulseLaserGenerateInterval)
         {
-            lasers.push_back(new GameObject::PulseLaser(position,
-                                                        angle,
-                                                        game.setting.getColor(),
-                                                        borderRect,
-                                                        game.setting.getNormalLaserProp()));
+            pulseLaserCounter -= pulseLaserGenerateInterval;
+            lasers.push_back(new GameObject::PulseLaser(position, angle, game.setting.getColor(), borderRect, game.setting.getNormalLaserProp()));
         }
-        game.setting.increaseCurrentScore();
-        std::string text = "SCORE : " + toString(game.setting.getCurrentScore());
+        game.setting.increaseCurrentScore();                                      //每產生一個雷射就增加一分
+        std::string text = "SCORE : " + toString(game.setting.getCurrentScore()); //更新 ScoreText
         dynamic_cast<GameObject::Text *>(gameObjects["ScoreText"])->setText(text);
-        // std::cout << "[GameState] spwan new laser!\n";
     }
 }

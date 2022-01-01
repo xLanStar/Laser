@@ -6,9 +6,9 @@
 
 State::State(Game &game) : game(game)
 {
-    border.setPosition(sf::Vector2f(borderSize,borderSize));
-    border.setSize(sf::Vector2f(game.setting.getWindowSize().x-borderSize*2, game.setting.getWindowSize().y-borderSize*2));
-    border.setFillColor(sf::Color(0,0,0,0));
+    border.setPosition(sf::Vector2f(borderSize, borderSize));
+    border.setSize(sf::Vector2f(game.setting.getWindowSize().x - borderSize * 2, game.setting.getWindowSize().y - borderSize * 2));
+    border.setFillColor(sf::Color(0, 0, 0, 0));
     border.setOutlineColor(sf::Color(game.setting.getColor().getDarkColor()));
     border.setOutlineThickness(borderSize);
 }
@@ -65,7 +65,7 @@ void State::updateMouseRelease(sf::Vector2f &point)
     }
 }
 
-void State::update(float &deltaTime) //更新
+void State::update(float deltaTime) //更新
 {
     for (auto it : gameObjects)
     {

@@ -12,7 +12,7 @@ void DifficultyState::initUI()
         28,
         game.setting.getColor(),
         game.setting.getFont(),
-        "HOW TO PLAY:MOVE YOUR MOUSE AND TRY TO AVOID ALL SHOTS");
+        "HOW TO PLAY : MOVE YOUR MOUSE AND TRY TO AVOID ALL SHOTS");
     gameObjects["Title1"] = new GameObject::Text(
         game.setting.getPointAtWindow(50, 27),
         84,

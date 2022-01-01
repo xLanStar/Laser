@@ -9,7 +9,7 @@ void GameObject::NormalLaser::draw(sf::RenderTarget &target, sf::RenderStates st
     target.draw(line); //渲染
 }
 
-GameObject::NormalLaser::NormalLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, float speed, int length, int thickness) : Laser(position, color, thickness, angle, borderRect, prop), speed(speed), length(length)
+GameObject::NormalLaser::NormalLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int speed, int length, int thickness) : Laser(position, color, thickness, angle, borderRect, prop), speed(speed), length(length)
 {
     velocity = sf::Vector2f(cos(getAngle()) * speed, sin(getAngle()) * speed); //對不同座標的垂直速度和水平速度
     endPosition = position;                                                    //尾端點
@@ -31,7 +31,7 @@ void GameObject::NormalLaser::update(float deltaTime) //更新
     startPosition = line.getPosition();         //取得起點座標
     sf::Vector2f offset = velocity * deltaTime; //座標變化量
     //檢查是否在邊界內
-    if (inRange(line.getPosition().x, line.getPosition().y, getBorderRect().left, getBorderRect().top, getBorderRect().left + getBorderRect().width, getBorderRect().top + getBorderRect().height))
+    if (borderRect.contains(startPosition))
     {
         line.move(offset);             //移動物件
         if (line.getSize().x < length) //如果線太短

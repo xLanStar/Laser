@@ -25,7 +25,8 @@ void SettingState::initUI()
         "Color Setting",
         72,
         [&]
-        { onColorButtonClick(); });
+        { onColorButtonClick(); },
+        1.1);
     gameObjects["Pattern"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 60),
         game.setting.getColor(),
@@ -41,7 +42,8 @@ void SettingState::initUI()
         "Exit",
         44,
         [&]
-        { Quit(); });
+        { Quit(); },
+        1.1);
 }
 
 // Constructor
