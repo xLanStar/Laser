@@ -13,21 +13,21 @@ void PatternState::initUI()
         78,
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "CHOOSE THE PATTERN");
+        "CHOOSE THE PATTERN");
     gameObjects["Title2"] = new GameObject::Text(
         game.setting.getPointAtWindow(50, 30),
         78,
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "YOU WANT");
+        "YOU WANT");
     gameObjects["Exit"] = new GameObject::Button(
         game.setting.getPointAtWindow(94.5, 97),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "Exit",
+        "Exit",
+        44,
         [&]
-        { Quit(); },
-        44);
+        { Quit(); });
     int tileWidth = 250;  //容器寬度
     int tileHeight = 120; //容器高度
     int minGap = 25;      //容器之間的間距
@@ -44,6 +44,7 @@ void PatternState::initUI()
             game.setting.getColor(),
             game.setting.getFont(),
             it.first,
+            48,
             [=]
             { game.setCursor(it.first); });
         if (++i == validCount)

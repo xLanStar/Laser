@@ -35,10 +35,10 @@ void ProducerState::initUI()
         game.setting.getPointAtWindow(94.5, 97),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "EXIT",
+        "EXIT",
+        44,
         [&]
-        { Quit(); },
-        44);
+        { Quit(); });
 }
 
 // Constructor

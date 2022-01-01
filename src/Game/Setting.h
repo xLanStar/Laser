@@ -6,13 +6,6 @@
 #include "Game/GameObject/Pattern/Pattern.h"
 #include "Game/Particle/ParticleSystemProp.h"
 
-struct Data
-{
-    int highestScore[3];    //最高分
-    std::string colorTheme; //顏色主題
-    std::string cursorName; //
-};
-
 enum Difficulty //難度設定
 {
     EASY,
@@ -20,7 +13,6 @@ enum Difficulty //難度設定
     HARD
 };
 
-static std::string dataFileName = "data.bin";
 static std::string colorFileName = "color.cfg";
 
 class Setting
@@ -41,14 +33,14 @@ private:
     Difficulty difficulty; //難度設定
 
     // Score
-    int highestScore[3] = {0, 0, 0}; //最高分
+    int highestScore[3] = {0, 0, 0}; //各不同模式對應的最高分
     int currentScore = 0;            //現在的分數
 
     // Moving Laser
     float movingLaserVelocity; //雷射移動速度
 
     // Laser Generator
-    float generateIntervals[3] = {0.7f, 0.5f, 0.3f};
+    float generateIntervals[3] = {0.9f, 0.8f, 0.7f};
 
     // Particle System
     ParticleSystemProp normalLaserProp;

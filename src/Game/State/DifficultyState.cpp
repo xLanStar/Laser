@@ -29,34 +29,34 @@ void DifficultyState::initUI()
         game.setting.getPointAtWindow(50, 55),
         game.setting.getColor(),
         game.setting.getFont(),
-        std::string("EASY"),
+        "EASY",
+        55,
         [&]
-        { game.setting.setDifficulty(Difficulty::EASY); game.setting.resetCurrentScore(); game.switchState(GAME); },
-        55);
+        { game.setting.setDifficulty(Difficulty::EASY); game.setting.resetCurrentScore(); game.switchState(GAME); });
     gameObjects["Normal"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 68),
         game.setting.getColor(),
         game.setting.getFont(),
-        std::string("NORMAL"),
+        "NORMAL",
+        55,
         [&]
-        { game.setting.setDifficulty(Difficulty::NORMAL); game.setting.resetCurrentScore(); game.switchState(GAME); },
-        55);
+        { game.setting.setDifficulty(Difficulty::NORMAL); game.setting.resetCurrentScore(); game.switchState(GAME); });
     gameObjects["Hard"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 81),
         game.setting.getColor(),
         game.setting.getFont(),
-        std::string("HARD"),
+        "HARD",
+        55,
         [&]
-        { game.setting.setDifficulty(Difficulty::HARD); game.setting.resetCurrentScore(); game.switchState(GAME); },
-        55);
+        { game.setting.setDifficulty(Difficulty::HARD); game.setting.resetCurrentScore(); game.switchState(GAME); });
     gameObjects["Exit"] = new GameObject::Button(
         game.setting.getPointAtWindow(94.5, 97),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "EXIT",
+        "EXIT",
+        44,
         [&]
-        { Quit(); },
-        44);
+        { Quit(); });
 }
 
 // Constructor

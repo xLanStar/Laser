@@ -8,7 +8,7 @@ GameObject::Round::Round(Color &color, std::string name) : Pattern(color, name)
 // Private Function
 void GameObject::Round::setupShape() //設定形狀
 {
-    round.setRadius(radius * 0.65);
+    round.setRadius(radius * 0.6);
     round.setOutlineThickness(5);
     round.setFillColor(color.getLightColor());
     round.setOutlineColor(color.getDarkColor());

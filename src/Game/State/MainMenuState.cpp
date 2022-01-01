@@ -17,34 +17,34 @@ void MainMenuState::initUI()
         game.setting.getPointAtWindow(50, 53),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "PLAY",
+        "PLAY",
+        67,
         [&]
-        { game.pushState(DIFFICULTY); },
-        67);
+        { game.pushState(DIFFICULTY); });
     gameObjects["Setting"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 73),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "SETTING",
+        "SETTING",
+        67,
         [&]
-        { game.pushState(SETTING); },
-        67);
+        { game.pushState(SETTING); });
     gameObjects["Exit"] = new GameObject::Button(
         game.setting.getPointAtWindow(94.5, 97),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "EXIT",
+        "EXIT",
+        44,
         [&]
-        { Quit(); },
-        44);
+        { Quit(); });
     gameObjects["Producer"] = new GameObject::Button(
         game.setting.getPointAtWindow(12, 97),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "PRODUCER",
+        "PRODUCER",
+        44,
         [&]
-        { game.pushState(PRODUCER); },
-        44);
+        { game.pushState(PRODUCER); });
 }
 
 // Constructor

@@ -26,9 +26,9 @@ void ColorState::initUI()
         game.setting.getColor(),
         game.setting.getFont(),
         (std::string) "Exit",
+        44,
         [&]
-        { Quit(); },
-        44);
+        { Quit(); });
     // Tiles 容器
     int tileWidth = 150;                                                                                            //容器寬度
     int tileHeight = 140;                                                                                           //容器高度

@@ -24,17 +24,17 @@ void ExitState::initUI()
         game.setting.getColor(),
         game.setting.getFont(),
         "YES",
+        60,
         [&]
-        { game.stop(); },
-        60);
+        { game.stop(); });
     gameObjects["No"] = new GameObject::Button(
         game.setting.getPointAtWindow(60, 68),
         game.setting.getColor(),
         game.setting.getFont(),
         "NO",
+        60,
         [&]
-        { Quit(); },
-        60);
+        { Quit(); });
 }
 
 // Constructor

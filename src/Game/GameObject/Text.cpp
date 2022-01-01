@@ -32,7 +32,7 @@ void GameObject::Text::setColor(Color &color) //設定顏色
     text.setFillColor(color.getDarkColor()); //字體顏色為深色
 }
 
-void GameObject::Text::setCharacterSize(int &characterSize) //設定整個容器的長寬
+void GameObject::Text::setCharacterSize(int characterSize) //設定整個容器的長寬
 {
     text.setCharacterSize(characterSize);                  //設定 text 物件的字的大小
     sf::FloatRect textRect = text.getLocalBounds();        //取得 text 物件的 bound

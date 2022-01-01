@@ -7,7 +7,6 @@ namespace GameObject
     class PulseLaser : public Laser
     {
     private:
-        int thickness;           // 線寬
         float delay;             // 延遲
         float powerTime;         // 脈衝充能的時間
         float duration;          // 釋放的持續時間

@@ -22,26 +22,26 @@ void SettingState::initUI()
         game.setting.getPointAtWindow(50, 40),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "Color Setting",
+        "Color Setting",
+        72,
         [&]
-        { onColorButtonClick(); },
-        72);
+        { onColorButtonClick(); });
     gameObjects["Pattern"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 60),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "Pattern Setting",
+        "Pattern Setting",
+        72,
         [&]
-        { onPatternButtonClick(); },
-        72);
+        { onPatternButtonClick(); });
     gameObjects["Exit"] = new GameObject::Button(
         game.setting.getPointAtWindow(94.5, 97),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "Exit",
+        "Exit",
+        44,
         [&]
-        { Quit(); },
-        44);
+        { Quit(); });
 }
 
 // Constructor

@@ -10,8 +10,8 @@ namespace GameObject
         int length;                 // 長度
         float speed;                // 雷射飛行速度
         sf::Vector2f velocity;      // 單位時間移動的距離
-        sf::Vector2f endPosition;   // 尾端位置
-        sf::Vector2f startPosition; //前端位置
+        sf::Vector2f endPosition;   // 線段尾端位置
+        sf::Vector2f startPosition; // 線段前端位置
         sf::RectangleShape line;    // 線物件
 
         void draw(sf::RenderTarget &target, sf::RenderStates states) const override; //渲染

@@ -24,18 +24,18 @@ void ReplayState::initUI()
         game.setting.getPointAtWindow(50, 68),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "AGAIN",
+        "AGAIN",
+        50,
         [&]
-        { game.setting.resetCurrentScore(); game.switchState(GAME); },
-        50);
+        { game.setting.resetCurrentScore(); game.switchState(GAME); });
     gameObjects["Menu"] = new GameObject::Button(
         game.setting.getPointAtWindow(50, 80),
         game.setting.getColor(),
         game.setting.getFont(),
-        (std::string) "MENU",
+        "MENU",
+        50,
         [&]
-        { Quit(); },
-        50);
+        { Quit(); });
 }
 
 // Constructor
