@@ -11,12 +11,12 @@ void GameObject::NormalLaser::draw(sf::RenderTarget &target, sf::RenderStates st
 
 GameObject::NormalLaser::NormalLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int speed, int length, int thickness) : Laser(position, color, thickness, angle, borderRect, prop), speed(speed), length(length)
 {
-    velocity = sf::Vector2f(cos(getAngle()) * speed, sin(getAngle()) * speed); //對不同座標的垂直速度和水平速度
-    endPosition = position;                                                    //尾端點
-    line = sf::RectangleShape(sf::Vector2f(0, thickness));                     //線物件的長寬
-    line.setFillColor(color.getDarkColor());                                   //線的顏色
-    line.setPosition(position);                                                //設定位置
-    line.setRotation(angle * 180 / PI + 180);                                  //線旋轉
+    velocity = sf::Vector2f(cos(angle) * speed, sin(angle) * speed); //對不同座標的垂直速度和水平速度
+    endPosition = position;                                          //尾端點
+    line = sf::RectangleShape(sf::Vector2f(0, thickness));           //線物件的長寬
+    line.setFillColor(color.getDarkColor());                         //線的顏色
+    line.setPosition(position);                                      //設定位置
+    line.setRotation(angle * 180 / PI + 180);                        //線旋轉
 }
 
 bool GameObject::NormalLaser::isCollided(const Pattern &player) const //是否碰撞
@@ -36,7 +36,7 @@ void GameObject::NormalLaser::update(float deltaTime) //更新
         line.move(offset);             //移動物件
         if (line.getSize().x < length) //如果線太短
         {
-            line.setSize(sf::Vector2f(line.getSize().x + speed * deltaTime, getThickness())); //線就變長
+            line.setSize(sf::Vector2f(line.getSize().x + speed * deltaTime, thickness)); //線就變長
         }
         else
         {
@@ -47,7 +47,7 @@ void GameObject::NormalLaser::update(float deltaTime) //更新
     {
         if (line.getSize().x > 0) //讓線變短直到長度小於 0
         {
-            line.setSize(sf::Vector2f(line.getSize().x - speed * deltaTime, getThickness()));
+            line.setSize(sf::Vector2f(line.getSize().x - speed * deltaTime, thickness));
             endPosition += offset;
 
             if (!getParticleSystem().isActive()) //如果粒子效果還沒結束

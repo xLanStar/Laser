@@ -49,8 +49,8 @@ bool GameObject::PulseLaser::isCollided(const Pattern &player) const
     if (pulsing) //釋放時
     {
         const sf::Vector2f &playerPosition = player.getPosition();
-        const sf::Vector2f &position(line.getPosition());                                                                                                     //取得位置
-        return distanceOfPointToLineByAngle(playerPosition.x, playerPosition.y, position.x, position.y, getAngle()) <= player.getRadius() + line.getSize().y; //點線距離
+        const sf::Vector2f &position(line.getPosition());                                                                                                //取得位置
+        return distanceOfPointToLineByAngle(playerPosition.x, playerPosition.y, position.x, position.y, angle) <= player.getRadius() + line.getSize().y; //點線距離
     }
     return false; //充能時一定不會碰撞到
 }

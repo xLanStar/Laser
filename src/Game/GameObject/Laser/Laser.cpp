@@ -14,16 +14,6 @@ void GameObject::Laser::destroy() //改為可刪除
     this->destroyed = true;
 }
 
-int GameObject::Laser::getThickness() const //取得寬度
-{
-    return thickness;
-}
-
-float GameObject::Laser::getAngle() const
-{
-    return angle;
-}
-
 ParticleSystem &GameObject::Laser::getParticleSystem() //取得粒子效果
 {
     return particleSystem;
