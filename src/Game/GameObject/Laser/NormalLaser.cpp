@@ -9,20 +9,19 @@ void GameObject::NormalLaser::draw(sf::RenderTarget &target, sf::RenderStates st
     target.draw(line); //渲染
 }
 
-GameObject::NormalLaser::NormalLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int speed, int length, int thickness) : Laser(position, color, thickness, angle, borderRect, prop), speed(speed), length(length)
+GameObject::NormalLaser::NormalLaser(sf::Vector2f position, float arc, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int speed, int length, int thickness) : Laser(position, color, thickness, arc, borderRect, prop), speed(speed), length(length), endPosition(position), startPosition(position)
 {
-    velocity = sf::Vector2f(cos(angle) * speed, sin(angle) * speed); //對不同座標的垂直速度和水平速度
-    endPosition = position;                                          //尾端點
-    line = sf::RectangleShape(sf::Vector2f(0, thickness));           //線物件的長寬
-    line.setFillColor(color.getDarkColor());                         //線的顏色
-    line.setPosition(position);                                      //設定位置
-    line.setRotation(angle * 180 / PI + 180);                        //線旋轉
+    velocity = sf::Vector2f(cos(arc) * speed, sin(arc) * speed); //計算速度在兩座標軸的分量
+    line = sf::RectangleShape(sf::Vector2f(0, thickness));       //線物件的長寬
+    line.setFillColor(color.getDarkColor());                     //線的顏色
+    line.setPosition(position);                                  //設定位置
+    line.setRotation(arcToDeg(arc) + 180);                       //線旋轉
 }
 
 bool GameObject::NormalLaser::isCollided(const Pattern &player) const //是否碰撞
 {
-    const sf::Vector2f &position = player.getPosition();
-    float distance = distanceOfPointToSeg(position.x, position.y, startPosition.x, startPosition.y, endPosition.x, endPosition.y); //點線距離
+    const sf::Vector2f &position = player.getPosition();                                                                           //取得玩家的圓心位置
+    float distance = distanceOfPointToSeg(position.x, position.y, startPosition.x, startPosition.y, endPosition.x, endPosition.y); //計算圓心到線段的距離
     return distance <= player.getRadius();                                                                                         //回傳是否碰撞到
 }
 
@@ -31,7 +30,7 @@ void GameObject::NormalLaser::update(float deltaTime) //更新
     startPosition = line.getPosition();         //取得起點座標
     sf::Vector2f offset = velocity * deltaTime; //座標變化量
     //檢查是否在邊界內
-    if (inRange(borderRect,line.getPosition()))
+    if (inRange(borderRect, line.getPosition()))
     {
         line.move(offset);             //移動物件
         if (line.getSize().x < length) //如果線太短

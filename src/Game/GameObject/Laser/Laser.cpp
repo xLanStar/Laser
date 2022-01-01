@@ -1,6 +1,6 @@
 #include "Game/GameObject/Laser/Laser.h"
 
-GameObject::Laser::Laser(sf::Vector2f position, Color &color, int thickness, float angle, sf::FloatRect &borderRect, ParticleSystemProp &prop) : GameObject(position, color), borderRect(borderRect), thickness(thickness), angle(angle), particleSystem(prop)
+GameObject::Laser::Laser(sf::Vector2f position, Color &color, int thickness, float arc, sf::FloatRect &borderRect, ParticleSystemProp &prop) : GameObject(color, position), borderRect(borderRect), thickness(thickness), arc(arc), particleSystem(prop)
 {
 }
 

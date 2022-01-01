@@ -4,40 +4,28 @@
 
 #include "Game/Util.h"
 
-// UI Draw Function
-void GameObject::Pantone::draw(sf::RenderTarget &target, sf::RenderStates states) const
+GameObject::Pantone::Pantone(sf::Vector2f position, Color &color, std::function<void()> onClick, int points, int radius, float hoverScale) : GameObject(color, position), onClick(onClick), pressed(false), points(points), radius(radius), hoverScale(hoverScale)
 {
-    target.draw(leftConvex);  //畫左邊
-    target.draw(rightConvex); //畫右邊
+    setupShape(); // 設定圖案
 }
 
-// Constructor
-GameObject::Pantone::Pantone(sf::Vector2f position, Color &color, std::function<void()> onClick, int points, int radius, float hoverScale) : GameObject(position, color), color(color), onClick(onClick), pressed(false), points(points), radius(radius), hoverScale(hoverScale)
-{
-    setupShape(); //設定圖案
-}
-
-// Accessors
-int GameObject::Pantone::getRadius() const
+int GameObject::Pantone::getRadius() const // 取得半徑
 {
     return radius;
 }
 
-// Functions
-void GameObject::Pantone::setupShape()
+void GameObject::Pantone::setupShape() // 設定型狀
 {
-    setPosition(getPosition());
+    setPosition(position);
 
-    leftConvex.setPointCount(points); //設定位置
-    rightConvex.setPointCount(points);
+    leftConvex.setPointCount(points);  // 多邊形的點數量
+    rightConvex.setPointCount(points); // 多邊形的點數量
 
-    leftConvex.setFillColor(color.getDarkColor());
-    rightConvex.setFillColor(color.getLightColor());
+    leftConvex.setFillColor(color.getDarkColor());   // 設定暗色
+    rightConvex.setFillColor(color.getLightColor()); // 設定亮色
 
-    // set Shape Points
     const double step = PI / points;
 
-    // Right
     double angle = -PI / 2;
     rightConvex.setPoint(0, sf::Vector2f(cos(angle) * radius, sin(angle) * radius));
     for (int i = 1; i < points - 1; i++)
@@ -45,7 +33,7 @@ void GameObject::Pantone::setupShape()
         rightConvex.setPoint(i, sf::Vector2f(cos(angle + step * i) * radius, sin(angle + step * i) * radius));
     }
     rightConvex.setPoint(points - 1, sf::Vector2f(cos(angle + PI) * radius, sin(angle + PI) * radius));
-    // Left
+
     angle = PI / 2;
     leftConvex.setPoint(0, sf::Vector2f(cos(angle) * radius, sin(angle) * radius));
     for (int i = 1; i < points - 1; i++)
@@ -55,19 +43,13 @@ void GameObject::Pantone::setupShape()
     leftConvex.setPoint(points - 1, sf::Vector2f(cos(angle + PI) * radius, sin(angle + PI) * radius));
 }
 
-void GameObject::Pantone::setColor(Color &color)
+void GameObject::Pantone::setPosition(sf::Vector2f position) // 設定位置
 {
-}
-
-void GameObject::Pantone::setPosition(sf::Vector2f position)
-{
-    GameObject::setPosition(position);
     leftConvex.setPosition(position);
     rightConvex.setPosition(position);
 }
 
-// Mouse Move
-void GameObject::Pantone::updateMouseMove(sf::Vector2f &point)
+void GameObject::Pantone::updateMouseMove(sf::Vector2f &point) // 滑鼠移動
 {
     if (leftConvex.getGlobalBounds().contains(point) || rightConvex.getGlobalBounds().contains(point))
     {
@@ -89,8 +71,7 @@ void GameObject::Pantone::updateMouseMove(sf::Vector2f &point)
     }
 }
 
-// Mouse Press
-void GameObject::Pantone::updateMousePress(sf::Vector2f &point)
+void GameObject::Pantone::updateMousePress(sf::Vector2f &point) // 滑鼠按下
 {
     if (hover && !pressed) //如果被覆蓋又被壓
     {
@@ -98,15 +79,17 @@ void GameObject::Pantone::updateMousePress(sf::Vector2f &point)
     }
 }
 
-// Mouse Release
-void GameObject::Pantone::updateMouseRelease(sf::Vector2f &point)
+void GameObject::Pantone::updateMouseRelease(sf::Vector2f &point) // 滑鼠放開
 {
-    if (pressed) //如果被按著
+    pressed = false; // 釋放
+    if (hover)       // 如果被覆蓋
     {
-        pressed = false; //改為放開
-        if (hover)       //如果被覆蓋
-        {
-            onClick(); //觸發點擊事件
-        }
+        onClick(); // 觸發點擊事件
     }
+}
+
+void GameObject::Pantone::draw(sf::RenderTarget &target, sf::RenderStates states) const // 渲染
+{
+    target.draw(leftConvex);  //畫左邊
+    target.draw(rightConvex); //畫右邊
 }

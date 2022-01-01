@@ -7,25 +7,18 @@ namespace GameObject
     class Star : public Pattern
     {
     public:
-        // Constructor
         Star(Color &color, std::string name);
 
-        // Accessors
         void setColor(Color &color) override;          //設定顏色
         void setPosition(sf::Vector2f point) override; //設定位置
 
-        // Update Events
-        void updateMouseMove(sf::Vector2f &point) override;
+        void updateMouseMove(sf::Vector2f &point) override; //滑鼠移動的觸發事件
 
-        // UI Draw Function
-        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const; //渲染
 
     private:
-        // Star Pattern Appearance
-        float starSize;
-        sf::ConvexShape star;
+        sf::ConvexShape star; //星星圖案
 
-        // Pricate Function
-        void setupShape();
+        void setupShape(); //設定圖案
     };
 }

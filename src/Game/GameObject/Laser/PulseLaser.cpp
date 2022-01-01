@@ -12,32 +12,33 @@ void GameObject::PulseLaser::draw(sf::RenderTarget &target, sf::RenderStates sta
     }
     else //充能時
     {
-        for (auto line : dashLine)
+        for (auto &dashLine : dashLine)
         {
-            target.draw(line); //繪出虛線
+            target.draw(dashLine); //繪出虛線
         }
     }
 }
 
-GameObject::PulseLaser::PulseLaser(sf::Vector2f dashLineBeginPosition, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int thickness, float delay, float duration, int dashLineLength) : Laser(dashLineBeginPosition, color, thickness, angle, borderRect, prop), delay(delay), duration(duration), dashLineLength(dashLineLength)
+GameObject::PulseLaser::PulseLaser(sf::Vector2f dashLineBeginPosition, float arc, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int thickness, float delay, float duration, int dashLineLength) : Laser(dashLineBeginPosition, color, thickness, arc, borderRect, prop), delay(delay), duration(duration), dashLineLength(dashLineLength)
 {
-    liveTime = delay + duration; //生存時間等於延遲時間加上脈衝持續時間
+    liveTime = delay + duration; //計算總生存時間：延遲時間加上脈衝持續時間
 
     line.setPosition(dashLineBeginPosition);     //設定位置
-    line.setRotation(angle * 180 / PI);          //旋轉
+    line.setRotation(arcToDeg(arc));             //旋轉
     line.setFillColor(color.getDarkColor());     //設定顏色
     line.setSize(sf::Vector2f(1500, thickness)); //線長
 
-    // Generate Dashed Lines
-    sf::Vector2f dashLineRect(dashLineLength, thickness);                             //虛線的線長和線寬
-    float deltaX = cos(angle) * dashLineLength, deltaY = sin(angle) * dashLineLength; //線長的 sin 和 cos 的對應
-    dashLineBeginPosition.x += deltaX;
-    dashLineBeginPosition.y += deltaY;
+    //生成虛線
+    sf::Vector2f dashLineRect(dashLineLength, thickness); //虛線的線長和線寬
+    float deltaX = cos(arc) * dashLineLength;             //取得 cos 位移
+    float deltaY = sin(arc) * dashLineLength;             //取得 sin 位移
+    dashLineBeginPosition.x += deltaX;                    //計算偏移量
+    dashLineBeginPosition.y += deltaY;                    //計算偏移量
     while (borderRect.contains(dashLineBeginPosition))
     {
         dashLine.push_back(sf::RectangleShape(dashLineRect)); //增加虛線
         dashLine.back().setPosition(dashLineBeginPosition);   //設定位置
-        dashLine.back().setRotation(angle * 180 / PI);        //設定角度
+        dashLine.back().setRotation(arcToDeg(arc));           //設定角度
         dashLine.back().setFillColor(color.getDarkColor());   //設定顏色
         dashLineBeginPosition.x += deltaX * 2;                // x 增加
         dashLineBeginPosition.y += deltaY * 2;                // y 增加
@@ -48,11 +49,11 @@ bool GameObject::PulseLaser::isCollided(const Pattern &player) const
 {
     if (pulsing) //釋放時
     {
-        const sf::Vector2f &playerPosition = player.getPosition();
-        const sf::Vector2f &position(line.getPosition());                                                                                                //取得位置
-        return distanceOfPointToLineByAngle(playerPosition.x, playerPosition.y, position.x, position.y, angle) <= player.getRadius() + line.getSize().y; //點線距離
+        const sf::Vector2f &playerPosition = player.getPosition();                                                                                   //取得玩家的圓心位置
+        const sf::Vector2f &position(line.getPosition());                                                                                            //取得線的位置
+        return distanceOfPointToLineByArc(playerPosition.x, playerPosition.y, position.x, position.y, arc) <= player.getRadius() + line.getSize().y; //點到線距離
     }
-    return false; //充能時一定不會碰撞到
+    return false; //充能時一定碰撞
 }
 
 void GameObject::PulseLaser::update(float deltaTime) //更新

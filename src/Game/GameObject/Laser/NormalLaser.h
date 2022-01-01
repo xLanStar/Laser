@@ -19,7 +19,6 @@ namespace GameObject
         sf::Vector2f velocity;      // 速度在兩座標軸的分量
         sf::Vector2f startPosition; // 線段前端位置
         sf::Vector2f endPosition;   // 線段尾端位置
-        sf::RectangleShape line;    // 線物件
 
         void draw(sf::RenderTarget &target, sf::RenderStates states) const override; //渲染
     };

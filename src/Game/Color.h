@@ -8,12 +8,9 @@ class Color
 {
 
 public:
-    // Constructor & Deconstructor
     Color();
     Color(std::string name, sf::Color darkColor, sf::Color lightColor);
-    ~Color();
 
-    // Accessors
     const std::string getName() const;      //取得顏色的名稱
     const sf::Color &getDarkColor() const;  //取的暗色
     const sf::Color &getLightColor() const; //取得亮色

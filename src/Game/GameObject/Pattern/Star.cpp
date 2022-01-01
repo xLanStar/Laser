@@ -4,13 +4,6 @@
 
 #include "Game/Util.h"
 
-// UI Draw Function
-void GameObject::Star::draw(sf::RenderTarget &target, sf::RenderStates states) const //渲染
-{
-    Pattern::draw(target, states);
-    target.draw(star);
-}
-
 GameObject::Star::Star(Color &color, std::string name) : Pattern(color, name)
 {
     setupShape();
@@ -18,7 +11,7 @@ GameObject::Star::Star(Color &color, std::string name) : Pattern(color, name)
 
 void GameObject::Star::setupShape() //繪製星星
 {
-    starSize = radius * 0.7;
+    float starSize = radius * 0.7;
     star.setOutlineThickness(5);
     star.setFillColor(color.getLightColor());
     star.setOutlineColor(color.getDarkColor());
@@ -34,22 +27,27 @@ void GameObject::Star::setupShape() //繪製星星
     }
 }
 
-void GameObject::Star::setColor(Color &color)
+void GameObject::Star::setColor(Color &color) //設定顏色
 {
     Pattern::setColor(color);
     star.setFillColor(color.getLightColor());
     star.setOutlineColor(color.getDarkColor());
 }
 
-void GameObject::Star::setPosition(sf::Vector2f point)
+void GameObject::Star::setPosition(sf::Vector2f point) //設定位置
 {
     Pattern::setPosition(point);
     star.setPosition(point);
 }
 
-// Update Events
-void GameObject::Star::updateMouseMove(sf::Vector2f &point)
+void GameObject::Star::updateMouseMove(sf::Vector2f &point) //滑鼠移動的觸發事件
 {
     Pattern::updateMouseMove(point);
     star.setPosition(point);
+}
+
+void GameObject::Star::draw(sf::RenderTarget &target, sf::RenderStates states) const //渲染
+{
+    Pattern::draw(target, states);
+    target.draw(star);
 }

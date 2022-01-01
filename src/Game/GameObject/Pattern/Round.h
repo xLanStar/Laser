@@ -8,24 +8,18 @@ namespace GameObject
     class Round : public Pattern
     {
     public:
-        // Constructor
         Round(Color &color, std::string name);
 
-        // Accessors
         void setColor(Color &color) override;          //設定顏色
         void setPosition(sf::Vector2f point) override; //設定位置
 
-        // Update Events
-        void updateMouseMove(sf::Vector2f &position) override;
+        void updateMouseMove(sf::Vector2f &position) override; //滑鼠移動的觸發事件
 
-        // UI Draw Function
-        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const; //渲染
 
     private:
-        // Round Pattern Appearance
-        sf::CircleShape round;
+        sf::CircleShape round; //圓型圖案
 
-        // Pricate Function
-        void setupShape();
+        void setupShape(); //設定圖案
     };
 }

@@ -11,7 +11,7 @@ namespace GameObject
     class Laser : public GameObject
     {
     public:
-        Laser(sf::Vector2f position, Color &color, int thickness, float angle, sf::FloatRect &borderRect, ParticleSystemProp &prop);
+        Laser(sf::Vector2f position, Color &color, int thickness, float arc, sf::FloatRect &borderRect, ParticleSystemProp &prop);
 
         bool isDestroyed() const;                                 //回傳是否該被消除
         ParticleSystem &getParticleSystem();                      //回傳對應的粒子特效
@@ -20,8 +20,9 @@ namespace GameObject
     protected:
         int thickness;             //線寬
         void destroy();            //改為可刪除
-        float angle;               //角度
+        float arc;                 //弧度
         sf::FloatRect &borderRect; // GameState 的邊界
+        sf::RectangleShape line;   // 線物件
 
     private:
         bool destroyed = false;                                                         //是否該被刪除

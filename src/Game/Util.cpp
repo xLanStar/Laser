@@ -4,6 +4,17 @@
 #include <sstream>
 #include <cmath>
 
+// 角度轉弧度
+float degToArc(float deg)
+{
+    return deg * PI / 180;
+};
+
+// 弧度轉角度
+float arcToDeg(float arc)
+{
+    return arc * 180 / PI;
+};
 // 檔案是否存在
 bool exist(const std::string &name)
 {
@@ -17,18 +28,9 @@ float distanceOfPointToLine(const float &x, const float &y, const float &a, cons
     return abs(a * x + b * y + c) / sqrt(a * a + b * b);
 }
 //
-float distanceOfPointToLineByAngle(const float &ax, const float &ay, const float &bx, const float &by, const float &angle)
+float distanceOfPointToLineByArc(const float &ax, const float &ay, const float &bx, const float &by, const float &arc)
 {
-    // find the line (ax + by + c = 0) that pass (bx, by) with angle
-    // slope = tan(angle)
-    float slope = tan(angle);
-
-    // y - by = slope * (x - bx)
-    // simplify
-    // slope * x - y + bx - slope * bx = 0
-    // a = slope
-    // b = -1
-    // c = by - slope * bx
+    float slope = tan(arc); // 取得斜率
     static float b = -1;
     float c = by - slope * bx;
     return distanceOfPointToLine(ax, ay, slope, b, c);

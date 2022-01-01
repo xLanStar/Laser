@@ -4,6 +4,11 @@
 #include "SFML/Graphics/Rect.hpp"
 
 #define PI 3.14159265358979323846
+// 角度轉弧度
+float degToArc(float deg);
+
+// 弧度轉角度
+float arcToDeg(float arc);
 
 // 檔案是否存在
 bool exist(const std::string &name);
@@ -12,7 +17,7 @@ bool exist(const std::string &name);
 float distanceOfPointToLine(const float &x, const float &y, const float &a, const float &b, const float &c);
 
 // 點(ax, ay)到經過點(bx,by)、角度angle的直線的距離
-float distanceOfPointToLineByAngle(const float &ax, const float &ay, const float &bx, const float &by, const float &angle);
+float distanceOfPointToLineByArc(const float &ax, const float &ay, const float &bx, const float &by, const float &arc);
 
 // 點到線段的距離
 float distanceOfPointToSeg(const float &px, const float &py, const float &ax, const float &ay, const float &bx, const float &by);

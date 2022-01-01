@@ -11,10 +11,6 @@ Color::Color(std::string name, sf::Color darkColor, sf::Color lightColor) : name
 {
 }
 
-Color::~Color()
-{
-}
-
 const std::string Color::getName() const
 {
     return name;
