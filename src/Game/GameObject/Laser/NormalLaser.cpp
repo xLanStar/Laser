@@ -31,7 +31,7 @@ void GameObject::NormalLaser::update(float deltaTime) //更新
     startPosition = line.getPosition();         //取得起點座標
     sf::Vector2f offset = velocity * deltaTime; //座標變化量
     //檢查是否在邊界內
-    if (borderRect.contains(startPosition))
+    if (inRange(borderRect,line.getPosition()))
     {
         line.move(offset);             //移動物件
         if (line.getSize().x < length) //如果線太短
