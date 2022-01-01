@@ -25,6 +25,10 @@ void GameState::initUI()
     borderBackground.setFillColor(sf::Color(0, 0, 0, 0));
     borderBackground.setOutlineColor(game.setting.getColor().getLightColor());
     borderBackground.setOutlineThickness(borderSize);
+
+    gameObjects["MvpText"] = new GameObject::Text(game.setting.getPointAtWindow(35, 4.3), 44, game.setting.getColor(), game.setting.getFont(), (std::string) "MVP : " + toString(game.setting.getCurrentHighestScore()));
+    gameObjects["ScoreText"] = new GameObject::Text(game.setting.getPointAtWindow(65, 4.3), 44, game.setting.getColor(), game.setting.getFont(), (std::string) "Score : " + toString(game.setting.getCurrentScore()));
+    gameObjects["DifficultyText"] = new GameObject::Text(game.setting.getPointAtWindow(50, 95.7), 47, game.setting.getColor(), game.setting.getFont(), (std::string) "Difficulty : " + game.setting.getDifficultyName());
 }
 
 // UI Draw Function
@@ -40,11 +44,6 @@ void GameState::draw(sf::RenderTarget &target, sf::RenderStates states) const
     target.draw(borderBackground);
     target.draw(border);
 
-    // Draw Text
-    target.draw(mvpText);
-    target.draw(scoreText);
-    target.draw(difficultyText);
-
     // Draw lasers Particle System
     for (auto &it : lasers)
     {
@@ -55,10 +54,7 @@ void GameState::draw(sf::RenderTarget &target, sf::RenderStates states) const
 }
 
 // Constructor
-GameState::GameState(Game &game) : State(game), generateInterval(game.setting.getCurrentGenerateInterval()),
-                                   mvpText(game.setting.getPointAtWindow(35, 4.3), 44, game.setting.getColor(), game.setting.getFont(), (std::string) "MVP : " + toString(game.setting.getCurrentHighestScore())),
-                                   scoreText(game.setting.getPointAtWindow(65, 4.3), 44, game.setting.getColor(), game.setting.getFont(), (std::string) "Score : " + toString(game.setting.getCurrentScore())),
-                                   difficultyText(game.setting.getPointAtWindow(50, 95.7), 47, game.setting.getColor(), game.setting.getFont(), (std::string) "Difficulty : " + game.setting.getDifficultyName())
+GameState::GameState(Game &game) : State(game), generateInterval(game.setting.getCurrentGenerateInterval())
 {
     borderLeft = borderSize;
     borderTop = borderSize;
@@ -198,7 +194,7 @@ void GameState::update(float &deltaTime)
         }
         game.setting.increaseCurrentScore();
         std::string text = "SCORE : " + toString(game.setting.getCurrentScore());
-        scoreText.setText(text);
+        dynamic_cast<GameObject::Text *>(gameObjects["ScoreText"])->setText(text);
         // std::cout << "[GameState] spwan new laser!\n";
     }
 }
