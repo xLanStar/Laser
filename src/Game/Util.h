@@ -1,6 +1,7 @@
 #include <string>
 
 #include "SFML/Graphics/Color.hpp"
+#include "SFML/Graphics/Rect.hpp"
 
 #define PI 3.14159265358979323846
 
@@ -15,6 +16,9 @@ float distanceOfPointToLineByAngle(const float &ax, const float &ay, const float
 
 // 點到線段的距離
 float distanceOfPointToSeg(const float &px, const float &py, const float &ax, const float &ay, const float &bx, const float &by);
+
+// 判斷點是否在範圍內
+bool inRange(const sf::FloatRect &rect, const sf::Vector2f &position);
 
 // 整數轉字串
 std::string toString(int a);

@@ -61,7 +61,12 @@ float distanceOfPointToSeg(const float &px, const float &py, const float &ax, co
     // result = |CP|
     return sqrt((px - cx) * (px - cx) + (py - cy) * (py - cy));
 }
-//
+
+// 判斷點是否在範圍內
+bool inRange(const sf::FloatRect &rect, const sf::Vector2f &position)
+{
+    return rect.left <= position.x && position.x <= rect.left + rect.width && rect.top <= position.y && position.y <= rect.top + rect.height;
+}
 
 std::string toString(int a)
 {
