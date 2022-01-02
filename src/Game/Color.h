@@ -11,12 +11,12 @@ public:
     Color();
     Color(std::string name, sf::Color darkColor, sf::Color lightColor);
 
-    const std::string getName() const;      //取得顏色的名稱
-    const sf::Color &getDarkColor() const;  //取的暗色
-    const sf::Color &getLightColor() const; //取得亮色
+    const std::string getName() const;      // 取得顏色的名稱
+    const sf::Color &getDarkColor() const;  // 取的暗色
+    const sf::Color &getLightColor() const; // 取得亮色
 
 private:
-    std::string name;     //顏色組合名稱
-    sf::Color darkColor;  //暗色
-    sf::Color lightColor; //亮色
+    std::string name;     // 顏色組合名稱
+    sf::Color darkColor;  // 暗色
+    sf::Color lightColor; // 亮色
 };

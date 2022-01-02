@@ -4,39 +4,37 @@
 #include <sstream>
 #include <cmath>
 
-// 角度轉弧度
-float degToArc(float deg)
+float degToArc(float deg) // 角度轉弧度
 {
     return deg * PI / 180;
 };
 
-// 弧度轉角度
-float arcToDeg(float arc)
+float arcToDeg(float arc) // 弧度轉角度
 {
     return arc * 180 / PI;
 };
-// 檔案是否存在
-bool exist(const std::string &name)
+
+bool exist(const std::string &name) // 檔案是否存在
 {
     struct stat buffer;
     return (stat(name.c_str(), &buffer) == 0);
 }
-// 點到線的距離
-float distanceOfPointToLine(const float &x, const float &y, const float &a, const float &b, const float &c)
+
+float distanceOfPointToLine(const float &x, const float &y, const float &a, const float &b, const float &c) // 點到線的距離
 {
     // distance = |ax + by + c| / (a^2 + b^2)^0.5
     return abs(a * x + b * y + c) / sqrt(a * a + b * b);
 }
-//
-float distanceOfPointToLineByArc(const float &ax, const float &ay, const float &bx, const float &by, const float &arc)
+
+float distanceOfPointToLineByArc(const float &ax, const float &ay, const float &bx, const float &by, const float &arc) // 點到線的距離，使用弧度參數
 {
     float slope = tan(arc); // 取得斜率
     static float b = -1;
     float c = by - slope * bx;
     return distanceOfPointToLine(ax, ay, slope, b, c);
 }
-// 點到線段的距離
-float distanceOfPointToSeg(const float &px, const float &py, const float &ax, const float &ay, const float &bx, const float &by)
+
+float distanceOfPointToSeg(const float &px, const float &py, const float &ax, const float &ay, const float &bx, const float &by) // 點到線段的距離
 {
     // dot proeduct |ABxAP|
     float cross = (bx - ax) * (px - ax) + (by - ay) * (py - ay);
@@ -64,13 +62,12 @@ float distanceOfPointToSeg(const float &px, const float &py, const float &ax, co
     return sqrt((px - cx) * (px - cx) + (py - cy) * (py - cy));
 }
 
-// 判斷點是否在範圍內
-bool inRange(const sf::FloatRect &rect, const sf::Vector2f &position)
+bool inRange(const sf::FloatRect &rect, const sf::Vector2f &position) // 判斷點是否在範圍內
 {
     return rect.left <= position.x && position.x <= rect.left + rect.width && rect.top <= position.y && position.y <= rect.top + rect.height;
 }
 
-std::string toString(int a)
+std::string toString(int a) // 數字轉字串
 {
     char buffer[16];
     itoa(a, buffer, 10);

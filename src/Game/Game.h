@@ -21,7 +21,6 @@ enum StateType //列舉狀態
 class Game
 {
 private:
-    // Variables
     // SFML Window
     sf::RenderWindow *window;
     sf::VideoMode videoMode;
