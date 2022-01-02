@@ -49,22 +49,23 @@ void GameObject::NormalLaser::update(float deltaTime) //更新
             line.setSize(sf::Vector2f(line.getSize().x - speed * deltaTime, thickness));
             endPosition += offset;
 
-            if (!getParticleSystem().isActive()) //如果粒子效果還沒結束
+            if (!particleSystem.isActive()) //如果粒子效果還沒啟動
             {
-                getParticleSystem().Emit(line.getPosition());
+                particleSystem.setPosition(line.getPosition());
+                particleSystem.Emit();
             }
         }
         else //線長小於 0，代表可刪除
         {
-            if (getParticleSystem().isEmitting())
+            if (particleSystem.isEmitting()) //如果粒子系統還正在發射
             {
-                getParticleSystem().stopEmitting();
+                particleSystem.stopEmitting(); //停止粒子系統發射
             }
-            else if (!getParticleSystem().isAlive()) //如果粒子效果結束了
+            else if (!particleSystem.isAlive()) //如果粒子效果結束了
             {
                 destroy(); //刪除
             }
         }
     }
-    getParticleSystem().update(deltaTime); //更新粒子效果
+    particleSystem.update(deltaTime); //更新粒子效果
 }

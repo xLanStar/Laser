@@ -18,15 +18,15 @@ namespace GameObject
         virtual bool isCollided(const Pattern &player) const = 0; //檢查是否被撞到
 
     protected:
-        int thickness;             //線寬
-        void destroy();            //改為可刪除
-        float arc;                 //弧度
-        sf::FloatRect &borderRect; // GameState 的邊界
-        sf::RectangleShape line;   // 線物件
+        int thickness;                 //線寬
+        void destroy();                //改為可刪除
+        float arc;                     //弧度
+        sf::FloatRect &borderRect;     //GameState 的邊界
+        sf::RectangleShape line;       //線物件
+        ParticleSystem particleSystem; //附加的粒子效果
 
     private:
         bool destroyed = false;                                                         //是否該被刪除
-        ParticleSystem particleSystem;                                                  //附加的粒子效果
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const = 0; //渲染
     };
 };

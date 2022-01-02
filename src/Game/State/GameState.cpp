@@ -171,6 +171,10 @@ void GameState::update(float deltaTime)
 
         //計算弧度，朝向玩家現在的位置
         float arc = atan2(game.getMousePosition().y - position.y, game.getMousePosition().x - position.x);
+        if (arc < 0)
+        {
+            arc += PI * 2;
+        }
 
         //計時器達標，產生雷射
         if (normalLaserCounter >= normalLaserGenerateInterval)
@@ -181,7 +185,7 @@ void GameState::update(float deltaTime)
         if (pulseLaserCounter >= pulseLaserGenerateInterval)
         {
             pulseLaserCounter -= pulseLaserGenerateInterval;
-            lasers.push_back(new GameObject::PulseLaser(position, arc, game.setting.getColor(), borderRect, game.setting.getNormalLaserProp()));
+            lasers.push_back(new GameObject::PulseLaser(position, arc, game.setting.getColor(), borderRect, game.setting.getPulseLaserProp()));
         }
         game.setting.increaseCurrentScore();                                      //每產生一個雷射就增加一分
         std::string text = "SCORE : " + toString(game.setting.getCurrentScore()); //更新 ScoreText

@@ -72,14 +72,14 @@ Setting::Setting()
 
     // Particle System
     normalLaserProp.loop = true;
-    normalLaserProp.duration = 0.f;
+    normalLaserProp.duration = 1.f;
     normalLaserProp.rateOverTime = 20.f;
     normalLaserProp.maxParticleCount = 10;
     normalLaserProp.size = 16.f;
     normalLaserProp.randomLifeTime = true;
     normalLaserProp.minLifeTimeRange = 0.5f;
     normalLaserProp.lifeTime = 1.0f;
-    normalLaserProp.speed = 10.f;
+    normalLaserProp.speed = 50.f;
     normalLaserProp.color = getColor().getDarkColor();
     normalLaserProp.fadeout = true;
 
@@ -103,6 +103,7 @@ void Setting::setColorTheme(std::string colorTheme)
     color = colorTable[colorTheme];
 
     normalLaserProp.color = color.getDarkColor();
+    pulseLaserProp.color = color.getDarkColor();
 
     std::cout << "[Setting] set Color to " << color.getName() << '\n';
 }
@@ -208,6 +209,11 @@ float Setting::getCurrentPulseLaserGenerateInterval()
 ParticleSystemProp &Setting::getNormalLaserProp()
 {
     return normalLaserProp;
+}
+
+ParticleSystemProp &Setting::getPulseLaserProp()
+{
+    return pulseLaserProp;
 }
 
 // Window

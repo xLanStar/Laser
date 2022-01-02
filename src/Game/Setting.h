@@ -48,6 +48,7 @@ private:
 
     // Particle System
     ParticleSystemProp normalLaserProp;
+    ParticleSystemProp pulseLaserProp;
 
     // Window Size
     sf::Vector2u windowSize; //視窗長寬
@@ -93,6 +94,7 @@ public:
 
     // Particle System
     ParticleSystemProp &getNormalLaserProp();
+    ParticleSystemProp &getPulseLaserProp();
 
     // Window
     sf::Vector2u getWindowSize();
