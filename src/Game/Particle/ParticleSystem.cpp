@@ -1,6 +1,5 @@
 #include "Game/Particle/ParticleSystem.h"
 
-#include <iostream>
 #include <cmath>
 
 ParticleSystem::ParticleSystem(ParticleSystemProp &prop) : prop(prop), particles(prop.maxParticleCount), active(false), emitting(true), overTime(0), emitTimeCounter(0), activeParticleCount(0)
@@ -10,8 +9,16 @@ ParticleSystem::ParticleSystem(ParticleSystemProp &prop) : prop(prop), particles
     {
         particle.setRadius(8);
         particle.setOrigin(sf::Vector2f(4, 4)); // 設置中心點
+        particle.lifeTime = 0;
     }
-    emitTime = 1 / prop.rateOverTime; // 計算發射間隔時間
+    if (prop.rateOverTime > 0)
+    {
+        emitTime = 1 / prop.rateOverTime; // 計算發射間隔時間
+    }
+    else
+    {
+        emitTime = 0;
+    }
 }
 
 void ParticleSystem::draw(sf::RenderTarget &target, sf::RenderStates states) const
@@ -104,7 +111,6 @@ void ParticleSystem::update(float deltaTime)
     {
         overTime += deltaTime;        //總經過的時間計時器
         emitTimeCounter += deltaTime; //發射計時器
-
         for (auto particle = particles.begin(); particle != particles.end();)
         {
             if (particle->lifeTime <= 0) //如果粒子死了
@@ -149,7 +155,7 @@ void ParticleSystem::update(float deltaTime)
             }
             particle++;
         }
-        if (emitting && (!prop.loop || overTime >= prop.duration)) //如果正在發射並且已經持續超過設定的時間
+        if (emitting && (!prop.loop && overTime >= prop.duration)) //如果正在發射並且已經持續超過設定的時間
         {
             stopEmitting(); //停止發射
         }
