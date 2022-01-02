@@ -2,7 +2,13 @@
 #include "Game/Particle/ParticleSystemProp.h"
 #include "Game/Util.h"
 
-class ParticleSystem : public sf::Drawable
+enum ParticleSystemShape
+{
+    Dot,
+    Line
+};
+
+class ParticleSystem : public sf::Drawable, public sf::Transformable
 {
 private:
     sf::Vector2f position;
@@ -14,6 +20,10 @@ private:
 
     // log over time
     float overTime;
+
+    // Shape
+    ParticleSystemShape shape; // Shape
+    float length;              // Line
 
     // Emission
     float emitTimeCounter;
@@ -36,10 +46,13 @@ public:
 
     // Accessors
     bool &isActive();
-    void Emit(sf::Vector2f position);
+    void Emit();
     void stopEmitting();
     bool &isEmitting();
     bool isAlive();
+
+    // Functions
+    void setShape(ParticleSystemShape shape, float length = 0.f); // 粒子系統本身的形狀，相當於粒子應該在哪些範圍內產生
 
     // update function
     void update(float deltaTime);

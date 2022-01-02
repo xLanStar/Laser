@@ -19,9 +19,6 @@ struct ParticleSystemProp
 
     // Particle size over time
 
-    // Particle texture
-    sf::Texture texture;
-
     // Particle lifeTime
     bool randomLifeTime;    // whether particle has random lifetime
     float minLifeTimeRange; // 0.0f ~ 1.0f, rand() * (1 - minLifeTimeRange * lifeTime) + minLifeTimeRange * lifeTime

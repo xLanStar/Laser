@@ -10,11 +10,11 @@ void GameObject::PulseLaser::draw(sf::RenderTarget &target, sf::RenderStates sta
     {
         target.draw(line); //繪出實線
     }
-    else //充能時
+    else if (counter < liveTime) //充能時
     {
-        for (auto &dashLine : dashLine)
+        for (auto line : dashLine)
         {
-            target.draw(dashLine); //繪出虛線
+            target.draw(line); //繪出虛線
         }
     }
 }
@@ -43,6 +43,10 @@ GameObject::PulseLaser::PulseLaser(sf::Vector2f dashLineBeginPosition, float arc
         dashLineBeginPosition.x += deltaX * 2;                // x 增加
         dashLineBeginPosition.y += deltaY * 2;                // y 增加
     }
+
+    particleSystem.setPosition(dashLineBeginPosition); //設定位置
+    particleSystem.setRotation(arc);                   //設定角度
+    particleSystem.setShape(Line, line.getSize().x);   //設定形狀
 }
 
 bool GameObject::PulseLaser::isCollided(const Pattern &player) const
@@ -63,14 +67,24 @@ void GameObject::PulseLaser::update(float deltaTime) //更新
     {
         if (counter >= liveTime) //如果活太久了
         {
-            destroy(); //消滅
+            pulsing = false;                                //停止釋放
+            particleSystem.setPosition(line.getPosition()); //設定位置
+            particleSystem.Emit();                          //啟動粒子系統並且發射
         }
     }
-    else
+    else if (counter < liveTime) //充能中
     {
         if (counter >= delay) //如果超過充能時間了
         {
             pulsing = true; //釋放
         }
     }
+    else //釋放完
+    {
+        if (!particleSystem.isAlive()) //如果粒子效果結束了
+        {
+            destroy(); //刪除
+        }
+    }
+    particleSystem.update(deltaTime); //更新粒子系統
 }
