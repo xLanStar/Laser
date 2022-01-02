@@ -48,6 +48,10 @@ Setting::Setting()
     }
     cFile.close();
 
+    if (!soundBuffer.loadFromFile("ButtonSoundEffect.ogg"))
+    {
+        std::cout << "[Setting] load ButtonSoundEffect.ogg failed\n";
+    }
     // Font
     if (!font.loadFromFile("virgo.ttf"))
     {
@@ -242,4 +246,9 @@ void Setting::setWindowSize(sf::Vector2u windowSize)
 std::string &Setting::getDifficultyName()
 {
     return difficultyTable[difficulty];
+}
+
+sf::SoundBuffer &Setting::getSoundBuffer()
+{
+    return soundBuffer;
 }
