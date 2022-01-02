@@ -38,7 +38,7 @@ Setting::Setting()
                 sf::Color lightColor = stringToColor(line);
 
                 colorTable[name] = Color(name, darkColor, lightColor);
-                std::cout << "[Setting] found new ColorTheme: " << name << '\n';
+                std::cout << "[Setting] found new Color Theme: " << name << '\n';
             }
         }
     }
@@ -48,9 +48,9 @@ Setting::Setting()
     }
     cFile.close();
 
-    if (!soundBuffer.loadFromFile("ButtonSoundEffect.ogg"))
+    if (!soundBuffer.loadFromFile("ButtonSoundEffect.wav"))
     {
-        std::cout << "[Setting] load ButtonSoundEffect.ogg failed\n";
+        std::cout << "[Setting] load ButtonSoundEffect.wav failed\n";
     }
     // Font
     if (!font.loadFromFile("virgo.ttf"))
@@ -80,7 +80,7 @@ Setting::Setting()
     normalLaserProp.speed = 50.f;
     normalLaserProp.color = getColor().getDarkColor();
     normalLaserProp.fadeout = true;
-    
+
     pulseLaserProp.loop = false;
     pulseLaserProp.duration = 0.f;
     pulseLaserProp.rateOverTime = -1;
