@@ -48,12 +48,6 @@ Setting::Setting()
     }
     cFile.close();
 
-    // Load Sound
-    if (!soundBuffer.loadFromFile("ButtonSoundEffect.wav"))
-    {
-        std::cout << "[Setting] load ButtonSoundEffect.ogg failed\n";
-    }
-
     // Font
     if (!font.loadFromFile("virgo.ttf"))
     {
@@ -82,6 +76,18 @@ Setting::Setting()
     normalLaserProp.speed = 50.f;
     normalLaserProp.color = getColor().getDarkColor();
     normalLaserProp.fadeout = true;
+    
+    pulseLaserProp.loop = false;
+    pulseLaserProp.duration = 0.f;
+    pulseLaserProp.rateOverTime = -1;
+    pulseLaserProp.maxParticleCount = 40;
+    pulseLaserProp.size = 16.f;
+    pulseLaserProp.randomLifeTime = true;
+    pulseLaserProp.minLifeTimeRange = 0.5f;
+    pulseLaserProp.lifeTime = 1.0f;
+    pulseLaserProp.speed = 40.f;
+    pulseLaserProp.color = getColor().getDarkColor();
+    pulseLaserProp.fadeout = true;
 
     // init Difficulty Table
     difficultyTable[EASY] = "Easy";
@@ -236,9 +242,4 @@ void Setting::setWindowSize(sf::Vector2u windowSize)
 std::string &Setting::getDifficultyName()
 {
     return difficultyTable[difficulty];
-}
-
-sf::SoundBuffer &Setting::getSoundBuffer()
-{
-    return soundBuffer;
 }
