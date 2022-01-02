@@ -1,7 +1,7 @@
 #pragma once
 
 #include <functional>
-
+#include "SFML/Audio.hpp"
 #include "Game/GameObject/Text.h"
 
 namespace GameObject
@@ -9,7 +9,7 @@ namespace GameObject
     class Button : public GameObject
     {
     public:
-        Button(sf::Vector2f position, Color &color, sf::Font &font, std::string str, int characterSize, std::function<void()> onClick, float characterScaler = 1.2);
+        Button(sf::Vector2f position, Color &color, sf::Font &font, std::string str, int characterSize, sf::SoundBuffer &soundBuffer, std::function<void()> onClick, float characterScaler = 1.2);
 
         void setColor(Color &color) override;             // 設定顏色
         void setPosition(sf::Vector2f position) override; // 設定位置
@@ -25,6 +25,7 @@ namespace GameObject
         Text text;             // 文字
         int characterSize;     // 字元大小
         float characterScaler; // 放大倍率
+        sf::Sound sound;       // 聲音
 
         std::function<void()> onClick; // 被點擊時要觸發的 function
 

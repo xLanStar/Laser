@@ -5,7 +5,7 @@
 #include "Game/Color.h"
 #include "Game/GameObject/Pattern/Pattern.h"
 #include "Game/Particle/ParticleSystemProp.h"
-
+#include "SFML/Audio.hpp"
 enum Difficulty //難度設定
 {
     EASY,
@@ -30,6 +30,9 @@ private:
     // Color
     Color color;
 
+    // SoundBuffer
+    sf::SoundBuffer soundBuffer;
+
     sf::Font font; //字形
 
     // Difficulty
@@ -41,7 +44,7 @@ private:
 
     // Laser Generator
     float normalLaserGenerateIntervals[3] = {0.9f, 0.8f, 0.7f};
-    float pulseLaserGenerateIntervals[3] = {1.5f, 1.3f, 1.1f};
+    float pulseLaserGenerateIntervals[3] = {1.7f, 1.5f, 1.3f};
 
     // Particle System
     ParticleSystemProp normalLaserProp;
@@ -94,6 +97,9 @@ public:
     // Window
     sf::Vector2u getWindowSize();
     sf::Vector2f getPointAtWindow(float x, float y);
+
+    // Sound
+    sf::SoundBuffer &getSoundBuffer();
 
     void setWindowSize(sf::Vector2u windowSize); //設定視窗寬高
 };

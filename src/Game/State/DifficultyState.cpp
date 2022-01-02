@@ -31,6 +31,7 @@ void DifficultyState::initUI()
         game.setting.getFont(),
         "EASY",
         55,
+        game.setting.getSoundBuffer(),
         [&]
         { game.setting.setDifficulty(Difficulty::EASY); game.setting.resetCurrentScore(); game.switchState(GAME); });
     gameObjects["Normal"] = new GameObject::Button(
@@ -39,6 +40,7 @@ void DifficultyState::initUI()
         game.setting.getFont(),
         "NORMAL",
         55,
+        game.setting.getSoundBuffer(),
         [&]
         { game.setting.setDifficulty(Difficulty::NORMAL); game.setting.resetCurrentScore(); game.switchState(GAME); });
     gameObjects["Hard"] = new GameObject::Button(
@@ -47,6 +49,7 @@ void DifficultyState::initUI()
         game.setting.getFont(),
         "HARD",
         55,
+        game.setting.getSoundBuffer(),
         [&]
         { game.setting.setDifficulty(Difficulty::HARD); game.setting.resetCurrentScore(); game.switchState(GAME); });
     gameObjects["Exit"] = new GameObject::Button(
@@ -55,6 +58,7 @@ void DifficultyState::initUI()
         game.setting.getFont(),
         "EXIT",
         44,
+        game.setting.getSoundBuffer(),
         [&]
         { Quit(); });
 }

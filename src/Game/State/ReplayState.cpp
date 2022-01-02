@@ -26,6 +26,7 @@ void ReplayState::initUI()
         game.setting.getFont(),
         "AGAIN",
         50,
+        game.setting.getSoundBuffer(),
         [&]
         { game.setting.resetCurrentScore(); game.switchState(GAME); });
     gameObjects["Menu"] = new GameObject::Button(
@@ -34,6 +35,7 @@ void ReplayState::initUI()
         game.setting.getFont(),
         "MENU",
         50,
+        game.setting.getSoundBuffer(),
         [&]
         { Quit(); });
 }

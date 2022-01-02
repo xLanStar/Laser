@@ -26,6 +26,7 @@ void PatternState::initUI()
         game.setting.getFont(),
         "Exit",
         44,
+        game.setting.getSoundBuffer(),
         [&]
         { Quit(); });
     int tileWidth = 250;  //容器寬度
@@ -45,6 +46,7 @@ void PatternState::initUI()
             game.setting.getFont(),
             it.first,
             48,
+            game.setting.getSoundBuffer(),
             [=]
             { game.setCursor(it.first); });
         if (++i == validCount)

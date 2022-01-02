@@ -27,6 +27,7 @@ void ColorState::initUI()
         game.setting.getFont(),
         (std::string) "Exit",
         44,
+        game.setting.getSoundBuffer(),
         [&]
         { Quit(); });
     // Tiles 容器

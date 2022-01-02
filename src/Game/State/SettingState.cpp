@@ -24,6 +24,7 @@ void SettingState::initUI()
         game.setting.getFont(),
         "Color Setting",
         72,
+        game.setting.getSoundBuffer(),
         [&]
         { onColorButtonClick(); },
         1.1);
@@ -33,6 +34,7 @@ void SettingState::initUI()
         game.setting.getFont(),
         "Pattern Setting",
         72,
+        game.setting.getSoundBuffer(),
         [&]
         { onPatternButtonClick(); });
     gameObjects["Exit"] = new GameObject::Button(
@@ -41,6 +43,7 @@ void SettingState::initUI()
         game.setting.getFont(),
         "Exit",
         44,
+        game.setting.getSoundBuffer(),
         [&]
         { Quit(); },
         1.1);

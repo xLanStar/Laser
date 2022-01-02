@@ -48,6 +48,12 @@ Setting::Setting()
     }
     cFile.close();
 
+    // Load Sound
+    if (!soundBuffer.loadFromFile("ButtonSoundEffect.wav"))
+    {
+        std::cout << "[Setting] load ButtonSoundEffect.ogg failed\n";
+    }
+
     // Font
     if (!font.loadFromFile("virgo.ttf"))
     {
@@ -76,6 +82,7 @@ Setting::Setting()
     normalLaserProp.speed = 10.f;
     normalLaserProp.color = getColor().getDarkColor();
     normalLaserProp.fadeout = true;
+
     // init Difficulty Table
     difficultyTable[EASY] = "Easy";
     difficultyTable[NORMAL] = "Normal";
@@ -223,4 +230,9 @@ void Setting::setWindowSize(sf::Vector2u windowSize)
 std::string &Setting::getDifficultyName()
 {
     return difficultyTable[difficulty];
+}
+
+sf::SoundBuffer &Setting::getSoundBuffer()
+{
+    return soundBuffer;
 }

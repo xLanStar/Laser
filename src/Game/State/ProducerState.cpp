@@ -37,6 +37,7 @@ void ProducerState::initUI()
         game.setting.getFont(),
         "EXIT",
         44,
+        game.setting.getSoundBuffer(),
         [&]
         { Quit(); });
 }

@@ -14,7 +14,7 @@ CPP:=g++
 # 參數
 CPPFLAGS :=-g -O3 -Wno-deprecated
 INCFLAGS = -I$(INC_DIR) -I$(SRC_DIR)
-LFLAGS := -lsfml-graphics -lsfml-window -lsfml-system
+LFLAGS := -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 SLFLAGS = -L$(LIB_DIR)
 
 .PHONY : all clean info

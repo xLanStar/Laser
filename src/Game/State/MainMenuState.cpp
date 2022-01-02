@@ -19,6 +19,7 @@ void MainMenuState::initUI()
         game.setting.getFont(),
         "PLAY",
         67,
+        game.setting.getSoundBuffer(),
         [&]
         { game.pushState(DIFFICULTY); });
     gameObjects["Setting"] = new GameObject::Button(
@@ -27,6 +28,7 @@ void MainMenuState::initUI()
         game.setting.getFont(),
         "SETTING",
         67,
+        game.setting.getSoundBuffer(),
         [&]
         { game.pushState(SETTING); });
     gameObjects["Exit"] = new GameObject::Button(
@@ -35,6 +37,7 @@ void MainMenuState::initUI()
         game.setting.getFont(),
         "EXIT",
         44,
+        game.setting.getSoundBuffer(),
         [&]
         { Quit(); });
     gameObjects["Producer"] = new GameObject::Button(
@@ -43,6 +46,7 @@ void MainMenuState::initUI()
         game.setting.getFont(),
         "PRODUCER",
         44,
+        game.setting.getSoundBuffer(),
         [&]
         { game.pushState(PRODUCER); });
 }

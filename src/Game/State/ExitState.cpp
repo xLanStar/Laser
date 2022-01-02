@@ -25,6 +25,7 @@ void ExitState::initUI()
         game.setting.getFont(),
         "YES",
         60,
+        game.setting.getSoundBuffer(),
         [&]
         { game.stop(); });
     gameObjects["No"] = new GameObject::Button(
@@ -33,6 +34,7 @@ void ExitState::initUI()
         game.setting.getFont(),
         "NO",
         60,
+        game.setting.getSoundBuffer(),
         [&]
         { Quit(); });
 }

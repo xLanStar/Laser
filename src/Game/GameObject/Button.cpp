@@ -1,8 +1,9 @@
 #include "Button.h"
 
-GameObject::Button::Button(sf::Vector2f position, Color &color, sf::Font &font, std::string str, int characterSize, std::function<void()> onClick, float characterScaler)
+GameObject::Button::Button(sf::Vector2f position, Color &color, sf::Font &font, std::string str, int characterSize, sf::SoundBuffer &soundBuffer, std::function<void()> onClick, float characterScaler)
     : GameObject(color, position), onClick(onClick), hover(false), pressed(false), text(position, characterSize, color, font, str), characterSize(characterSize), characterScaler(characterScaler)
 {
+    sound.setBuffer(soundBuffer);
 }
 
 void GameObject::Button::setColor(Color &color) // 設定顏色
@@ -33,6 +34,7 @@ void GameObject::Button::updateMousePress(sf::Vector2f &point) // 滑鼠按下�
 {
     if (hover) //如果被覆蓋，又被點擊，則 Switch 旗標
     {
+        sound.play();
         pressed = true;
     }
 }

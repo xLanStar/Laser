@@ -7,7 +7,7 @@ namespace GameObject
     class PulseLaser : public Laser
     {
     public:
-        PulseLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int thickness = 7, float delay = 0.7f, float duration = 0.5f, int dashLineLength = 28);
+        PulseLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int thickness = 7, float delay = 0.6f, float duration = 0.5f, int dashLineLength = 28);
 
         bool isCollided(const Pattern &player) const override; //是否碰撞
 
