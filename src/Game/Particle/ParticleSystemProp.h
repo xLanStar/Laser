@@ -1,35 +1,25 @@
 #pragma once
 
-struct ParticleSystemProp
+struct ParticleSystemProp //粒子系統的屬性
 {
     // ParticleSystem
     bool loop; // whether particle system emit loop
 
-    // Duration
-    float duration; // the total duration of particle system
+    float duration; // 粒子效果的持續時間
 
-    // Emission
-    float rateOverTime; // emit times per second
+    float rateOverTime; // 單位時間的粒子釋放量
 
-    // Particle Count
-    unsigned int maxParticleCount; // max particle count in time
+    unsigned int maxParticleCount; // 粒子數量
 
-    // Particle size
-    float size;
+    float size; //粒子大小
 
-    // Particle size over time
-
-    // Particle lifeTime
-    bool randomLifeTime;    // whether particle has random lifetime
+    bool randomLifeTime;    // 隨機的產生生存時間
     float minLifeTimeRange; // 0.0f ~ 1.0f, rand() * (1 - minLifeTimeRange * lifeTime) + minLifeTimeRange * lifeTime
-    float lifeTime;         // particle life time
+    float lifeTime;         // 粒子的時間
 
-    // Pariticle speed
-    float speed; // particle move speed
+    float speed; // 粒子的移動速度
 
-    // Particle color
-    sf::Color color;
+    sf::Color color; //粒子的顏色
 
-    // Particle fade out
-    bool fadeout;
+    bool fadeout; //粒子是否該消失
 };

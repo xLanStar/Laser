@@ -70,8 +70,9 @@ GameState::~GameState()
     // Clear Lasers
     for (auto it = lasers.begin(); it != lasers.end(); it++)
     {
-        lasers.erase(it);
+        delete *it;
     }
+    lasers.clear();
 }
 
 // Update Functions

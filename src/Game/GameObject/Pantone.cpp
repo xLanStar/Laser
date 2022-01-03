@@ -4,9 +4,10 @@
 
 #include "Game/Util.h"
 
-GameObject::Pantone::Pantone(sf::Vector2f position, Color &color, std::function<void()> onClick, int points, int radius, float hoverScale) : GameObject(color, position), onClick(onClick), pressed(false), points(points), radius(radius), hoverScale(hoverScale)
+GameObject::Pantone::Pantone(sf::Vector2f position, Color &color, sf::SoundBuffer &soundBuffer, std::function<void()> onClick, int points, int radius, float hoverScale) : GameObject(color, position), onClick(onClick), pressed(false), points(points), radius(radius), hoverScale(hoverScale)
 {
     setupShape(); // 設定圖案
+    sound.setBuffer(soundBuffer);
 }
 
 int GameObject::Pantone::getRadius() const // 取得半徑
@@ -75,6 +76,7 @@ void GameObject::Pantone::updateMousePress(sf::Vector2f &point) // 滑鼠按下
 {
     if (hover && !pressed) //如果被覆蓋又被壓
     {
+        sound.play();
         pressed = true; //狀態改為被壓著
     }
 }

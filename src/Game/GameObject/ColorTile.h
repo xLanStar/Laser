@@ -18,7 +18,7 @@ namespace GameObject
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const; //渲染
 
     public:
-        ColorTile(sf::Vector2f position, sf::Font &font, Color &color, std::function<void()> onClick, int tileWidth = 250, int tileHeight = 120);
+        ColorTile(sf::Vector2f position, sf::Font &font, Color &color, sf::SoundBuffer& soundBuffer, std::function<void()> onClick, int tileWidth = 250, int tileHeight = 120);
 
         void setColor(Color &color) override;             //設定顏色
         void setPosition(sf::Vector2f position) override; //設定位置

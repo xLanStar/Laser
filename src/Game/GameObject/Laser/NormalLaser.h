@@ -7,7 +7,7 @@ namespace GameObject
     class NormalLaser : public Laser
     {
     public:
-        NormalLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int speed = 900, int length = 300, int thickness = 7);
+        NormalLaser(sf::Vector2f position, float angle, Color &color, sf::FloatRect &borderRect, ParticleSystemProp &prop, int speed = 900, int length = 280, int thickness = 7);
 
         bool isCollided(const Pattern &player) const override; //檢測是否碰撞到
 

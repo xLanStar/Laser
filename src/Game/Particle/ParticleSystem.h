@@ -2,7 +2,7 @@
 #include "Game/Particle/ParticleSystemProp.h"
 #include "Game/Util.h"
 
-enum ParticleSystemShape
+enum ParticleSystemShape //兩種不同的粒子效果
 {
     Dot,
     Line
@@ -11,49 +11,41 @@ enum ParticleSystemShape
 class ParticleSystem : public sf::Drawable, public sf::Transformable
 {
 private:
-    sf::Vector2f position;
+    sf::Vector2f position; //位置
 
-    // particle system statement
-    bool active;
-    bool emitting;
-    unsigned int activeParticleCount;
+    bool active;                      //是否仍有粒子存活
+    bool emitting;                    //是否正在產生粒子
+    unsigned int activeParticleCount; //
 
-    // log over time
-    float overTime;
+    float overTime; //經過的時間
 
     // Shape
     ParticleSystemShape shape; // Shape
-    float length;              // Line
+    float offset;              // Line
 
     // Emission
     float emitTimeCounter;
     float emitTime;
 
-    // store all particle
-    std::vector<Particle> particles;
+    std::vector<Particle> particles; // 粒子容器
 
     // store the particle system values
     ParticleSystemProp &prop;
 
     void resetParticle(Particle &particle);
 
-    // ParticleSystem Draw Funcion
-    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const; // 渲染
 
 public:
-    // constructor
     ParticleSystem(ParticleSystemProp &prop);
 
-    // Accessors
-    bool &isActive();
+    bool isActive();
     void Emit();
-    void stopEmitting();
-    bool &isEmitting();
-    bool isAlive();
+    void stopEmitting(); // 停止發射
+    bool isEmitting();   // 是否正在發射
+    bool isAlive();      // 是否還有粒子存活
 
-    // Functions
     void setShape(ParticleSystemShape shape, float length = 0.f); // 粒子系統本身的形狀，相當於粒子應該在哪些範圍內產生
 
-    // update function
-    void update(float deltaTime);
+    void update(float deltaTime); // 更新
 };

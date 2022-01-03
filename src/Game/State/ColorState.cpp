@@ -47,6 +47,7 @@ void ColorState::initUI()
             sf::Vector2f(x, y),
             game.setting.getFont(),
             game.setting.findColor(it.first),
+            game.setting.getSoundBuffer(),
             [=]
             { game.setColorTheme(it.first); });
         if (++i == validCount) //如果橫列滿了就下一列

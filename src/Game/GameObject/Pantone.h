@@ -3,13 +3,14 @@
 #include <functional>
 
 #include "Game/GameObject/GameObject.h"
+#include "SFML/Audio.hpp"
 
 namespace GameObject
 {
     class Pantone : public GameObject
     {
     public:
-        Pantone(sf::Vector2f position, Color &color, std::function<void()> onClick, int points = 30, int radius = 32, float hoverScale = 1.2f);
+        Pantone(sf::Vector2f position, Color &color, sf::SoundBuffer &soundBuffer, std::function<void()> onClick, int points = 30, int radius = 32, float hoverScale = 1.2f);
 
         int getRadius() const;                            // 取得半徑
         void setPosition(sf::Vector2f position) override; // 取得位置
@@ -24,6 +25,7 @@ namespace GameObject
         int points;       // 多邊形的點數
         int radius;       // 色票的半徑
         float hoverScale; // 覆蓋時縮放比例
+        sf::Sound sound;  // 聲音
 
         sf::ConvexShape leftConvex, rightConvex; // 色票左右兩側的多邊形
 

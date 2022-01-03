@@ -43,7 +43,7 @@ private:
     int currentScore = 0;            //現在的分數
 
     // Laser Generator
-    float normalLaserGenerateIntervals[3] = {0.9f, 0.8f, 0.7f};
+    float normalLaserGenerateIntervals[3] = {0.8f, 0.7f, 0.6f};
     float pulseLaserGenerateIntervals[3] = {1.7f, 1.5f, 1.3f};
 
     // Particle System
