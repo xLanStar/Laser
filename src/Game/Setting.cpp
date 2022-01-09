@@ -48,6 +48,7 @@ Setting::Setting()
     }
     cFile.close();
 
+    // soundEffect
     if (!soundBuffer.loadFromFile("ButtonSoundEffect.wav"))
     {
         std::cout << "[Setting] load ButtonSoundEffect.wav failed\n";
@@ -248,6 +249,7 @@ std::string &Setting::getDifficultyName()
     return difficultyTable[difficulty];
 }
 
+// SoundEffect
 sf::SoundBuffer &Setting::getSoundBuffer()
 {
     return soundBuffer;

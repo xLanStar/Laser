@@ -100,7 +100,7 @@ public:
     sf::Vector2u getWindowSize();
     sf::Vector2f getPointAtWindow(float x, float y);
 
-    // Sound
+    // SoundEffect
     sf::SoundBuffer &getSoundBuffer();
 
     void setWindowSize(sf::Vector2u windowSize); //設定視窗寬高

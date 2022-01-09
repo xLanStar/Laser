@@ -239,6 +239,13 @@ void Game::render()
 // Run
 void Game::run()
 {
+    sf::Music BGM;
+    if (!BGM.openFromFile("BGM.ogg"))
+    {
+        std::cout << "load BGM.ogg failed";
+    }
+    BGM.setVolume(10.0f);
+    BGM.play();
     while (window->isOpen())
     {
         update();

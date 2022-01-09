@@ -8,6 +8,7 @@ GameObject::Pantone::Pantone(sf::Vector2f position, Color &color, sf::SoundBuffe
 {
     setupShape(); // 設定圖案
     sound.setBuffer(soundBuffer);
+    sound.setVolume(30.0f);
 }
 
 int GameObject::Pantone::getRadius() const // 取得半徑

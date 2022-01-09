@@ -4,6 +4,7 @@ GameObject::Button::Button(sf::Vector2f position, Color &color, sf::Font &font, 
     : GameObject(color, position), onClick(onClick), hover(false), pressed(false), text(position, characterSize, color, font, str), characterSize(characterSize), characterScaler(characterScaler)
 {
     sound.setBuffer(soundBuffer);
+    sound.setVolume(30.0f);
 }
 
 void GameObject::Button::setColor(Color &color) // 設定顏色
