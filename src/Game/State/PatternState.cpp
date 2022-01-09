@@ -29,8 +29,8 @@ void PatternState::initUI()
         game.setting.getSoundBuffer(),
         [&]
         { Quit(); });
-    int tileWidth = 250;  //容器寬度
-    int tileHeight = 120; //容器高度
+    int tileWidth = 220;  //容器寬度
+    int tileHeight = 240; //容器高度
     int minGap = 25;      //容器之間的間距
     int validCount = int((game.setting.getWindowSize().x - borderSize * 2 - tileWidth) / (tileWidth + minGap)) + 1;
     int gap = (game.setting.getWindowSize().x - borderSize * 2 - validCount * tileWidth) / (validCount - 1);

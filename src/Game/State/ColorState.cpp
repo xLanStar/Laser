@@ -31,28 +31,28 @@ void ColorState::initUI()
         [&]
         { Quit(); });
     // Tiles 容器
-    int tileWidth = 150;                                                                                            //容器寬度
+    int tileWidth = 200;                                                                                            //容器寬度
     int tileHeight = 140;                                                                                           //容器高度
     int minGap = 20;                                                                                                //容器之間的間距
     int validCount = int((game.setting.getWindowSize().x - borderSize * 2 - tileWidth) / (tileWidth + minGap)) + 1; //取得寬度的有效個數
     int gap = (game.setting.getWindowSize().x - borderSize * 2 - validCount * tileWidth) / (validCount - 1);        //取得兩側的 Gap
 
-    int i = 0, counter = 0;
-    int x = 100;
-    int y = game.setting.getWindowSize().y * 35 / 100; //容器高度
+    int counter = 0; //計數器
+    int x = 0;
+    int y = game.setting.getWindowSize().y * 40 / 100; //容器高度
     for (auto it : game.setting.getColorTable())
     {
-        x = borderSize + (tileWidth + gap) * i;
+        x = borderSize + (tileWidth + gap) * counter;
         gameObjects[it.first] = new GameObject::ColorTile(
-            sf::Vector2f(x, y),
+            sf::Vector2f(x - gap / 2, y),
             game.setting.getFont(),
             game.setting.findColor(it.first),
             game.setting.getSoundBuffer(),
             [=]
             { game.setColorTheme(it.first); });
-        if (++i == validCount) //如果橫列滿了就下一列
+        if (++counter == validCount) //如果橫列滿了就下一列
         {
-            i = 0;
+            counter = 0;
             y += tileHeight;
         }
     }

@@ -244,7 +244,7 @@ void Game::run()
     {
         std::cout << "load BGM.ogg failed";
     }
-    BGM.setVolume(10.0f);
+    BGM.setVolume(5.0f);
     BGM.play();
     while (window->isOpen())
     {
